@@ -1,0 +1,12 @@
+a {
+   text-decoration: none;
+}
+
+.active {
+   font-weight: 900 !important;
+   color: var(--surface-900) !important;
+
+   border-color: var(--primary-color) !important;
+   border-bottom-width: 2px !important;
+   border-bottom-style: solid !important;
+}
