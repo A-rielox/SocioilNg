@@ -6,17 +6,7 @@ import { Component, OnInit } from '@angular/core';
    styleUrls: ['./home.component.css'],
 })
 export class HomeComponent implements OnInit {
-   // users: any;
-
-   constructor(/* private http: HttpClient */) {}
+   constructor() {}
 
    ngOnInit(): void {}
-
-   // getUsers() {
-   //    this.http.get('https://localhost:7051/api/Users').subscribe({
-   //       next: (res) => (this.users = res),
-   //       error: (error) => console.log(error),
-   //       complete: () => console.log('Req completed'),
-   //    });
-   // }
 }

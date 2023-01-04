@@ -1,0 +1,117 @@
+<div class="col-12 md:col-6 lg:col-3 p-3">
+   <div
+      class="relative overflow-hidden"
+      (mouseenter)="visibleMember = 0"
+      (mouseleave)="visibleMember = null"
+   >
+      <img src="assets/images/blocks/team/team-5.png" class="w-full block" />
+      <div
+         class="absolute top-0 left-0 h-full w-full border-round fadein animation-duration-300 select-none"
+         style="background-color: rgba(0, 0, 0, 0.7)"
+         *ngIf="visibleMember === 0"
+      >
+         <div class="flex flex-column p-5 h-full">
+            <span class="block font-medium text-white text-xl mb-3"
+               >Jeff Davies</span
+            >
+            <span class="font-medium text-400">Software Developer</span>
+            <div class="mt-auto">
+               <a tabindex="0" class="cursor-pointer text-white"
+                  ><i class="pi pi-twitter text-600 text-xl mr-3"></i
+               ></a>
+               <a tabindex="0" class="cursor-pointer text-white"
+                  ><i class="pi pi-github text-600 text-xl mr-3"></i
+               ></a>
+               <a tabindex="0" class="cursor-pointer text-white"
+                  ><i class="pi pi-facebook text-600 text-xl"></i
+               ></a>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
+
+<!-- <div class="col-12 md:col-6 lg:col-3 p-3">
+   <div
+      class="relative overflow-hidden"
+      (mouseenter)="visibleMember = 1"
+      (mouseleave)="visibleMember = null"
+   >
+      <img src="assets/images/blocks/team/team-6.png" class="w-full block" />
+      <div
+         class="absolute top-0 left-0 h-full w-full border-round fadein animation-duration-300 select-none"
+         style="background-color: rgba(0, 0, 0, 0.7)"
+         *ngIf="visibleMember === 1"
+      >
+         <div class="flex flex-column p-5 h-full">
+            <span class="block font-medium text-white text-xl mb-3"
+               >Kristin Watson</span
+            >
+            <span class="font-medium text-400">UI/UX Designer</span>
+            <div class="mt-auto">
+               <a tabindex="0" class="cursor-pointer text-white"
+                  ><i class="pi pi-twitter text-600 text-xl mr-3"></i
+               ></a>
+               <a tabindex="0" class="cursor-pointer text-white"
+                  ><i class="pi pi-github text-600 text-xl mr-3"></i
+               ></a>
+               <a tabindex="0" class="cursor-pointer text-white"
+                  ><i class="pi pi-facebook text-600 text-xl"></i
+               ></a>
+            </div>
+         </div>
+      </div>
+   </div>
+</div> -->
+
+<!--  -->
+<!--  -->
+<!--  -->
+
+<!-- 
+
+<div class="card mb-4" *ngIf="member">
+   <div class="card-img-wrapper">
+      <img
+         src="{{ member.photoUrl || './assets/user.png' }}"
+         alt="{{ member.knownAs }}"
+         class="card-img-top"
+      />
+
+      <ul class="list-inline member-icons animate text-center">
+         <li class="list-inline-item">
+            <button
+               routerLink="/members/{{ member.userName }}"
+               class="btn btn-primary"
+            >
+               <i class="fa fa-user"></i>
+            </button>
+         </li>
+         <li class="list-inline-item">
+            <button (click)="addLike(member)" class="btn btn-primary">
+               <i class="fa fa-heart"></i>
+            </button>
+         </li>
+         <li class="list-inline-item">
+            <button
+               routerLink="/members/{{ member.userName }}"
+               [queryParams]="{ tab: 'Messages' }"
+               class="btn btn-primary"
+            >
+               <i class="fa fa-envelope"></i>
+            </button>
+         </li>
+      </ul>
+   </div>
+
+   <div class="card-body p-1">
+      <h6 class="card-title text-center mb-1">
+         <i class="fa fa-user me-2"></i>
+         {{ member.knownAs }}, {{ member.age }}
+      </h6>
+      <p class="card-text text-muted text-center">{{ member.city }}</p>
+   </div>
+</div>
+
+
+-->

@@ -7,6 +7,10 @@ import { CheckboxModule } from 'primeng/checkbox';
 import { StyleClassModule } from 'primeng/styleclass';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
+import { TabViewModule } from 'primeng/tabview';
+import { DividerModule } from 'primeng/divider';
+// import { ImageModule } from 'primeng/image';
+import { GalleriaModule } from 'primeng/galleria';
 
 @NgModule({
    declarations: [],
@@ -17,6 +21,10 @@ import { InputTextModule } from 'primeng/inputtext';
       StyleClassModule,
       ButtonModule,
       InputTextModule,
+      TabViewModule,
+      DividerModule,
+      // ImageModule,
+      GalleriaModule,
    ],
    exports: [
       CheckboxModule,
@@ -24,6 +32,10 @@ import { InputTextModule } from 'primeng/inputtext';
       StyleClassModule,
       ButtonModule,
       InputTextModule,
+      TabViewModule,
+      DividerModule,
+      // ImageModule,
+      GalleriaModule,
    ],
 })
 export class SharedModule {}

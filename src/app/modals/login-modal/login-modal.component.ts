@@ -31,7 +31,7 @@ export class LoginModalComponent implements OnInit {
 
             this.notification.addNoti({
                severity: 'success',
-               summary: 'Bienvenido.',
+               summary: 'Bienvenida.',
                detail: 'Que bueno tenerte de vuelta.',
             });
          },
