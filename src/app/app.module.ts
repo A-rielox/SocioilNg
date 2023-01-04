@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -19,6 +19,10 @@ import { RecipesComponent } from './recipes/recipes.component';
 import { PostsComponent } from './posts/posts.component';
 import { NewsComponent } from './news/news.component';
 import { NotificationsModule } from './notifications/notifications.module';
+import { TestErrorComponent } from './errors/test-error/test-error.component';
+import { ErrorInterceptor } from './_interceptors/error.interceptor';
+import { NotFoundComponent } from './errors/not-found/not-found.component';
+import { ServerErrorComponent } from './errors/server-error/server-error.component';
 
 @NgModule({
    declarations: [
@@ -32,6 +36,9 @@ import { NotificationsModule } from './notifications/notifications.module';
       RecipesComponent,
       PostsComponent,
       NewsComponent,
+      TestErrorComponent,
+      NotFoundComponent,
+      ServerErrorComponent,
    ],
    imports: [
       BrowserModule,
@@ -43,7 +50,9 @@ import { NotificationsModule } from './notifications/notifications.module';
       SharedModule,
       NotificationsModule,
    ],
-   providers: [],
+   providers: [
+      { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+   ],
    bootstrap: [AppComponent],
 })
 export class AppModule {}

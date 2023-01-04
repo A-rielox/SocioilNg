@@ -1,0 +1,83 @@
+<ng-container>
+   <div class="p-5">
+      <button
+         pButton
+         type="button"
+         class="p-button-outlined p-button-raised mr-2"
+         (click)="get500Error()"
+      >
+         Test 500 Error
+      </button>
+      <button
+         pButton
+         type="button"
+         class="p-button-outlined p-button-secondary p-button-raised mr-2"
+         (click)="get400Error()"
+      >
+         Test 400 Error
+      </button>
+      <button
+         pButton
+         type="button"
+         class="p-button-outlined p-button-success p-button-raised mr-2"
+         (click)="get401Error()"
+      >
+         Test 401 Error
+      </button>
+      <button
+         pButton
+         type="button"
+         class="p-button-outlined p-button-info p-button-raised mr-2"
+         (click)="get404Error()"
+      >
+         Test 404 Error
+      </button>
+      <button
+         pButton
+         type="button"
+         class="p-button-outlined p-button-help p-button-raised mr-2"
+         (click)="get400ValidationError()"
+      >
+         Test 400 Validation Error
+      </button>
+
+      <!-- <div class="row mt-5" *ngIf="validationErrors.length > 0">
+         <ul class="text-danger">
+            <li *ngFor="let error of validationErrors">
+               {{ error }}
+            </li>
+         </ul>
+      </div> -->
+   </div>
+
+   <div
+      *ngIf="validationErrors.length > 0"
+      class="flex align-items-start p-4 mx-5 bg-pink-100 border-round border-1 border-pink-300"
+   >
+      <i class="pi pi-times-circle text-pink-900 text-2xl mr-3"></i>
+
+      <div class="mr-3">
+         <div class="text-pink-900 font-medium text-xl mb-3 line-height-1">
+            Validation Errors
+         </div>
+
+         <ul class="m-0 p-0 text-pink-700 ml-3">
+            <li class="p-1" *ngFor="let error of validationErrors">
+               {{ error }}
+            </li>
+         </ul>
+      </div>
+
+      <!-- icono cerrar -->
+      <!-- actualmente no lo cierra, poner q haga "validationErrors = []" p'q se cierre  -->
+      <div class="ml-auto">
+         <a
+            pRipple
+            class="inline-flex align-items-center justify-content-center ml-auto border-circle hover:bg-pink-50 no-underline cursor-pointer transition-colors transition-duration-150"
+            style="width: 1.5rem; height: 1.5rem"
+         >
+            <i class="pi pi-times text-pink-900"></i>
+         </a>
+      </div>
+   </div>
+</ng-container>

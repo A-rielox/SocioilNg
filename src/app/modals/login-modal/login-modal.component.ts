@@ -35,14 +35,13 @@ export class LoginModalComponent implements OnInit {
                detail: 'Que bueno tenerte de vuelta.',
             });
          },
-         error: (err) => {
-            console.log(err);
-
-            this.notification.addNoti({
-               severity: 'error',
-               summary: 'Error al entrar.',
-               detail: err.error,
-            });
+         error: () => {
+            // ahora mando el error desde el interceptor
+            // this.notification.addNoti({
+            //    severity: 'error',
+            //    summary: 'Error al entrar.',
+            //    detail: err.error,
+            // });
          },
       });
 
