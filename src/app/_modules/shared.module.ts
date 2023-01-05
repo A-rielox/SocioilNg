@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
+import { NgxSpinnerModule } from 'ngx-spinner';
+
 import { DialogModule } from 'primeng/dialog';
 import { CheckboxModule } from 'primeng/checkbox';
 
@@ -23,6 +25,7 @@ import { SelectButtonModule } from 'primeng/selectbutton';
    declarations: [],
    imports: [
       CommonModule,
+      NgxSpinnerModule.forRoot({ type: 'pacman' }),
       CheckboxModule,
       DialogModule,
       StyleClassModule,
@@ -40,6 +43,7 @@ import { SelectButtonModule } from 'primeng/selectbutton';
       SelectButtonModule,
    ],
    exports: [
+      NgxSpinnerModule,
       CheckboxModule,
       DialogModule,
       StyleClassModule,

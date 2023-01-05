@@ -119,7 +119,13 @@
                         <label for="email" class="font-medium text-900"
                            >Email</label
                         >
-                        <input id="email" type="text" pInputText />
+                        <input
+                           id="email"
+                           type="text"
+                           pInputText
+                           [(ngModel)]="member.email"
+                           name="email"
+                        />
                      </div>
 
                      <p-divider class="col-12"></p-divider>
@@ -151,6 +157,8 @@
                            pInputTextarea
                            rows="5"
                            [autoResize]="true"
+                           [(ngModel)]="member.interests"
+                           name="interests"
                         ></textarea>
                      </div>
 
@@ -189,12 +197,12 @@
                      <label for="age" class="font-medium text-900">Edad</label>
                      <input id="age" type="text" pInputText />
                      </div> -->
-                     <div class="field col-12 md:col-6">
+
+                     <!-- <div class="field col-12 md:col-6">
                         <label for="age" class="font-medium text-900"
                            >Edad</label
                         >
 
-                        <!-- spinnerMode="horizontal" -->
                         <p-inputNumber
                            inputId="age"
                            [showButtons]="true"
@@ -210,12 +218,12 @@
                            [(ngModel)]="member.age"
                            name="age"
                         ></p-inputNumber>
-                     </div>
+                     </div> -->
 
                      <!--        GENDER -->
                      <div class="field col-12 md:col-6">
                         <label for="gender" class="font-medium text-900"
-                           >Genero</label
+                           >Género</label
                         >
                         <p-selectButton
                            [options]="generos"

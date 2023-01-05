@@ -20,10 +20,11 @@
                   "tsConfig": "tsconfig.app.json",
                   "assets": ["src/favicon.ico", "src/assets"],
                   "styles": [
-                     "src/styles.css",
                      "node_modules/primeicons/primeicons.css",
                      "./src/app/theme/themes/soho/soho-light/theme.css",
-                     "node_modules/primeng/resources/primeng.min.css"
+                     "node_modules/ngx-spinner/animations/pacman.css",
+                     "node_modules/primeng/resources/primeng.min.css",
+                     "src/styles.css"
                   ],
                   "scripts": []
                },

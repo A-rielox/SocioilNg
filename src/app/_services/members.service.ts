@@ -31,22 +31,26 @@ export class MembersService {
       return this.http.get<Member>(this.baseUrl + 'users/' + username);
    }
 
-   // MANDABA EL HEADER CON TOKEN DESDE ACA 🤦‍♂️
-   // getHttpOptions() {
-   //    const userString = localStorage.getItem('user');
+   /* MANDABA EL HEADER CON TOKEN DESDE ACA 🤦‍♂️
+   
+   getHttpOptions() {
+      const userString = localStorage.getItem('user');
 
-   //    if (!userString) return;
+      if (!userString) return;
 
-   //    const user = JSON.parse(userString);
+      const user = JSON.parse(userString);
 
-   //    return {
-   //       headers: new HttpHeaders({
-   //          Authorization: 'Bearer ' + user.token,
-   //       }),
-   //    };
-   // }
+      return {
+         headers: new HttpHeaders({
+            Authorization: 'Bearer ' + user.token,
+         }),
+      };
+   }
+   */
 
-   updateMember() {}
+   updateMember(member: Member) {
+      return this.http.put(this.baseUrl + 'users', member);
+   }
 
    ///////////////////////////////////////////
    //////////  FOTOS
