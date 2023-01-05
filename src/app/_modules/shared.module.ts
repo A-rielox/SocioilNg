@@ -17,6 +17,7 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
 import { InputSwitchModule } from 'primeng/inputswitch';
 import { FileUploadModule } from 'primeng/fileupload';
 import { InputNumberModule } from 'primeng/inputnumber';
+import { SelectButtonModule } from 'primeng/selectbutton';
 
 @NgModule({
    declarations: [],
@@ -36,6 +37,7 @@ import { InputNumberModule } from 'primeng/inputnumber';
       InputSwitchModule,
       FileUploadModule,
       InputNumberModule,
+      SelectButtonModule,
    ],
    exports: [
       CheckboxModule,
@@ -52,6 +54,7 @@ import { InputNumberModule } from 'primeng/inputnumber';
       InputSwitchModule,
       FileUploadModule,
       InputNumberModule,
+      SelectButtonModule,
    ],
 })
 export class SharedModule {}
