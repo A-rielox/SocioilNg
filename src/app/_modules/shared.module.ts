@@ -11,6 +11,12 @@ import { TabViewModule } from 'primeng/tabview';
 import { DividerModule } from 'primeng/divider';
 // import { ImageModule } from 'primeng/image';
 import { GalleriaModule } from 'primeng/galleria';
+import { DropdownModule } from 'primeng/dropdown';
+
+import { InputTextareaModule } from 'primeng/inputtextarea';
+import { InputSwitchModule } from 'primeng/inputswitch';
+import { FileUploadModule } from 'primeng/fileupload';
+import { InputNumberModule } from 'primeng/inputnumber';
 
 @NgModule({
    declarations: [],
@@ -25,6 +31,11 @@ import { GalleriaModule } from 'primeng/galleria';
       DividerModule,
       // ImageModule,
       GalleriaModule,
+      DropdownModule,
+      InputTextareaModule,
+      InputSwitchModule,
+      FileUploadModule,
+      InputNumberModule,
    ],
    exports: [
       CheckboxModule,
@@ -36,6 +47,11 @@ import { GalleriaModule } from 'primeng/galleria';
       DividerModule,
       // ImageModule,
       GalleriaModule,
+      DropdownModule,
+      InputTextareaModule,
+      InputSwitchModule,
+      FileUploadModule,
+      InputNumberModule,
    ],
 })
 export class SharedModule {}
