@@ -17,9 +17,9 @@ import { DropdownModule } from 'primeng/dropdown';
 
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { InputSwitchModule } from 'primeng/inputswitch';
-import { FileUploadModule } from 'primeng/fileupload';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { SelectButtonModule } from 'primeng/selectbutton';
+import { FileUploadModule } from 'ng2-file-upload';
 
 @NgModule({
    declarations: [],
@@ -38,9 +38,9 @@ import { SelectButtonModule } from 'primeng/selectbutton';
       DropdownModule,
       InputTextareaModule,
       InputSwitchModule,
-      FileUploadModule,
       InputNumberModule,
       SelectButtonModule,
+      FileUploadModule,
    ],
    exports: [
       NgxSpinnerModule,
@@ -56,9 +56,9 @@ import { SelectButtonModule } from 'primeng/selectbutton';
       DropdownModule,
       InputTextareaModule,
       InputSwitchModule,
-      FileUploadModule,
       InputNumberModule,
       SelectButtonModule,
+      FileUploadModule,
    ],
 })
 export class SharedModule {}
