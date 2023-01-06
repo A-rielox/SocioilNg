@@ -66,8 +66,6 @@ export class MemberDetailComponent implements OnInit {
          });
       }
 
-      console.log('imgsUrls', imgsUrls);
-
       return imgsUrls;
    }
 }

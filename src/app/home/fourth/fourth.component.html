@@ -1,0 +1,232 @@
+<div
+   class="surface-ground px-4 py-8 md:px-6 lg:px-8 min-h-screen flex flex-column justify-content-center"
+>
+   <div class="w-full lg:hidden">
+      <div class="text-900 text-3xl font-medium">Feature Title</div>
+      <p class="text-600 text-xl line-height-3 mb-6">
+         Vulputate eu scelerisque felis imperdiet proin. Eget arcu dictum varius
+         duis at consectetur lorem donec.
+      </p>
+   </div>
+
+   <div class="grid justify-content-center flex-column lg:flex-row">
+      <div class="col-12 lg:col-6 py-4 lg:pr-4 flex-order-2 lg:flex-order-1">
+         <div class="w-full hidden lg:block">
+            <div class="text-900 text-3xl font-medium">
+               ¿Cómo usar los aceites esenciales?
+            </div>
+            <p class="text-600 text-xl line-height-3 mb-6">
+               Con tantos aceites esenciales a su alcance que tienen tantos usos
+               posibles, seguramente se preguntará cómo usarlos todos. No se
+               preocupe, con un poco de ayuda, ¡será un profesional en poco
+               tiempo!
+            </p>
+         </div>
+
+         <div
+            class="flex px-5 pb-3 pt-5 pointer mb-3 border-solid border-1 border-200 border-round-sm hover:shadow-2"
+            (click)="visible1 = true"
+         >
+            <i class="pi pi-cloud text-4xl font-bold text-900"></i>
+            <div class="ml-5">
+               <div class="text-900 font-medium text-2xl">Aromático</div>
+               <p class="text-600 text-lg line-height-3">
+                  ¡La manera más sencilla de disfrutar los beneficios aromáticos
+                  de los aceites esenciales es respirándolos!
+               </p>
+            </div>
+         </div>
+
+         <div
+            class="flex px-5 pb-3 pt-5 pointer mb-3 border-solid border-1 border-200 border-round-sm hover:shadow-2"
+            (click)="visible2 = true"
+         >
+            <i class="pi pi-thumbs-up text-4xl font-bold text-900"></i>
+            <div class="ml-5">
+               <div class="text-900 font-medium text-2xl">Tópico</div>
+               <p class="text-600 text-lg line-height-3">
+                  Unas gotas en la piel. El uso tópico de los aceites esenciales
+                  es uno de los más populares.
+               </p>
+            </div>
+         </div>
+
+         <div class="flex px-5 py-2 pointer" (click)="visible3 = true">
+            <i class="pi pi-apple text-4xl font-bold text-900"></i>
+            <div class="ml-5">
+               <div class="text-900 font-medium text-2xl">Interno</div>
+               <p class="text-600 text-lg line-height-3 mb-6">
+                  Uno con tu cuerpo. ¿Sabías que puedes obtener los beneficios
+                  de los aceites esenciales ingiriéndolos?
+               </p>
+            </div>
+         </div>
+      </div>
+      <div class="col-12 lg:col-6 flex-order-1 lg:flex-order-2 overflow-hidden">
+         <img
+            src="../../assets/images/como-usar.jpg"
+            class="md:ml-auto block md:h-full"
+            style="clip-path: polygon(8% 0, 100% 0%, 100% 100%, 0 100%)"
+            alt="product"
+         />
+      </div>
+   </div>
+</div>
+
+<!--  -->
+<!-- 1 -->
+<!--  -->
+<p-dialog
+   [(visible)]="visible1"
+   appendTo="body"
+   [modal]="true"
+   [breakpoints]="{ '960px': '75vw', '640px': '100vw' }"
+   [style]="{ width: '60vw' }"
+   header="Aromático"
+   [draggable]="false"
+   [resizable]="false"
+   [dismissableMask]="true"
+>
+   <div class="flex flex-wrap border-top-1 surface-border pt-4">
+      <div
+         class="bg-blue-50 flex align-items-center justify-content-center py-3 px-0 w-full md:w-4 border-round"
+      >
+         <img src="../../assets/images/aromatico.jpg" alt="Image" class="w-9" />
+      </div>
+
+      <div class="text-700 line-height-3 m-0 p-5 w-full md:w-8">
+         <div class="text-3xl font-medium text-900 mb-2">Respirarlo.</div>
+
+         <p>
+            ¡La manera más sencilla de disfrutar los beneficios aromáticos de
+            los aceites esenciales es respirándolos! ¿Alguna vez has caminado
+            dentro de un spa y te has deleitado con el aroma de los aceites
+            esenciales de Árbol de Té y Eucalipto? ¿O quizás has sentido la
+            calma del aroma del aceite de Lavanda? Todo lo que se requiere es
+            colocar algunas gotas de aceite esencial en las palmas de tus manos.
+            Enseguida coloca tus manos en forma ahuecada ligeramente sobre tu
+            boca y nariz e inhala, respira profundamente durante el tiempo que
+            sea necesario. También podrías usar un difusor para aceites
+            esenciales para llenar tu hogar u oficina con tus aromas favoritos o
+            agregar algunas gotas de tus aceites esenciales favoritos en una
+            bolita de algodón y colocarlas en donde desees que se disperse el
+            aroma.
+         </p>
+      </div>
+   </div>
+   <ng-template pTemplate="footer">
+      <div class="border-top-1 surface-border pt-3">
+         <button
+            pButton
+            pRipple
+            icon="pi pi-check"
+            (click)="visible1 = false"
+            label="Listo"
+         ></button>
+      </div>
+   </ng-template>
+</p-dialog>
+
+<!--  -->
+<!-- 2 -->
+<!--  -->
+<p-dialog
+   [(visible)]="visible2"
+   appendTo="body"
+   [modal]="true"
+   [breakpoints]="{ '960px': '75vw', '640px': '100vw' }"
+   [style]="{ width: '60vw' }"
+   header="Tópico"
+   [draggable]="false"
+   [resizable]="false"
+   [dismissableMask]="true"
+>
+   <div class="flex flex-wrap border-top-1 surface-border pt-4">
+      <div
+         class="bg-blue-50 flex align-items-center justify-content-center py-3 px-0 w-full md:w-4 border-round"
+      >
+         <img src="../../assets/images/topico.jpg" alt="Image" class="w-9" />
+      </div>
+
+      <div class="text-700 line-height-3 m-0 p-5 w-full md:w-8">
+         <div class="text-3xl font-medium text-900 mb-2">
+            Unas gotas en la piel.
+         </div>
+
+         <p>
+            El uso tópico de los aceites esenciales es uno de los más populares.
+            Generalmente, descubrir cómo usar los aceites esenciales en la piel
+            es lo que convierte a las personas de usuarios casuales a devotos de
+            los aceites esenciales. Éstos pueden ayudar a mejorar la apariencia
+            de una piel saludable y hacer que un masaje relajante se vuelva
+            extra suave o bien agregar más energía a uno ya vigorizante. Para
+            usar aceites esenciales de Young Living, puedes disfrutar de una
+            gran variedad de beneficios aplicándolos, especialmente, en tu nuca,
+            detrás de las orejas, en tu cuello, sienes y en las plantas de los
+            pies. De igual manera, si el aroma de un aceite es demasiado fuerte
+            o tu piel es sensible, puedes diluirlo con aceite portador como el
+            Complejo de Aceites Esenciales V-6™ de Young Living.
+         </p>
+      </div>
+   </div>
+   <ng-template pTemplate="footer">
+      <div class="border-top-1 surface-border pt-3">
+         <button
+            pButton
+            pRipple
+            icon="pi pi-check"
+            (click)="visible2 = false"
+            label="Listo"
+         ></button>
+      </div>
+   </ng-template>
+</p-dialog>
+
+<!--  -->
+<!-- 3 -->
+<!--  -->
+<p-dialog
+   [(visible)]="visible3"
+   appendTo="body"
+   [modal]="true"
+   [breakpoints]="{ '960px': '75vw', '640px': '100vw' }"
+   [style]="{ width: '60vw' }"
+   header="Uso Interno"
+   [draggable]="false"
+   [resizable]="false"
+   [dismissableMask]="true"
+>
+   <div class="flex flex-wrap border-top-1 surface-border pt-4">
+      <div
+         class="bg-blue-50 flex align-items-center justify-content-center py-3 px-0 w-full md:w-4 border-round"
+      >
+         <img src="../../assets/images/interno.jpg" alt="Image" class="w-9" />
+      </div>
+
+      <div class="text-700 line-height-3 m-0 p-5 w-full md:w-8">
+         <div class="text-3xl font-medium text-900 mb-2">
+            Uno con tu cuerpo.
+         </div>
+
+         <p>
+            ¿Sabías que puedes obtener los beneficios de los aceites esenciales
+            ingiriéndolos? La línea Vitality™ de Young Living fue desarrollada
+            para brindar una clara distinción entre los aceites de uso interno y
+            aquellos de uso tópico y aromático. Todos proporcionan los mismos
+            aceites esenciales puros y auténticos; ¡solo que los hemos
+            etiquetado de manera diferente para que no haya confusión!
+         </p>
+      </div>
+   </div>
+   <ng-template pTemplate="footer">
+      <div class="border-top-1 surface-border pt-3">
+         <button
+            pButton
+            pRipple
+            icon="pi pi-check"
+            (click)="visible3 = false"
+            label="Listo"
+         ></button>
+      </div>
+   </ng-template>
+</p-dialog>

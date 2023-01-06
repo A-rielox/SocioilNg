@@ -1,0 +1,118 @@
+<div
+   class="surface-section px-4 py-8 md:px-6 lg:px-8 min-h-screen flex flex-column justify-content-center"
+>
+   <!-- <div class="text-center font-bold text-blue-600 mb-4">Beneficios</div> -->
+   <div class="text-center font-bold text-900 mb-5 text-4xl">Beneficios</div>
+   <div class="grid">
+      <!--                 IMAGENES -->
+      <div
+         class="col-12 lg:col-4 flex align-items-center justify-content-center"
+      >
+         <img
+            src="../../assets/images/mejora.jpg"
+            alt="Image"
+            class="w-full md:w-9"
+            *ngIf="activeTab1 == 0"
+         />
+         <img
+            src="../../assets/images/purifica.jpg"
+            alt="Image"
+            class="w-full md:w-9"
+            *ngIf="activeTab1 == 1"
+         />
+         <img
+            src="../../assets/images/realza.jpg"
+            alt="Image"
+            class="w-full md:w-9"
+            *ngIf="activeTab1 == 2"
+         />
+      </div>
+
+      <!--                 TABS -->
+      <div class="col-12 lg:col-8 mt-5 lg:mt-0">
+         <ul class="list-none m-0 p-0">
+            <!--     Mejora -->
+            <li
+               class="border-left-2 p-4 cursor-pointer"
+               (mouseover)="activeTab1 = 0"
+               [ngClass]="{
+                  'surface-border': activeTab1 !== 0,
+                  'text-blue-900 bg-blue-50 border-blue-500': activeTab1 === 0
+               }"
+            >
+               <div class="text-2xl font-medium">
+                  Mejora Tu Bienestar Físico
+               </div>
+               <p class="line-height-3 text-base mb-0">
+                  Los estilos de vida modernos no siempre favorecen las
+                  condiciones óptimas para el bienestar físico. Una dieta
+                  deficiente, la falta de ejercicio y una saturación de tóxicos
+                  ambientales pueden dejar el cuerpo desequilibrado y disminuir
+                  los niveles de energía.
+               </p>
+               <p class="line-height-3 text-base">
+                  Desde el control del peso hasta el soporte de suplementos,
+                  nuestros aceites esenciales y productos enriquecidos con
+                  aceites esenciales pueden proporcionar las soluciones
+                  específicas que necesitas para restablecer el equilibrio y
+                  sentirte mejor.
+               </p>
+            </li>
+
+            <!--     Purifica -->
+            <li
+               class="border-left-2 p-4 cursor-pointer"
+               (mouseover)="activeTab1 = 1"
+               [ngClass]="{
+                  'surface-border': activeTab1 !== 1,
+                  'text-blue-900 bg-blue-50 border-blue-500': activeTab1 === 1
+               }"
+            >
+               <div class="text-2xl font-medium">Purifica tu hogar</div>
+               <p class="line-height-3 text-base">
+                  Los productos que usamos en nuestros hogares impactan nuestra
+                  salud y bienestar. El compromiso de Young Living con los
+                  productos a base de plantas de origen natural facilita la
+                  elección de limpiadores, productos para el cuidado personal y
+                  otros artículos para el hogar formulados sin el uso de
+                  químicos dañinos que se encuentran en muchos productos
+                  tradicionales.
+               </p>
+               <p class="line-height-3 text-base">
+                  Nos apasiona usar solo los mejores ingredientes que son buenos
+                  para la salud y responsables con el medio ambiente, y a la
+                  misma vez efectivos.
+               </p>
+            </li>
+
+            <!--     Realza -->
+            <li
+               class="border-left-2 p-4 cursor-pointer"
+               (mouseover)="activeTab1 = 2"
+               [ngClass]="{
+                  'surface-border': activeTab1 !== 2,
+                  'text-blue-900 bg-blue-50 border-blue-500': activeTab1 === 2
+               }"
+            >
+               <div class="text-2xl font-medium">
+                  Realza tu rutina de belleza
+               </div>
+               <p class="line-height-3 text-base">
+                  Elimina los ingredientes agresivos de tus productos de cuidado
+                  personal y deja que tu belleza brille. ¡Te enamorarás de la
+                  amplia gama de aceites esenciales que ayudan a mantener la
+                  piel con un aspecto claro, aumentan la hidratación y te dan
+                  ese brillo juvenil! ¡Los aceites esenciales incluso pueden
+                  ayudar a que tu cabello se vea fabuloso!
+               </p>
+               <p class="line-height-3 text-base">
+                  Utilizando ingredientes de origen natural, nuestras soluciones
+                  avanzadas para el cuidado de la piel y el cabello facilitan el
+                  disfrute de los hermosos beneficios de los aceites esenciales
+                  todos los días.
+               </p>
+            </li>
+         </ul>
+      </div>
+   </div>
+</div>
