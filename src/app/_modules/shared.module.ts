@@ -20,6 +20,9 @@ import { InputSwitchModule } from 'primeng/inputswitch';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { SelectButtonModule } from 'primeng/selectbutton';
 import { FileUploadModule } from 'ng2-file-upload';
+import { TableModule } from 'primeng/table';
+import { ProgressBarModule } from 'primeng/progressbar';
+import { AvatarModule } from 'primeng/avatar';
 
 @NgModule({
    declarations: [],
@@ -41,6 +44,9 @@ import { FileUploadModule } from 'ng2-file-upload';
       InputNumberModule,
       SelectButtonModule,
       FileUploadModule,
+      TableModule,
+      ProgressBarModule,
+      AvatarModule,
    ],
    exports: [
       NgxSpinnerModule,
@@ -59,6 +65,9 @@ import { FileUploadModule } from 'ng2-file-upload';
       InputNumberModule,
       SelectButtonModule,
       FileUploadModule,
+      TableModule,
+      ProgressBarModule,
+      AvatarModule,
    ],
 })
 export class SharedModule {}

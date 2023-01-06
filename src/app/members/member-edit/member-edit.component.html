@@ -36,7 +36,7 @@
 
          <div class="flex justify-content-center">
             <img
-               src="{{ member.photoUrl || './assets/user.png' }}"
+               src="{{ member.photoUrl || '../../assets/user.png' }}"
                alt="Image"
                width="250"
                class="border-round-md shadow-3"
@@ -133,7 +133,7 @@
                      <!--        INTRODUCTION -->
                      <div class="field col-12 md:col-6">
                         <label for="introduction" class="font-medium text-900"
-                           >Introducción</label
+                           >Introducciónnn</label
                         >
                         <textarea
                            id="introduction"
@@ -244,130 +244,3 @@
       </div>
    </div>
 </div>
-
-<!-- 
-
-<div class="grid formgrid p-fluid">
-   <div class="field col-12">
-      <label for="nickname2" class="font-medium text-900"
-         >Nickname</label
-      >
-      <input id="nickname2" type="text" pInputText />
-   </div>
-
-   <p-divider class="col-12"></p-divider>
-
-   <div class="field col-12 md:col-6">
-      <label for="bio2" class="font-medium text-900">Bio</label>
-      <textarea
-         id="bio2"
-         type="text"
-         pInputTextarea
-         rows="5"
-         [autoResize]="true"
-      ></textarea>
-   </div>
-
-   <div class="field col-12 md:col-6">
-      <label for="avatar2" class="font-medium text-900"
-         >Avatar</label
-      >
-      <div class="flex align-items-center">
-         <img
-            src="assets/images/blocks/avatars/circle/avatar-f-4.png"
-            class="mr-4"
-         />
-         <p-fileUpload
-            id="avatar2"
-            mode="basic"
-            name="avatar"
-            url="./upload.php"
-            accept="image/*"
-            [maxFileSize]="1000000"
-            styleClass="p-button-outlined p-button-plain"
-            chooseLabel="Upload Image"
-            chooseIcon="pi pi-upload"
-         ></p-fileUpload>
-      </div>
-   </div>
-
-   <p-divider class="col-12"></p-divider>
-
-   <div class="field col-12 md:col-6">
-      <label for="email2" class="font-medium text-900"
-         >Email</label
-      >
-      <input id="email2" type="text" pInputText />
-   </div>
-
-   <div class="field col-12 md:col-6">
-      <label for="country2" class="font-medium text-900"
-         >Country</label
-      >
-      <p-dropdown
-         inputId="country2"
-         [options]="countries"
-         optionLabel="name"
-         [filter]="true"
-         filterBy="name"
-         [showClear]="true"
-         placeholder="Select a Country"
-      >
-         <ng-template let-country pTemplate="item">
-            <div class="flex align-items-center">
-               <img
-                  src="assets/images/blocks/flag/flag_placeholder.png"
-                  [class]="
-                     'mr-2 flag flag-' +
-                     country.code.toLowerCase()
-                  "
-                  style="width: 18px"
-               />
-               <div>{{ country.name }}</div>
-            </div>
-         </ng-template>
-      </p-dropdown>
-   </div>
-
-   <div class="field col-12 md:col-6">
-      <label for="city2" class="font-medium text-900"
-         >City</label
-      >
-      <input id="city2" type="text" pInputText />
-   </div>
-
-   <div class="field col-12 md:col-6">
-      <label for="state2" class="font-medium text-900"
-         >State</label
-      >
-      <input id="state2" type="text" pInputText />
-   </div>
-
-   <p-divider class="col-12"></p-divider>
-
-   <div class="field col-12">
-      <label for="website2" class="font-medium text-900"
-         >Website</label
-      >
-      <div class="p-inputgroup">
-         <span class="p-inputgroup-addon">www</span>
-         <input id="website2" type="text" pInputText />
-      </div>
-   </div>
-
-   <p-divider class="col-12"></p-divider>
-
-   <div class="field col-12">
-      <label for="privacy2" class="font-medium text-900"
-         >Privacy</label
-      >
-      <div class="flex align-items-center">
-         <p-inputSwitch inputId="privacy2"></p-inputSwitch>
-         <span class="ml-2 text-900"
-            >Share my data with contacts</span
-         >
-      </div>
-   </div>
-</div>
-   
--->

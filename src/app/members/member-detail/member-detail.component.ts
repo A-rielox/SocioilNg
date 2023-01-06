@@ -18,7 +18,7 @@ export class MemberDetailComponent implements OnInit {
    responsiveOptions: any[] = [
       {
          breakpoint: '1024px',
-         numVisible: 5,
+         numVisible: 4,
       },
       {
          breakpoint: '768px',

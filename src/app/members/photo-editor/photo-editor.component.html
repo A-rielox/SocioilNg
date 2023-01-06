@@ -23,50 +23,59 @@
          class="w-full cursor-pointer border-2 border-round border-transparent transition-colors transition-duration-150"
       />
       <div class="flex justify-content-around">
-         <button pButton type="button" label="Main"></button>
+         <button
+            pButton
+            type="button"
+            label="Main"
+            [disabled]="photo.isMain"
+            (click)="setMainPhoto(photo)"
+         ></button>
 
          <button
             pButton
             type="button"
             icon="pi pi-trash"
             class="p-button-rounded p-button-danger p-button-outlined"
+            [disabled]="photo.isMain"
+            (click)="deletePhoto(photo.id)"
          ></button>
       </div>
    </div>
 </div>
 
 <!--              EL FILE UPLOADER -->
-<div class="row mt-3">
+<div class="grid">
    <div class="col-3">
-      <h3>Add Photos</h3>
+      <h3>Añadir Fotos</h3>
 
+      <!-- class="card bg-faded p-3 text-center mb-3 my-drop-zone" -->
       <div
          ng2FileDrop
          [ngClass]="{ 'nv-file-over': hasBaseDropZoneOver }"
          (fileOver)="fileOverBase($event)"
          [uploader]="uploader"
-         class="card bg-faded p-3 text-center mb-3 my-drop-zone"
+         class="border-dashed border-1 border-round-md bg-purple-50 p-2 mb-3 text-center my-drop-zone"
       >
-         <i class="fa fa-upload fa-3x"></i>
-         Drop photos here
+         <i class="pi pi-upload" style="font-size: 2rem"></i>
+         <p>Arrastra tu foto</p>
       </div>
 
-      Multiple
-      <input [uploader]="uploader" type="file" ng2FileSelect multiple /><br />
+      <!-- Multiple
+      <input [uploader]="uploader" type="file" ng2FileSelect multiple /><br /> -->
 
-      Single
+      <!-- Single -->
       <input [uploader]="uploader" type="file" ng2FileSelect />
    </div>
 
    <div
-      class="col-9"
+      class="col-8 col-offset-1"
       style="margin-bottom: 40px"
       *ngIf="uploader?.queue?.length"
    >
-      <h3>Upload queue</h3>
-      <p>Queue length: {{ uploader?.queue?.length }}</p>
+      <h3>Pendiente de subir</h3>
+      <p>Archivos pendientes: ;&nbsp; {{ uploader?.queue?.length }}</p>
 
-      <table class="table">
+      <!-- <table class="table">
          <thead>
             <tr>
                <th style="width: 50%">Name</th>
@@ -84,46 +93,62 @@
                </td>
             </tr>
          </tbody>
-      </table>
+      </table> -->
+      <p-table class="table" [value]="uploader?.queue!">
+         <ng-template pTemplate="header">
+            <tr>
+               <th style="width: 50%">Nombre</th>
+               <th>Tamaño</th>
+            </tr>
+         </ng-template>
 
-      <div>
+         <ng-template pTemplate="body" let-item>
+            <tr>
+               <td>
+                  <strong>{{ item?.file?.name }}</strong>
+               </td>
+
+               <td *ngIf="uploader?.options?.isHTML5" nowrap>
+                  {{ item?.file?.size / 1024 / 1024 | number : ".2" }} MB
+               </td>
+            </tr>
+         </ng-template>
+      </p-table>
+
+      <div class="mt-3">
          <div>
-            Queue progress:
-            <div class="progress">
-               <div
-                  class="progress-bar"
-                  role="progressbar"
-                  [ngStyle]="{ width: uploader?.progress + '%' }"
-               ></div>
-            </div>
+            <p>Progreso :</p>
+            <p-progressBar [value]="uploader?.progress"></p-progressBar>
          </div>
 
-         <button
-            type="button"
-            class="btn btn-success btn-s"
-            (click)="uploader?.uploadAll()"
-            [disabled]="!uploader?.getNotUploadedItems()?.length"
-         >
-            <span class="fa fa-upload"></span> Upload all
-         </button>
+         <div class="flex justify-content-between flex-wrap mt-3">
+            <p-button
+               type="button"
+               label="Subir"
+               class="p-button-outlined p-button-warning"
+               styleClass="p-button-sm p-button-outlined p-button-success"
+               (click)="uploader?.uploadAll()"
+               [disabled]="!uploader?.getNotUploadedItems()?.length"
+            ></p-button>
 
-         <button
-            type="button"
-            class="btn btn-warning btn-s"
-            (click)="uploader?.cancelAll()"
-            [disabled]="!uploader?.isUploading"
-         >
-            <span class="fa fa-ban"></span> Cancel all
-         </button>
+            <p-button
+               type="button"
+               label="Cancelar"
+               class="p-button-outlined p-button-warning"
+               styleClass="p-button-sm p-button-outlined p-button-warning"
+               (click)="uploader?.cancelAll()"
+               [disabled]="!uploader?.isUploading"
+            ></p-button>
 
-         <button
-            type="button"
-            class="btn btn-danger btn-s"
-            (click)="uploader?.clearQueue()"
-            [disabled]="!uploader?.queue?.length"
-         >
-            <span class="fa fa-trash"></span> Remove all
-         </button>
+            <p-button
+               type="button"
+               label="Remover"
+               class="p-button-outlined p-button-warning"
+               styleClass="p-button-sm p-button-outlined p-button-danger"
+               (click)="uploader?.clearQueue()"
+               [disabled]="!uploader?.queue?.length"
+            ></p-button>
+         </div>
       </div>
    </div>
 </div>

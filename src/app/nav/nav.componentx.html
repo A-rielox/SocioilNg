@@ -184,7 +184,10 @@
             </li>
 
             <!-- DROPDOWN -->
-            <li class="lg:relative" *ngIf="accountService.currentUser$ | async">
+            <li
+               class="lg:relative"
+               *ngIf="(accountService.currentUser$ | async) as user"
+            >
                <a
                   pRipple
                   class="flex h-full px-6 p-3 lg:px-3 lg:py-2 align-items-center text-600 hover:text-900 border-left-2 lg:border-bottom-2 lg:border-left-none border-transparent hover:border-primary font-medium cursor-pointer transition-colors transition-duration-150"
@@ -195,6 +198,18 @@
                   leaveActiveClass="fadeout"
                   [hideOnOutsideClick]="true"
                >
+                  <!-- <img
+                     src="{{user.photoUrl}}"
+                     class="mr-3 lg:mr-0"
+                     style="width: 45px; height: 45px"
+                     /> -->
+                  <p-avatar
+                     image="{{user.photoUrl || '../../assets/user.png'}}"
+                     shape="circle"
+                     size="large"
+                     class="mr-2"
+                  ></p-avatar>
+
                   <span>Bienvenida</span>
                   <i class="pi pi-angle-down ml-auto lg:ml-3"></i>
                </a>
