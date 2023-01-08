@@ -4,7 +4,7 @@
          id="{{ label }}"
          type="{{ type }}"
          pInputText
-         class="w-full"
+         class="w-full p-inputtext-sm"
          [formControl]="control"
       />
       <label for="{{ label }}">{{ label }}</label>
@@ -16,7 +16,8 @@
          id="{{ label }}-help"
          class="p-error block"
       >
-         Por favor ingrese un {{ label | lowercase }}</small
+         Por favor ingrese un{{ label === "Ciudad" ? "a" : "" }}
+         {{ label | lowercase }}</small
       >
 
       <small

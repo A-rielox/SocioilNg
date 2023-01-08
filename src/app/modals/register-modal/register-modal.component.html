@@ -13,7 +13,7 @@
    appendTo="body"
    [modal]="true"
    [dismissableMask]="true"
-   [breakpoints]="{ '960px': '75vw', '640px': '100vw' }"
+   [breakpoints]="{ '960px': '90vw', '640px': '100vw' }"
    [style]="{ width: '80vw' }"
    [draggable]="false"
 >
@@ -56,7 +56,19 @@
                [type]="'password'"
             ></app-text-input>
 
-            <div class="flex align-items-center justify-content-between mb-6">
+            <!--              city -->
+            <app-text-input
+               [formControl]="$any(registerForm.controls['city'])"
+               [label]="'Ciudad'"
+            ></app-text-input>
+
+            <!--              country -->
+            <app-text-input
+               [formControl]="$any(registerForm.controls['country'])"
+               [label]="'País'"
+            ></app-text-input>
+
+            <!-- <div class="flex align-items-center justify-content-between mb-6">
                <div class="flex align-items-center">
                   <p-checkbox
                      id="rememberme"
@@ -65,7 +77,7 @@
                   ></p-checkbox>
                   <label for="rememberme2">Soy mayor de 18 años.</label>
                </div>
-            </div>
+            </div> -->
 
             <!-- BOTON -->
             <button
@@ -78,8 +90,8 @@
             ></button>
          </form>
 
-         <p>Form value: {{ registerForm.value | json }}</p>
-         <p>Form status: {{ registerForm.status | json }}</p>
+         <!-- <p>Form value: {{ registerForm.value | json }}</p>
+         <p>Form status: {{ registerForm.status | json }}</p> -->
       </div>
 
       <div

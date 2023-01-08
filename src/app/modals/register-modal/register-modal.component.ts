@@ -10,6 +10,11 @@ import { Router } from '@angular/router';
 import { AccountService } from 'src/app/_services/account.service';
 import { NotificationsService } from 'src/app/notifications/notifications.service';
 
+interface Generos {
+   name: string;
+   label: string;
+}
+
 @Component({
    selector: 'app-register-modal',
    templateUrl: './register-modal.component.html',
@@ -19,6 +24,11 @@ export class RegisterModalComponent implements OnInit {
    visibleRegister = true; // p'el modal yellow cambiar a false
    model: any = {};
    registerForm: FormGroup = new FormGroup({});
+
+   generos: Generos[] = [
+      { name: 'female', label: '👸' },
+      { name: 'male', label: '🤴' },
+   ];
 
    constructor(
       private accountService: AccountService,
@@ -33,12 +43,12 @@ export class RegisterModalComponent implements OnInit {
 
    initializeForm() {
       this.registerForm = this.fb.group({
-         // gender: ['male'],
          username: ['', Validators.required],
-         // knownAs: ['', Validators.required],
+         knownAs: ['', Validators.required],
          // dateOfBirth: ['', Validators.required],
-         // city: ['', Validators.required],
-         // country: ['', Validators.required],
+         city: ['', Validators.required],
+         country: ['', Validators.required],
+         gender: ['female'],
          password: [
             '',
             [
@@ -70,7 +80,7 @@ export class RegisterModalComponent implements OnInit {
    register() {
       // this.visibleRegister = false;
 
-      console.log(this.registerForm?.controls);
+      console.log(this.registerForm?.value);
 
       // this.accountService.register(this.model).subscribe({
       //    next: () => {
