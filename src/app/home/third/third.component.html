@@ -11,19 +11,19 @@
          <img
             src="../../assets/images/mejora.jpg"
             alt="Image"
-            class="w-full md:w-9"
+            class="w-full md:w-9 fadein animation-duration-300"
             *ngIf="activeTab1 == 0"
          />
          <img
             src="../../assets/images/purifica.jpg"
             alt="Image"
-            class="w-full md:w-9"
+            class="w-full md:w-9 fadein animation-duration-300"
             *ngIf="activeTab1 == 1"
          />
          <img
             src="../../assets/images/realza.jpg"
             alt="Image"
-            class="w-full md:w-9"
+            class="w-full md:w-9 fadein animation-duration-300"
             *ngIf="activeTab1 == 2"
          />
       </div>
@@ -33,7 +33,7 @@
          <ul class="list-none m-0 p-0">
             <!--     Mejora -->
             <li
-               class="border-left-2 p-4 cursor-pointer"
+               class="border-left-2 p-4 cursor-pointer transition-all transition-duration-300"
                (mouseover)="activeTab1 = 0"
                [ngClass]="{
                   'surface-border': activeTab1 !== 0,
@@ -61,7 +61,7 @@
 
             <!--     Purifica -->
             <li
-               class="border-left-2 p-4 cursor-pointer"
+               class="border-left-2 p-4 cursor-pointer transition-all transition-duration-300"
                (mouseover)="activeTab1 = 1"
                [ngClass]="{
                   'surface-border': activeTab1 !== 1,
@@ -87,7 +87,7 @@
 
             <!--     Realza -->
             <li
-               class="border-left-2 p-4 cursor-pointer"
+               class="border-left-2 p-4 cursor-pointer transition-all transition-duration-300"
                (mouseover)="activeTab1 = 2"
                [ngClass]="{
                   'surface-border': activeTab1 !== 2,

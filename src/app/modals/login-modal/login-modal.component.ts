@@ -18,7 +18,12 @@ export class LoginModalComponent implements OnInit {
       private notification: NotificationsService
    ) {}
 
-   ngOnInit(): void {}
+   ngOnInit(): void {
+      // yellow QUITAR
+      this.model.username = 'lisa';
+      this.model.password = 'P@ssword1';
+      // yellow QUITAR
+   }
 
    openLogin() {
       this.visibleLogin = !this.visibleLogin;

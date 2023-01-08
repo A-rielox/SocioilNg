@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AccountService } from '../_services/account.service';
 import { Router } from '@angular/router';
 import { NotificationsService } from '../notifications/notifications.service';
+import { MenuItem } from 'primeng/api';
 
 @Component({
    selector: 'app-nav',
@@ -9,13 +10,48 @@ import { NotificationsService } from '../notifications/notifications.service';
    styleUrls: ['./nav.component.css'],
 })
 export class NavComponent implements OnInit {
+   items: MenuItem[] = [];
+
+   navItems: MenuItem[] = [];
+
    constructor(
       public accountService: AccountService,
       private router: Router,
       private notification: NotificationsService
    ) {}
 
-   ngOnInit(): void {}
+   ngOnInit(): void {
+      this.items = [
+         {
+            label: 'Editar Perfil',
+            icon: 'pi pi-cog',
+            routerLink: ['/miembro/edit'],
+            // command: () => {
+            //   this.update();  routerLink="/miembro/edit"
+            // },
+         },
+         {
+            label: 'Salir',
+            icon: 'pi pi-sign-out',
+            command: () => {
+               //   this.delete();
+               this.logout();
+            },
+         },
+      ];
+
+      this.navItems = [
+         {
+            label: 'Home',
+            icon: 'pi pi-home',
+            routerLink: ['/'],
+         },
+         {
+            label: 'Salir',
+            icon: 'pi pi-sign-out',
+         },
+      ];
+   }
 
    logout() {
       this.accountService.logout();

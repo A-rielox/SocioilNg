@@ -8,6 +8,7 @@
 ></button>
 
 <p-dialog
+   header="Bienvenida!"
    [(visible)]="visibleRegister"
    appendTo="body"
    [modal]="true"
@@ -18,7 +19,7 @@
 >
    <div class="flex">
       <div class="surface-section w-full md:w-6 p-3 md:p-4 md:pt-0 pt-0">
-         <div class="mb-5">
+         <!-- <div class="mb-5">
             <img
                src="assets/images/blocks/logos/hyper.svg"
                alt="Image"
@@ -26,55 +27,34 @@
                class="mb-3"
             />
             <div class="text-900 text-3xl font-medium mb-3">Bienvenida!</div>
-         </div>
+         </div> -->
 
          <!--                 FORM            -->
          <form
-            #registerForm="ngForm"
+            [formGroup]="registerForm"
             (ngSubmit)="register()"
             autocomplete="off"
          >
             <!-- USUARIO -->
-            <label for="usuario" class="block text-900 font-medium mb-2"
-               >Usuario</label
-            >
-            <input
-               id="usuario"
-               type="text"
-               placeholder="Nombre de usuario"
-               pInputText
-               class="w-full mb-3 p-3"
-               [(ngModel)]="model.username"
-               name="username"
-            />
+            <app-text-input
+               [formControl]="$any(registerForm.controls['username'])"
+               [label]="'Nombre de usuario'"
+            ></app-text-input>
 
             <!-- PASS -->
-            <label for="pass" class="block text-900 font-medium mb-2"
-               >Password</label
+            <app-text-input
+               [formControl]="$any(registerForm.controls['password'])"
+               [label]="'Password'"
+               [type]="'password'"
             >
-            <input
-               id="pass"
-               type="password"
-               placeholder="Password"
-               pInputText
-               class="w-full mb-3 p-3"
-               [(ngModel)]="model.password"
-               name="password"
-            />
+            </app-text-input>
 
             <!-- CONFIRMAR PASS -->
-            <label for="passCon" class="block text-900 font-medium mb-2"
-               >Confirmar Password</label
-            >
-            <input
-               id="passCon"
-               type="password"
-               placeholder="Confirmar Password"
-               pInputText
-               class="w-full mb-3 p-3"
-               [(ngModel)]="model.passwordConfirm"
-               name="passwordConfirm"
-            />
+            <app-text-input
+               [formControl]="$any(registerForm.controls['confirmPassword'])"
+               [label]="'Confirmar password'"
+               [type]="'password'"
+            ></app-text-input>
 
             <div class="flex align-items-center justify-content-between mb-6">
                <div class="flex align-items-center">
@@ -83,12 +63,8 @@
                      [binary]="true"
                      styleClass="mr-2"
                   ></p-checkbox>
-                  <label for="rememberme2">Recordarme</label>
+                  <label for="rememberme2">Soy mayor de 18 años.</label>
                </div>
-               <a
-                  class="font-medium no-underline ml-2 text-blue-500 text-right cursor-pointer"
-                  >Olvidaste la cláve?</a
-               >
             </div>
 
             <!-- BOTON -->
@@ -101,6 +77,9 @@
                type="submit"
             ></button>
          </form>
+
+         <p>Form value: {{ registerForm.value | json }}</p>
+         <p>Form status: {{ registerForm.status | json }}</p>
       </div>
 
       <div
@@ -112,6 +91,19 @@
       ></div>
    </div>
 </p-dialog>
+
+<!-- INPUT NORMAL
+
+<label for="pass" class="block text-900 font-medium mb-2">Password</label>
+<input
+   id="pass"
+   type="password"
+   pInputText
+   class="w-full mb-3 p-3"
+   formControlName="password"
+/>
+
+-->
 
 <!-- <div class="flex align-items-center justify-content-between mb-6">
    <div class="flex align-items-center">

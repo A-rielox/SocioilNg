@@ -24,6 +24,9 @@ import { TableModule } from 'primeng/table';
 import { ProgressBarModule } from 'primeng/progressbar';
 import { AvatarModule } from 'primeng/avatar';
 
+import { MenubarModule } from 'primeng/menubar';
+import { MenuModule } from 'primeng/menu';
+
 @NgModule({
    declarations: [],
    imports: [
@@ -47,6 +50,8 @@ import { AvatarModule } from 'primeng/avatar';
       TableModule,
       ProgressBarModule,
       AvatarModule,
+      MenuModule,
+      MenubarModule,
    ],
    exports: [
       NgxSpinnerModule,
@@ -68,6 +73,8 @@ import { AvatarModule } from 'primeng/avatar';
       TableModule,
       ProgressBarModule,
       AvatarModule,
+      MenuModule,
+      MenubarModule,
    ],
 })
 export class SharedModule {}

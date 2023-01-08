@@ -1,0 +1,100 @@
+<div class="field mt-5">
+   <span class="p-float-label">
+      <input
+         id="{{ label }}"
+         type="{{ type }}"
+         pInputText
+         class="w-full"
+         [formControl]="control"
+      />
+      <label for="{{ label }}">{{ label }}</label>
+   </span>
+
+   <ng-container *ngIf="control.touched && control.errors && control.dirty">
+      <small
+         *ngIf="control.errors?.['required']"
+         id="{{ label }}-help"
+         class="p-error block"
+      >
+         Por favor ingrese un {{ label | lowercase }}</small
+      >
+
+      <small
+         *ngIf="control.errors?.['minlength']"
+         id="{{ label }}-help"
+         class="p-error block"
+      >
+         {{ label }} debe tener al menos
+         {{ control.errors["minlength"].requiredLength }} caracteres</small
+      >
+
+      <small
+         *ngIf="control.errors?.['maxlength']"
+         id="{{ label }}-help"
+         class="p-error block"
+      >
+         {{ label }} debe ser máximo
+         {{ control.errors["maxlength"].requiredLength }} caracteres</small
+      >
+      <small
+         *ngIf="control.errors?.['notMatching']"
+         id="{{ label }}-help"
+         class="p-error block"
+      >
+         Los passwords no coinciden</small
+      >
+   </ng-container>
+</div>
+
+<!--                          SIN FLOAT LABEL
+   
+   <div class="field">
+   <label for="{{ label }}" class="block text-900 font-medium mb-1">{{
+      label
+   }}</label>
+
+   <input
+      id="{{ label }}"
+      type="{{ type }}"
+      pInputText
+      class="w-full"
+      [formControl]="control"
+   />
+
+   <ng-container *ngIf="control.touched && control.errors && control.dirty">
+      <small
+         *ngIf="control.errors?.['required']"
+         id="{{ label }}-help"
+         class="p-error block"
+      >
+         Por favor ingrese un {{ label | lowercase }}</small
+      >
+
+      <small
+         *ngIf="control.errors?.['minlength']"
+         id="{{ label }}-help"
+         class="p-error block"
+      >
+         {{ label }} debe tener al menos
+         {{ control.errors["minlength"].requiredLength }} caracteres</small
+      >
+
+      <small
+         *ngIf="control.errors?.['maxlength']"
+         id="{{ label }}-help"
+         class="p-error block"
+      >
+         {{ label }} debe ser máximo
+         {{ control.errors["maxlength"].requiredLength }} caracteres</small
+      >
+      <small
+         *ngIf="control.errors?.['notMatching']"
+         id="{{ label }}-help"
+         class="p-error block"
+      >
+         Los passwords no coinciden</small
+      >
+   </ng-container>
+</div>
+
+ -->
