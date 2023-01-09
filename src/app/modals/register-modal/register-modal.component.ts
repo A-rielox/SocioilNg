@@ -10,25 +10,15 @@ import { Router } from '@angular/router';
 import { AccountService } from 'src/app/_services/account.service';
 import { NotificationsService } from 'src/app/notifications/notifications.service';
 
-interface Generos {
-   name: string;
-   label: string;
-}
-
 @Component({
    selector: 'app-register-modal',
    templateUrl: './register-modal.component.html',
    styleUrls: ['./register-modal.component.css'],
 })
 export class RegisterModalComponent implements OnInit {
-   visibleRegister = true; // p'el modal yellow cambiar a false
-   model: any = {};
+   visibleRegister = false;
    registerForm: FormGroup = new FormGroup({});
-
-   generos: Generos[] = [
-      { name: 'female', label: '👸' },
-      { name: 'male', label: '🤴' },
-   ];
+   validationErrors: string[] | undefined;
 
    constructor(
       private accountService: AccountService,
@@ -45,10 +35,8 @@ export class RegisterModalComponent implements OnInit {
       this.registerForm = this.fb.group({
          username: ['', Validators.required],
          knownAs: ['', Validators.required],
-         // dateOfBirth: ['', Validators.required],
          city: ['', Validators.required],
          country: ['', Validators.required],
-         gender: ['female'],
          password: [
             '',
             [
@@ -80,26 +68,29 @@ export class RegisterModalComponent implements OnInit {
    register() {
       // this.visibleRegister = false;
 
-      console.log(this.registerForm?.value);
+      this.accountService.register(this.registerForm.value).subscribe({
+         next: () => {
+            this.router.navigateByUrl('/miembros');
 
-      // this.accountService.register(this.model).subscribe({
-      //    next: () => {
-      //       this.router.navigateByUrl('/miembros');
-      //       this.notification.addNoti({
-      //          severity: 'success',
-      //          summary: 'Bienvenido.',
-      //          detail: 'Que bueno tenerte.',
-      //       });
-      //    },
-      //    error: (error) => {
-      //       console.log(error);
-      //       this.notification.addNoti({
-      //          severity: 'error',
-      //          summary: 'Error al entrar.',
-      //          detail: error.error,
-      //       });
-      //    },
-      // });
+            this.notification.addNoti({
+               severity: 'success',
+               summary: 'Bienvenido.',
+               detail: 'Que bueno tenerte.',
+            });
+         },
+         error: (error) => {
+            console.log(error);
+
+            // los errores q vienen del interceptor
+            this.validationErrors = error;
+
+            // this.notification.addNoti({
+            //    severity: 'error',
+            //    summary: 'Error al entrar.',
+            //    detail: error.error,
+            // });
+         },
+      });
    }
 
    // abre el modal
