@@ -26,6 +26,7 @@ import { AvatarModule } from 'primeng/avatar';
 
 import { MenubarModule } from 'primeng/menubar';
 import { MenuModule } from 'primeng/menu';
+import { PaginatorModule } from 'primeng/paginator';
 
 @NgModule({
    declarations: [],
@@ -52,6 +53,7 @@ import { MenuModule } from 'primeng/menu';
       AvatarModule,
       MenuModule,
       MenubarModule,
+      PaginatorModule,
    ],
    exports: [
       NgxSpinnerModule,
@@ -75,6 +77,7 @@ import { MenuModule } from 'primeng/menu';
       AvatarModule,
       MenuModule,
       MenubarModule,
+      PaginatorModule,
    ],
 })
 export class SharedModule {}

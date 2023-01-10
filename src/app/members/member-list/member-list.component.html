@@ -8,7 +8,7 @@
    <div class="grid">
       <div
          class="col-12 md:col-6 lg:col-3 p-3"
-         *ngFor="let member of members$ | async; let i = index"
+         *ngFor="let member of members; let i = index"
       >
          <!--              NO OCUPO LA MEMBER-CARD -->
 
@@ -43,13 +43,6 @@
                            class="pi pi-user text-600 text-xl text-cyan-500"
                         ></i
                      ></a>
-                     <!-- <button
-                        pButton
-                        pRipple
-                        type="button"
-                        icon="pi pi-user"
-                        class="p-button-rounded p-button-help p-button-outlined"
-                     ></button> -->
 
                      <!--              link like -->
                      <a tabindex="0" class="cursor-pointer text-white"
@@ -57,13 +50,6 @@
                            class="pi pi-heart text-600 text-xl text-pink-500"
                         ></i
                      ></a>
-                     <!-- <button
-                        pButton
-                        pRipple
-                        type="button"
-                        icon="pi pi-heart"
-                        class="p-button-rounded p-button-danger p-button-outlined XXXXXXD"
-                     ></button> -->
 
                      <!--              link mensaje -->
                      <a tabindex="0" class="cursor-pointer text-white"
@@ -71,18 +57,19 @@
                            class="pi pi-envelope text-600 text-xl text-green-500"
                         ></i
                      ></a>
-                     <!-- <button
-                        pButton
-                        pRipple
-                        type="button"
-                        icon="pi pi-envelope"
-                        class="p-button-rounded p-button-success p-button-outlined"
-                     ></button> -->
                   </div>
                </div>
             </div>
          </div>
       </div>
+   </div>
+
+   <div class="flex justify-content-center" *ngIf="pagination && userParams">
+      <p-paginator
+         [rows]="userParams.pageSize"
+         [totalRecords]="totalRecords"
+         (onPageChange)="pageChanged($event)"
+      ></p-paginator>
    </div>
 </div>
 
@@ -104,7 +91,7 @@
       > -->
       <div
          class="shadow-2 p-4 mb-5 mr-0 lg:mr-5 surface-card col-12 md:col-6 lg:col-3 flex flex-column"
-         *ngFor="let member of members$ | async"
+         *ngFor="let member of members"
       >
          <img
             src="{{ member.photoUrl || '../../assets/user.png' }}"
@@ -149,3 +136,19 @@
       </div>
    </div>
 </div>
+
+<!--                    el paginador
+
+   <div class="flex justify-content-center" *ngIf="pagination">
+
+         totalRecords	number	0	Number of total records.
+         rows	number	0	Data count to display per page.
+         [rowsPerPageOptions]="[10, 20, 30]"
+
+      <p-paginator
+         [rows]="pageSize"
+         [totalRecords]="totalRecords"
+         (onPageChange)="pageChanged($event)"
+      ></p-paginator>
+   </div>
+-->
