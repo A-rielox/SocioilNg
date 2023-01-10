@@ -7,6 +7,11 @@ import { UserParams } from 'src/app/_models/userParams';
 import { AccountService } from 'src/app/_services/account.service';
 import { MembersService } from 'src/app/_services/members.service';
 
+interface Sorting {
+   name: string;
+   label: string;
+}
+
 @Component({
    selector: 'app-member-list',
    templateUrl: './member-list.component.html',
@@ -17,10 +22,17 @@ export class MemberListComponent implements OnInit {
    members: Member[] = [];
    pagination: Pagination | undefined;
    userParams: UserParams | undefined; // aqui estan los filtros
-   user: User | undefined;
+   user: User | undefined; // NO lo estoy ocupando, era p' sacar el gender y ponerlo en params
 
    totalRecords: number = 1; // p' paginator
    visibleMember: number | null = null; // p' la card
+
+   //sorting options
+   sortingOpts: Sorting[] = [
+      { name: 'lastActive', label: 'Más reciente' },
+      { name: 'a-z', label: 'Nombre a-z' },
+   ];
+   sortingChoice = 'lastActive';
 
    constructor(
       private memberService: MembersService,
@@ -42,7 +54,7 @@ export class MemberListComponent implements OnInit {
    }
 
    loadMembers() {
-      if (!this.userParams) return;
+      if (!this.userParams) return; // ya estan, los creo en el ctor.
 
       this.memberService.getMembers(this.userParams).subscribe({
          next: (res) => {
@@ -70,4 +82,9 @@ export class MemberListComponent implements OnInit {
       this.userParams.pageNumber = event.page + 1;
       this.loadMembers();
    }
+
+   // sortSelected() {
+   //    console.log(this.userParams);
+   //    // this.loadMembers()
+   // }
 }

@@ -2,6 +2,12 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { NgxSpinnerModule } from 'ngx-spinner';
+import { TimeagoModule } from 'ngx-timeago';
+import {
+   TimeagoIntl,
+   TimeagoFormatter,
+   TimeagoCustomFormatter,
+} from 'ngx-timeago';
 
 import { DialogModule } from 'primeng/dialog';
 import { CheckboxModule } from 'primeng/checkbox';
@@ -33,6 +39,13 @@ import { PaginatorModule } from 'primeng/paginator';
    imports: [
       CommonModule,
       NgxSpinnerModule.forRoot({ type: 'pacman' }),
+      TimeagoModule.forRoot({
+         intl: { provide: TimeagoIntl },
+         formatter: {
+            provide: TimeagoFormatter,
+            useClass: TimeagoCustomFormatter,
+         },
+      }),
       CheckboxModule,
       DialogModule,
       StyleClassModule,
@@ -57,6 +70,7 @@ import { PaginatorModule } from 'primeng/paginator';
    ],
    exports: [
       NgxSpinnerModule,
+      TimeagoModule,
       CheckboxModule,
       DialogModule,
       StyleClassModule,

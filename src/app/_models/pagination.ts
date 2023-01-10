@@ -5,6 +5,7 @@ export interface Pagination {
    totalPages: number;
 }
 
+// T xej Member[]
 export class PaginatedResult<T> {
    result?: T;
    pagination?: Pagination;

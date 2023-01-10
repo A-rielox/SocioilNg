@@ -3,6 +3,9 @@ import { ActivatedRoute } from '@angular/router';
 import { Member } from 'src/app/_models/member';
 import { MembersService } from 'src/app/_services/members.service';
 
+import { strings as englishStrings } from 'ngx-timeago/language-strings/es';
+import { TimeagoIntl } from 'ngx-timeago';
+
 @Component({
    selector: 'app-member-detail',
    templateUrl: './member-detail.component.html',
@@ -32,8 +35,13 @@ export class MemberDetailComponent implements OnInit {
 
    constructor(
       private memberService: MembersService,
-      private route: ActivatedRoute
-   ) {}
+      private route: ActivatedRoute,
+      private intl: TimeagoIntl
+   ) {
+      // p' timeAgo en español
+      this.intl.strings = englishStrings;
+      this.intl.changes.next();
+   }
 
    ngOnInit(): void {
       this.loadMember();

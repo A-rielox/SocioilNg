@@ -58,11 +58,13 @@
          </p-divider>
 
          <div class="flex flex-column justify-content-start mb-5">
-            <span class="font-bold text-900">{{ member }}</span>
+            <span class="font-bold text-900">{{
+               member.lastActive + "z" | timeago
+            }}</span>
          </div>
 
          <!--                 like y messages -->
-         <p-divider align="right">
+         <p-divider align="center">
             <div class="inline-flex align-items-center">
                <i class="pi pi-heart mr-2 text-cyan-500"></i>
                <i class="pi pi-pencil mr-2 text-cyan-500"></i>

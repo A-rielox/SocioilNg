@@ -7,6 +7,9 @@ import { AccountService } from 'src/app/_services/account.service';
 import { MembersService } from 'src/app/_services/members.service';
 import { NotificationsService } from 'src/app/notifications/notifications.service';
 
+import { strings as englishStrings } from 'ngx-timeago/language-strings/es';
+import { TimeagoIntl } from 'ngx-timeago';
+
 interface Generos {
    name: string;
    label: string;
@@ -30,8 +33,13 @@ export class MemberEditComponent implements OnInit {
    constructor(
       private accountService: AccountService,
       private memberService: MembersService,
-      private notification: NotificationsService
+      private notification: NotificationsService,
+      private intl: TimeagoIntl
    ) {
+      // p' timeAgo en español
+      this.intl.strings = englishStrings;
+      this.intl.changes.next();
+
       this.accountService.currentUser$.pipe(take(1)).subscribe({
          next: (user) => {
             this.user = user;

@@ -5,8 +5,8 @@ export class UserParams {
    // minAge = 18;
    // maxAge = 99;
    pageNumber = 1;
-   pageSize = 5;
-   // orderBy = 'lastActive';
+   pageSize = 15;
+   orderBy = 'lastActive';
 
    // constructor(user: User) {
    //    this.gender = user.gender === 'female' ? 'male' : 'female';

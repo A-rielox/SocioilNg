@@ -28,12 +28,13 @@ export class MembersService {
    //////////  MEMBERS
    ///////////////////////////////////////////
    getMembers(userParams: UserParams) {
+      // solo los q conciernen a paginacion
       let params = this.getPaginationHeaders(
          userParams.pageNumber,
          userParams.pageSize
       );
-
       // params = params.append('minAge', userParams.minAge)
+      params = params.append('orderBy', userParams.orderBy);
 
       // "observe: 'response'" me da acceso a toda la response
       return this.getPaginatedResult<Member[]>(this.baseUrl + 'users', params);

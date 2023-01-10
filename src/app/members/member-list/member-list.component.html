@@ -5,6 +5,24 @@
       natural.
    </div>
 
+   <!-- <div class="field col-12 md:col-6"> -->
+   <div
+      class="field flex align-items-center justify-content-end"
+      *ngIf="userParams"
+   >
+      <label for="sort" class="font-normal text-900 mb-0 mr-2 text-sm"
+         >Ordenar por:</label
+      >
+      <p-selectButton
+         [options]="sortingOpts"
+         [(ngModel)]="userParams.orderBy"
+         name="sort"
+         optionLabel="label"
+         optionValue="name"
+         (onOptionClick)="loadMembers()"
+      ></p-selectButton>
+   </div>
+
    <div class="grid">
       <div
          class="col-12 md:col-6 lg:col-3 p-3"

@@ -73,6 +73,20 @@
             ></div>
          </div>
 
+         <!--                 Activo por última vez -->
+         <p-divider align="center">
+            <div class="inline-flex align-items-center">
+               <i class="pi pi-map-marker mr-2 text-cyan-500"></i>
+               <b class="text-500">Activo por última vez</b>
+            </div>
+         </p-divider>
+
+         <div class="flex flex-column justify-content-start mb-5">
+            <span class="font-bold text-900">{{
+               member.lastActive + "z" | timeago
+            }}</span>
+         </div>
+
          <!--                 boton guardar -->
          <p-divider></p-divider>
 
