@@ -34,8 +34,14 @@ import { MenubarModule } from 'primeng/menubar';
 import { MenuModule } from 'primeng/menu';
 import { PaginatorModule } from 'primeng/paginator';
 
+//
+//
+//
+//
+import { PaginatorComponent } from './paginator/paginator.component';
+
 @NgModule({
-   declarations: [],
+   declarations: [PaginatorComponent],
    imports: [
       CommonModule,
       NgxSpinnerModule.forRoot({ type: 'pacman' }),
@@ -92,6 +98,11 @@ import { PaginatorModule } from 'primeng/paginator';
       MenuModule,
       MenubarModule,
       PaginatorModule,
+
+      //
+
+      //
+      PaginatorComponent,
    ],
 })
 export class SharedModule {}

@@ -1,10 +1,12 @@
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { Member } from '../_models/member';
-import { map, of } from 'rxjs';
+import { map, of, take } from 'rxjs';
 import { PaginatedResult } from '../_models/pagination';
 import { UserParams } from '../_models/userParams';
+import { AccountService } from './account.service';
+import { User } from '../_models/user';
 
 @Injectable({
    providedIn: 'root',
@@ -12,22 +14,55 @@ import { UserParams } from '../_models/userParams';
 export class MembersService {
    baseUrl = environment.apiUrl;
    members: Member[] = [];
+   memberCache = new Map();
 
-   constructor(private http: HttpClient) {}
+   user: User | undefined;
+   userParams: UserParams | undefined; // aqui estan los filtros
+
+   constructor(
+      private http: HttpClient,
+      private accountService: AccountService
+   ) {
+      this.accountService.currentUser$.pipe(take(1)).subscribe({
+         next: (user) => {
+            if (user) {
+               this.userParams = new UserParams();
+               this.user = user;
+            }
+         },
+      });
+   }
 
    ///////////////////////////////////////////
    //////////  PARAMS
    ///////////////////////////////////////////
-   getUserParams() {}
+   getUserParams() {
+      return this.userParams;
+   }
 
-   setUserParams() {}
+   setUserParams(params: UserParams) {
+      this.userParams = params;
+   }
 
-   resetUserParams() {}
+   resetUserParams() {
+      // if (this.user) {
+      this.userParams = new UserParams(/* this.user */);
+
+      return this.userParams;
+      // }
+
+      // return;
+   }
 
    ///////////////////////////////////////////
    //////////  MEMBERS
    ///////////////////////////////////////////
    getMembers(userParams: UserParams) {
+      const response = this.memberCache.get(
+         Object.values(userParams).join('-')
+      );
+      if (response) return of(response);
+
       // solo los q conciernen a paginacion
       let params = this.getPaginationHeaders(
          userParams.pageNumber,
@@ -37,40 +72,24 @@ export class MembersService {
       params = params.append('orderBy', userParams.orderBy);
 
       // "observe: 'response'" me da acceso a toda la response
-      return this.getPaginatedResult<Member[]>(this.baseUrl + 'users', params);
-   }
+      return this.getPaginatedResult<Member[]>(
+         this.baseUrl + 'users',
+         params
+      ).pipe(
+         map((response) => {
+            this.memberCache.set(Object.values(userParams).join('-'), response);
 
-   private getPaginatedResult<T>(url: string, params: HttpParams) {
-      const paginatedResult: PaginatedResult<T> = new PaginatedResult<T>();
-
-      return this.http.get<T>(url, { observe: 'response', params }).pipe(
-         map((res) => {
-            if (res.body) {
-               paginatedResult.result = res.body;
-            }
-
-            const pagination = res.headers.get('Pagination');
-
-            if (pagination) {
-               paginatedResult.pagination = JSON.parse(pagination);
-            }
-
-            return paginatedResult;
+            return response;
          })
       );
    }
 
-   private getPaginationHeaders(pageNumber: number, pageSize: number) {
-      let params = new HttpParams();
-
-      params = params.append('pageNumber', pageNumber);
-      params = params.append('pageSize', pageSize);
-
-      return params;
-   }
-
    getMember(username: string) {
-      const member = this.members.find((m) => m.userName === username);
+      // const member = this.members.find((m) => m.userName === username);
+      // if (member) return of(member);
+      const member = [...this.memberCache.values()]
+         .reduce((arr, elem) => arr.concat(elem.result), [])
+         .find((member: Member) => member.userName === username);
 
       if (member) return of(member);
 
@@ -102,6 +121,37 @@ export class MembersService {
             this.members[index] = { ...this.members[index], ...member };
          })
       );
+   }
+
+   //////////////////      PRIVATES
+
+   private getPaginatedResult<T>(url: string, params: HttpParams) {
+      const paginatedResult: PaginatedResult<T> = new PaginatedResult<T>();
+
+      return this.http.get<T>(url, { observe: 'response', params }).pipe(
+         map((res) => {
+            if (res.body) {
+               paginatedResult.result = res.body;
+            }
+
+            const pagination = res.headers.get('Pagination');
+
+            if (pagination) {
+               paginatedResult.pagination = JSON.parse(pagination);
+            }
+
+            return paginatedResult;
+         })
+      );
+   }
+
+   private getPaginationHeaders(pageNumber: number, pageSize: number) {
+      let params = new HttpParams();
+
+      params = params.append('pageNumber', pageNumber);
+      params = params.append('pageSize', pageSize);
+
+      return params;
    }
 
    ///////////////////////////////////////////

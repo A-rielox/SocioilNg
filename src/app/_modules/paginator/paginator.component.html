@@ -1,0 +1,25 @@
+<nav class="flex align-items-center flex-column paginathor">
+   <ul class="flex mb-1">
+      <ng-container *ngIf="this.currentPage > 3">
+         <li pButton class="p-button mr-1">. . .</li></ng-container
+      >
+
+      <ng-container *ngFor="let page of pageOptions; let i = index">
+         <li
+            pButton
+            class="p-button mr-1"
+            [ngClass]="{ 'p-button-outlined': page === currentPage }"
+            (click)="pageChange(page)"
+         >
+            <a>{{ page }}</a>
+         </li>
+      </ng-container>
+
+      <ng-container *ngIf="numberOfPages > this.currentPage + 2">
+         <li pButton class="p-button mr-1">. . .</li></ng-container
+      >
+   </ul>
+   <p class="m-0 text-primary text-sm">
+      ( {{ currentPage }} / {{ numberOfPages }} )
+   </p>
+</nav>
