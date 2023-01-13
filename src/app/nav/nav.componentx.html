@@ -88,6 +88,19 @@
                      <span>Miembros</span>
                   </a>
                </li>
+
+               <li>
+                  <a
+                     pRipple
+                     [class]="aClass()"
+                     routerLink="/likes"
+                     routerLinkActive="active"
+                     [routerLinkActiveOptions]="{ exact: true }"
+                  >
+                     <i class="pi pi-heart mr-2 text-red-500"></i>
+                     <span>Likes</span>
+                  </a>
+               </li>
             </ng-container>
 
             <li *ngIf="null">

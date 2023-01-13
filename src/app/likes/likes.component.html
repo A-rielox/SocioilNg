@@ -1,0 +1,35 @@
+<div class="flex justify-content-center">
+   <h2 class="text-2xl">
+      {{ predicate === "liked" ? "Lo que me gusta" : "A quienes gusto 😎" }}
+   </h2>
+</div>
+
+<!--        toggle -->
+<div class="field col-12 md:col-6">
+   <!-- <label for="predicate" class="font-medium text-900">Género</label> -->
+   <p-selectButton
+      [options]="generos"
+      [(ngModel)]="predicate"
+      name="predicate"
+      optionLabel="label"
+      optionValue="name"
+      (onChange)="loadLikes()"
+   ></p-selectButton>
+</div>
+
+<div class="grid">
+   <div
+      class="col-12 md:col-6 lg:col-3 p-3"
+      *ngFor="let member of members; let i = index"
+   >
+      <app-member-card [member]="member" [index]="i"></app-member-card>
+   </div>
+</div>
+
+<div class="flex justify-content-center" *ngIf="pagination">
+   <app-paginator
+      [numberOfPages]="pagination.totalPages"
+      [currentPage]="pagination.currentPage"
+      (changePage)="pageChanged($event)"
+   ></app-paginator>
+</div>

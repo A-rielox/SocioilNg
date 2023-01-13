@@ -16,7 +16,7 @@ export class MembersService {
    members: Member[] = [];
    memberCache = new Map();
 
-   user: User | undefined;
+   user: User | undefined; // yellow NO lo estoy ocupando
    userParams: UserParams | undefined; // aqui estan los filtros
 
    constructor(
@@ -123,7 +123,56 @@ export class MembersService {
       );
    }
 
+   ///////////////////////////////////////////
+   //////////  FOTOS
+   ///////////////////////////////////////////
+   setMainPhoto(photoId: number) {
+      return this.http.put(
+         this.baseUrl + 'users/set-main-photo/' + photoId,
+         {}
+      );
+   }
+
+   deletePhoto(photoId: number) {
+      return this.http.delete(this.baseUrl + 'users/delete-photo/' + photoId);
+   }
+
+   ///////////////////////////////////////////
+   //////////  LIKES
+   ///////////////////////////////////////////
+
+   // para dar like, el username es de a quien se le da el like
+   addLike(username: string) {
+      return this.http.post(this.baseUrl + 'likes/' + username, {});
+   }
+
+   // p' agarrar los likes de un user
+   //
+   // api/likes?predicate=liked   --> los q me han gustado
+   // api/likes?predicate=likedBy --> a los q les e gustado
+   getLikes(predicate: string, pageNumber: number, pageSize: number) {
+      let params = this.getPaginationHeaders(pageNumber, pageSize);
+      params = params.append('predicate', predicate);
+
+      return this.getPaginatedResult<Member[]>(this.baseUrl + 'likes', params);
+
+      // return this.http.get<Member[]>(
+      //    this.baseUrl + 'likes?predicate=' + predicate
+      // );
+   }
+
+   ///////////////////////////////////////////
    //////////////////      PRIVATES
+   ///////////////////////////////////////////
+
+   private getPaginationHeaders(pageNumber: number, pageSize: number) {
+      let params = new HttpParams();
+
+      params = params.append('pageNumber', pageNumber);
+      params = params.append('pageSize', pageSize);
+
+      return params;
+   }
 
    private getPaginatedResult<T>(url: string, params: HttpParams) {
       const paginatedResult: PaginatedResult<T> = new PaginatedResult<T>();
@@ -144,38 +193,4 @@ export class MembersService {
          })
       );
    }
-
-   private getPaginationHeaders(pageNumber: number, pageSize: number) {
-      let params = new HttpParams();
-
-      params = params.append('pageNumber', pageNumber);
-      params = params.append('pageSize', pageSize);
-
-      return params;
-   }
-
-   ///////////////////////////////////////////
-   //////////  FOTOS
-   ///////////////////////////////////////////
-   setMainPhoto(photoId: number) {
-      return this.http.put(
-         this.baseUrl + 'users/set-main-photo/' + photoId,
-         {}
-      );
-   }
-
-   deletePhoto(photoId: number) {
-      return this.http.delete(this.baseUrl + 'users/delete-photo/' + photoId);
-   }
-
-   ///////////////////////////////////////////
-   //////////  LIKES
-   ///////////////////////////////////////////
-
-   // para dar like, el username es de a quien se le da el like
-   addLike() {}
-
-   // GET: api/likes?predicate=liked o likedBy
-   // p' agarrar los likes de un user
-   getLikes() {}
 }

@@ -1,5 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { Paginator } from 'primeng/paginator';
+import { Component, OnInit } from '@angular/core';
 import { Member } from 'src/app/_models/member';
 import { Pagination } from 'src/app/_models/pagination';
 import { UserParams } from 'src/app/_models/userParams';
@@ -16,21 +15,17 @@ interface Sorting {
    styleUrls: ['./member-list.component.css'],
 })
 export class MemberListComponent implements OnInit {
-   // totalRecords: number = 1; // p' paginator
-
    // members$: Observable<Member[]> | undefined;
    members: Member[] = [];
    pagination: Pagination | undefined;
    userParams: UserParams | undefined; // aqui estan los filtros
-
-   visibleMember: number | null = null; // p' la card
 
    //sorting options
    sortingOpts: Sorting[] = [
       { name: 'lastActive', label: 'Más reciente' },
       { name: 'a-z', label: 'Nombre a-z' },
    ];
-   sortingChoice = 'lastActive';
+   sortingChoice = 'lastActive'; // yellow revisar si lo ocupo
 
    constructor(private memberService: MembersService) {
       this.userParams = this.memberService.getUserParams();
@@ -47,13 +42,9 @@ export class MemberListComponent implements OnInit {
 
          this.memberService.getMembers(this.userParams).subscribe({
             next: (res) => {
-               // console.log(res); {pagination: {…}}
-
                if (res.result && res.pagination) {
                   this.members = res.result;
                   this.pagination = res.pagination;
-
-                  // this.totalRecords = res.pagination.totalItems; // p' paginator
                }
             },
          });
