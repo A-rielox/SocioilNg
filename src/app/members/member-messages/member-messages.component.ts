@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Message } from 'src/app/_models/message';
-import { MessageService } from 'src/app/_services/message.service';
+// import { MessageService } from 'src/app/_services/message.service';
 
 import { TimeagoIntl } from 'ngx-timeago';
 import { strings as englishStrings } from 'ngx-timeago/language-strings/es';
@@ -12,10 +12,10 @@ import { strings as englishStrings } from 'ngx-timeago/language-strings/es';
 })
 export class MemberMessagesComponent implements OnInit {
    @Input() username?: string;
-   messages: Message[] = [];
+   @Input() messages: Message[] = [];
 
    constructor(
-      private messageService: MessageService,
+      // private messageService: MessageService,
       private intl: TimeagoIntl
    ) {
       // p' timeAgo en español
@@ -23,17 +23,7 @@ export class MemberMessagesComponent implements OnInit {
       this.intl.changes.next();
    }
 
-   ngOnInit(): void {
-      this.loadMessages();
-   }
-
-   loadMessages() {
-      if (this.username) {
-         this.messageService.getMessageThread(this.username).subscribe({
-            next: (messages) => (this.messages = messages),
-         });
-      }
-   }
+   ngOnInit(): void {}
 
    sendMessage() {}
 }

@@ -38,7 +38,11 @@
             ></a>
 
             <!--              link mensaje -->
-            <a tabindex="0" class="cursor-pointer text-white"
+            <a
+               tabindex="0"
+               class="cursor-pointer text-white"
+               routerLink="/miembros/{{ member.userName }}"
+               [queryParams]="{ tab: 'Mensajes' }"
                ><i class="pi pi-envelope text-600 text-xl text-green-500"></i
             ></a>
          </div>
