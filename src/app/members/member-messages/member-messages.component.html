@@ -70,38 +70,36 @@
    </div>
 </div>
 
-<div class="card-footer">
-   <form #messageForm="ngForm" (ngSubmit)="sendMessage()" autocomplete="off">
-      <!-- [(ngModel)]="messageContent"
-            name="messageContent" -->
-
-      <div class="grid">
-         <div class="col-12">
-            <label for="message" class="block text-900 font-medium mb-2"
-               >Enviar mensaje</label
-            >
-            <input
-               id="message"
-               type="text"
-               placeholder="Envía un mensaje"
-               pInputText
-               class="w-full"
-            />
-         </div>
-
-         <div class="col-4 col-offset-8">
-            <!-- [disabled]="!messageForm.valid" -->
-            <button
-               pButton
-               label="Enviar"
-               icon="pi pi-envelope"
-               class="w-full"
-               type="submit"
-            ></button>
-         </div>
+<form #messageForm="ngForm" (ngSubmit)="sendMessage()" autocomplete="off">
+   <div class="grid">
+      <div class="col-12">
+         <label for="message" class="block text-900 font-medium mb-2"
+            >Enviar mensaje a {{ username | titlecase }}</label
+         >
+         <input
+            id="message"
+            type="text"
+            placeholder="Mensaje"
+            pInputText
+            class="w-full"
+            required
+            [(ngModel)]="messageContent"
+            name="messageContent"
+         />
       </div>
-   </form>
-</div>
+
+      <div class="col-4 col-offset-8">
+         <button
+            pButton
+            label="Enviar"
+            icon="pi pi-envelope"
+            class="w-full"
+            type="submit"
+            [disabled]="!messageForm.valid"
+         ></button>
+      </div>
+   </div>
+</form>
 
 <!--  -->
 <!--  -->

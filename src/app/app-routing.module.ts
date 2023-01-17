@@ -13,6 +13,7 @@ import { ServerErrorComponent } from './errors/server-error/server-error.compone
 import { MemberEditComponent } from './members/member-edit/member-edit.component';
 import { LikesComponent } from './likes/likes.component';
 import { MessagesComponent } from './messages/messages.component';
+import { MemberDetailedResolver } from './_resolvers/member-detailed.resolver';
 
 const routes: Routes = [
    { path: '', component: HomeComponent },
@@ -22,7 +23,11 @@ const routes: Routes = [
       canActivate: [AuthGuard],
       children: [
          { path: 'miembros', component: MemberListComponent },
-         { path: 'miembros/:username', component: MemberDetailComponent },
+         {
+            path: 'miembros/:username',
+            component: MemberDetailComponent,
+            // resolve: { member: MemberDetailedResolver },
+         },
          { path: 'miembro/edit', component: MemberEditComponent },
          { path: 'recetas', component: RecipesComponent },
          { path: 'posts', component: PostsComponent },
