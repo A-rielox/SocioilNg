@@ -1,0 +1,211 @@
+<div class="field col-12 md:col-6">
+   <p-selectButton
+      [options]="generos"
+      name="container"
+      [(ngModel)]="container"
+      optionValue="name"
+      (onChange)="loadMessages()"
+   >
+      <ng-template let-item>
+         <i [class]="item.icon"></i>{{ item.label }}
+      </ng-template></p-selectButton
+   >
+</div>
+
+<div class="col-12" *ngIf="!messages || messages.length === 0">
+   <h3>Sin mensajes</h3>
+</div>
+
+<!--              TABLA           -->
+
+<!-- <div class="overflow-x-scroll" > -->
+<div *ngIf="messages && messages.length > 0">
+   <p-table
+      [value]="messages"
+      [tableStyle]="{ 'min-width': '60rem' }"
+      [rowHover]="true"
+   >
+      <ng-template pTemplate="header">
+         <tr>
+            <th>
+               <span class="font-semibold text-sm text-color-secondary">{{
+                  container === "Outbox" ? "Para" : "Desde"
+               }}</span>
+            </th>
+            <th>
+               <span class="font-semibold text-sm text-color-secondary">{{
+                  container === "Outbox" ? "Enviado" : "Recibido"
+               }}</span>
+            </th>
+            <th>
+               <span class="font-semibold text-sm text-color-secondary"
+                  >Mensaje</span
+               >
+            </th>
+            <th></th>
+         </tr>
+      </ng-template>
+
+      <ng-template pTemplate="body" let-message>
+         <tr
+            class="cursor-pointer"
+            routerLink="{{
+               container === 'Outbox'
+                  ? '/miembros/' + message.recipientUsername
+                  : '/miembros/' + message.senderUsername
+            }}"
+            [queryParams]="{ tab: 'Messages' }"
+         >
+            <td>
+               <div class="flex align-items-center gap-3">
+                  <div *ngIf="container === 'Outbox'">
+                     <p-avatar
+                        image="{{
+                           message.recipientPhotoUrl || './assets/user.png'
+                        }}"
+                        styleClass="mr-2"
+                        size="large"
+                        shape="circle"
+                     ></p-avatar>
+
+                     <p
+                        class="mt-0 mb-2 font-medium text-lg text-color-primary"
+                     >
+                        {{ message.recipientUsername | titlecase }}
+                     </p>
+                  </div>
+
+                  <div *ngIf="container !== 'Outbox'">
+                     <p-avatar
+                        image="{{
+                           message.senderPhotoUrl || './assets/user.png'
+                        }}"
+                        styleClass="mr-2"
+                        size="large"
+                        shape="circle"
+                     ></p-avatar>
+
+                     <p
+                        class="mt-0 mb-2 font-medium text-lg text-color-primary"
+                     >
+                        {{ message.senderUsername | titlecase }}
+                     </p>
+                  </div>
+               </div>
+            </td>
+
+            <td>
+               <p class="mt-0 mb-2 font-normal text-base text-color-secondary">
+                  {{ message.messageSent + "z" | timeago }}
+               </p>
+            </td>
+
+            <td>
+               <p class="mt-0 mb-2 font-normal text-base text-color-secondary">
+                  {{ message.content }}
+               </p>
+            </td>
+
+            <td>
+               <button
+                  (click)="$event.stopPropagation()"
+                  (click)="deleteMessage(message.id)"
+                  pButton
+                  label="Borrar"
+                  icon="pi pi-trash "
+               ></button>
+            </td>
+         </tr>
+      </ng-template>
+   </p-table>
+</div>
+
+<!--  -->
+<!-- PAGINACION -->
+<!--  -->
+
+<div class="col-12" *ngIf="messages && messages.length > 0">
+   <ng-container *ngFor="let message of messages">
+      <div
+         routerLink="{{
+            container === 'Outbox'
+               ? '/miembros/' + message.recipientUsername
+               : '/miembros/' + message.senderUsername
+         }}"
+         [queryParams]="{ tab: 'Messages' }"
+         class="p-2 my-4 flex flex-column lg:flex-row justify-content-between align-items-center cursor-pointer"
+      >
+         <!--              IZQUIERDA -->
+         <div
+            class="flex flex-column lg:flex-row justify-content-center align-items-center px-2"
+         >
+            <div *ngIf="container === 'Outbox'">
+               <img
+                  src="{{ message.recipientPhotoUrl || './assets/user.png' }}"
+                  alt="product"
+                  class="w-8rem h-8rem mr-3 flex-shrink-0"
+               />
+            </div>
+            <div *ngIf="container !== 'Outbox'">
+               <img
+                  src="{{ message.senderPhotoUrl || './assets/user.png' }}"
+                  alt="product"
+                  class="w-8rem h-8rem mr-3 flex-shrink-0"
+               />
+            </div>
+
+            <div class="flex flex-column my-auto text-center md:text-left">
+               <span class="text-900 font-medium mb-3 mt-3 lg:mt-0">{{
+                  (container === "Outbox"
+                     ? message.recipientUsername
+                     : message.senderUsername
+                  ) | titlecase
+               }}</span>
+               <span class="text-600 text-sm mb-3 white-space-nowrap">{{
+                  message.messageSent + "z" | timeago | titlecase
+               }}</span>
+            </div>
+         </div>
+
+         <!--              DERECHA -->
+         <!-- <div
+            class="bg-green-50 mr-0 lg:mr-3 mt-4 lg:mt-0 p-2 flex align-items-center"
+            [style.border-radius]="'2.5rem'"
+         >
+            <span
+               class="bg-green-500 text-white flex align-items-center justify-content-center border-circle mr-2"
+               style="min-width: 2rem; min-height: 2rem"
+            >
+               <i class="pi pi-check"></i>
+            </span>
+            <span class="text-green-600">Delivered on 7 February 2023</span>
+         </div> -->
+         <div
+            class="mr-0 lg:mx-3 mt-4 lg:mt-0 p-2 flex align-items-center w-full"
+         >
+            <div
+               class="flex lg:align-items-start flex-column lg:flex-row p-4 bg-blue-100 border-round border-1 border-blue-300 w-full justify-content-between"
+            >
+               <p class="m-0 p-0 text-blue-700 line-height-3">
+                  {{ message.content }}
+               </p>
+
+               <button
+                  pButton
+                  label="Borrar"
+                  icon="pi pi-trash"
+                  class="p-button-outlined w-9rem align-self-end mt-3 lg:ml-3 lg:mt-0"
+                  (click)="$event.stopPropagation()"
+                  (click)="deleteMessage(message.id)"
+               ></button>
+            </div>
+         </div>
+      </div>
+
+      <p-divider class="w-full block hidden surface-border"></p-divider>
+   </ng-container>
+</div>
+
+<!--  -->
+<!-- PAGINACION -->
+<!--  -->

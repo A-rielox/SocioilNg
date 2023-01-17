@@ -34,6 +34,7 @@ import { FourthComponent } from './home/fourth/fourth.component';
 import { PhotoEditorComponent } from './members/photo-editor/photo-editor.component';
 import { TextInputComponent } from './_forms/text-input/text-input.component';
 import { LikesComponent } from './likes/likes.component';
+import { MessagesComponent } from './messages/messages.component';
 
 @NgModule({
    declarations: [
@@ -59,6 +60,7 @@ import { LikesComponent } from './likes/likes.component';
       PhotoEditorComponent,
       TextInputComponent,
       LikesComponent,
+      MessagesComponent,
    ],
    imports: [
       BrowserModule,

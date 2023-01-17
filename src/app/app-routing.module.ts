@@ -12,6 +12,7 @@ import { NotFoundComponent } from './errors/not-found/not-found.component';
 import { ServerErrorComponent } from './errors/server-error/server-error.component';
 import { MemberEditComponent } from './members/member-edit/member-edit.component';
 import { LikesComponent } from './likes/likes.component';
+import { MessagesComponent } from './messages/messages.component';
 
 const routes: Routes = [
    { path: '', component: HomeComponent },
@@ -27,6 +28,7 @@ const routes: Routes = [
          { path: 'posts', component: PostsComponent },
          { path: 'noticias', component: NewsComponent },
          { path: 'likes', component: LikesComponent },
+         { path: 'mensajes', component: MessagesComponent },
       ],
    },
    { path: 'errors', component: TestErrorComponent },
