@@ -6,7 +6,7 @@ import { MessageService } from '../_services/message.service';
 import { TimeagoIntl } from 'ngx-timeago';
 import { strings as englishStrings } from 'ngx-timeago/language-strings/es';
 
-interface Generos {
+interface Containers {
    name: string;
    label: string;
    icon: string;
@@ -24,7 +24,7 @@ export class MessagesComponent implements OnInit {
    pageNumber = 1;
    pageSize = 5;
 
-   generos: Generos[] = [
+   generos: Containers[] = [
       { name: 'Unread', label: 'Nuevos', icon: 'pi pi-envelope mr-2' },
       { name: 'Inbox', label: 'Recibidos', icon: 'pi pi-folder-open mr-2' },
       { name: 'Outbox', label: 'Enviados', icon: 'pi pi-send mr-2' },
@@ -49,8 +49,12 @@ export class MessagesComponent implements OnInit {
          .subscribe({
             next: (res) => {
                this.messages = res.result;
-               this.pagination = res.pagination;
-               console.log(this.messages);
+
+               if (res.pagination!.totalPages > 1) {
+                  this.pagination = res.pagination;
+               } else {
+                  this.pagination = undefined;
+               }
             },
          });
    }

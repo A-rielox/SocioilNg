@@ -120,8 +120,16 @@
    </p-table>
 </div>
 
+<div class="flex justify-content-center" *ngIf="pagination">
+   <app-paginator
+      [numberOfPages]="pagination.totalPages"
+      [currentPage]="pagination.currentPage"
+      (changePage)="pageChanged($event)"
+   ></app-paginator>
+</div>
+
 <!--  -->
-<!-- PAGINACION -->
+<!-- OTTO -->
 <!--  -->
 
 <div class="col-12" *ngIf="messages && messages.length > 0">

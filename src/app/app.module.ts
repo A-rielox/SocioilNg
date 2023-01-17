@@ -35,6 +35,7 @@ import { PhotoEditorComponent } from './members/photo-editor/photo-editor.compon
 import { TextInputComponent } from './_forms/text-input/text-input.component';
 import { LikesComponent } from './likes/likes.component';
 import { MessagesComponent } from './messages/messages.component';
+import { MemberMessagesComponent } from './members/member-messages/member-messages.component';
 
 @NgModule({
    declarations: [
@@ -61,6 +62,7 @@ import { MessagesComponent } from './messages/messages.component';
       TextInputComponent,
       LikesComponent,
       MessagesComponent,
+      MemberMessagesComponent,
    ],
    imports: [
       BrowserModule,
