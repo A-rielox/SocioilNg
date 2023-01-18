@@ -12,7 +12,7 @@ import { NgForm } from '@angular/forms';
    styleUrls: ['./member-messages.component.css'],
 })
 export class MemberMessagesComponent implements OnInit {
-   @ViewChild('messageForm') messageForm?: NgForm;
+   @ViewChild('messageForm') messageForm?: NgForm; // p' el reset()
    @Input() username?: string;
    @Input() messages: Message[] = [];
 

@@ -1,6 +1,6 @@
 <div class="field col-12 md:col-6">
    <p-selectButton
-      [options]="generos"
+      [options]="containers"
       name="container"
       [(ngModel)]="container"
       optionValue="name"
@@ -48,6 +48,7 @@
 
       <ng-template pTemplate="body" let-message>
          <tr
+            [hidden]="loading"
             class="cursor-pointer"
             routerLink="{{
                container === 'Outbox'
@@ -132,7 +133,7 @@
 <!-- OTTO -->
 <!--  -->
 
-<div class="col-12" *ngIf="messages && messages.length > 0">
+<div class="col-12" *ngIf="messages && messages.length > 0 && !loading">
    <ng-container *ngFor="let message of messages">
       <div
          routerLink="{{

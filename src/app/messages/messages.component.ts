@@ -23,8 +23,9 @@ export class MessagesComponent implements OnInit {
    container = 'Outbox';
    pageNumber = 1;
    pageSize = 5;
+   loading = false;
 
-   generos: Containers[] = [
+   containers: Containers[] = [
       { name: 'Unread', label: 'Nuevos', icon: 'pi pi-envelope mr-2' },
       { name: 'Inbox', label: 'Recibidos', icon: 'pi pi-folder-open mr-2' },
       { name: 'Outbox', label: 'Enviados', icon: 'pi pi-send mr-2' },
@@ -44,6 +45,8 @@ export class MessagesComponent implements OnInit {
    }
 
    loadMessages() {
+      this.loading = true;
+
       this.messageService
          .getMessages(this.pageNumber, this.pageSize, this.container)
          .subscribe({
@@ -55,6 +58,8 @@ export class MessagesComponent implements OnInit {
                } else {
                   this.pagination = undefined;
                }
+
+               this.loading = false;
             },
          });
    }
