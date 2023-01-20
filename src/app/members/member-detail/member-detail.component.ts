@@ -95,9 +95,10 @@ export class MemberDetailComponent implements OnInit {
    }
 
    selectTab() {
-      this.loadMessages();
       // en indice 2 tengo Mensajes
       this.activeTabIndex = 2;
+
+      this.loadMessages();
    }
 
    loadMessages() {

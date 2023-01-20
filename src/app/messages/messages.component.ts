@@ -20,7 +20,7 @@ interface Containers {
 export class MessagesComponent implements OnInit {
    messages?: Message[];
    pagination?: Pagination;
-   container = 'Outbox';
+   container = 'Inbox';
    pageNumber = 1;
    pageSize = 5;
    loading = false;
@@ -70,6 +70,12 @@ export class MessagesComponent implements OnInit {
    }
 
    deleteMessage(id: number) {
-      console.log('borrar y borrarrrrr');
+      this.messageService.deleteMessage(id).subscribe({
+         next: () =>
+            this.messages?.splice(
+               this.messages.findIndex((m) => m.id === id),
+               1
+            ),
+      });
    }
 }

@@ -36,6 +36,7 @@ import { TextInputComponent } from './_forms/text-input/text-input.component';
 import { LikesComponent } from './likes/likes.component';
 import { MessagesComponent } from './messages/messages.component';
 import { MemberMessagesComponent } from './members/member-messages/member-messages.component';
+import { AdminPanelComponent } from './admin/admin-panel/admin-panel.component';
 
 @NgModule({
    declarations: [
@@ -63,6 +64,7 @@ import { MemberMessagesComponent } from './members/member-messages/member-messag
       LikesComponent,
       MessagesComponent,
       MemberMessagesComponent,
+      AdminPanelComponent,
    ],
    imports: [
       BrowserModule,
