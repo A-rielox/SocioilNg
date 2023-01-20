@@ -8,13 +8,16 @@ import { DynamicDialogConfig } from 'primeng/dynamicdialog';
    styleUrls: ['./roles-modal.component.css'],
 })
 export class RolesModalComponent implements OnInit {
-   title = '';
-   list?: string[];
+   username = '';
+   availableRoles: string[] = [];
+   selectedRoles: string[] = [];
 
+   //////////////////
    animal = 0;
-
+   //
    tier1 = 0;
    value = 0;
+   //////////////////
 
    constructor(
       public ref: DynamicDialogRef,
@@ -22,11 +25,23 @@ export class RolesModalComponent implements OnInit {
    ) {}
 
    ngOnInit(): void {
-      this.list = this.config.data.list;
+      this.availableRoles = this.config.data.availableRoles;
+      this.selectedRoles = this.config.data.selectedRoles;
+      this.username = this.config.data.username; // parece q NO se usa
       // list: this.config.data.list;
    }
 
+   // para actualizar los checkboxes con lo que venga
+   updateChecked(checkedValue: string) {
+      const index = this.selectedRoles.indexOf(checkedValue);
+      index !== -1
+         ? this.selectedRoles.splice(index, 1)
+         : this.selectedRoles.push(checkedValue);
+   }
+
    closeD() {
-      this.ref.close();
+      console.log(this.selectedRoles);
+
+      this.ref.close(this.selectedRoles);
    }
 }

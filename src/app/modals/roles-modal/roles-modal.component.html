@@ -1,12 +1,23 @@
-<ul *ngIf="list && list.length">
-   <li *ngFor="let item of list">{{ item }}</li>
-</ul>
+<form #rolesForm="ngForm" id="rolesForm">
+   <div
+      class="flex align-items-center mb-2"
+      *ngFor="let role of availableRoles"
+   >
+      <p-checkbox
+         [(ngModel)]="selectedRoles"
+         name="roles"
+         [value]="role"
+         (change)="updateChecked(role)"
+         [disabled]="role === 'Admin' && username === 'admin'"
+         styleClass="mr-2"
+         label="{{ role }}"
+      ></p-checkbox>
+   </div>
+</form>
+
+<!-- <h1>otto</h1>
 
 <div class="w-full">
-   <div class="text-900 text-xl mb-3 text-left font-medium">
-      Change your account tier!
-   </div>
-
    <div
       class="surface-card border-2 p-3 border-round-top flex align-items-center cursor-pointer"
       [ngClass]="{
@@ -21,10 +32,12 @@
          [(ngModel)]="tier1"
          styleClass="mr-3"
       ></p-radioButton>
+
       <div class="mr-4 md:mr-8">
          <div class="font-medium mb-1">Basic</div>
          <span class="text-sm">Quam nulla porttitor massa.</span>
       </div>
+
       <div
          class="border-round border-1 p-1 ml-auto flex flex-nowrap"
          [ngClass]="{
@@ -99,27 +112,8 @@
          <i class="pi pi-star-fill"></i>
       </div>
    </div>
+</div> -->
+
+<div class="flex justify-content-end mt-4">
+   <button pButton type="button" (click)="closeD()" label="Guardar"></button>
 </div>
-
-<button pButton type="button" (click)="closeD()" label="Close"></button>
-
-<!-- <p-dialog-footer></p-dialog-footer>	 -->
-
-<!-- <p-dialog
-   appendTo="body"
-   [modal]="true"
-   [dismissableMask]="true"
-   [draggable]="false"
-   [transitionOptions]="'300ms'"
-   header="{{ title }}"
-   [(visible)]="display"
->
-   Content
-</p-dialog> -->
-
-<!-- <button
-   type="button"
-   (click)="showDialog()"
-   icon="pi pi-info-circle"
-   label="Show"
-></button> -->
