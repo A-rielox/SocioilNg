@@ -53,12 +53,10 @@ export class UserManagementComponent implements OnInit {
       ref.onClose.subscribe({
          next: (selectedRoles: string[]) => {
             if (selectedRoles) {
-               const newRoles = selectedRoles;
-
                // ocupo .updateUserRoles solo si los arrays de users son distintos
-               if (!this.arrayEqual(newRoles, user.roles)) {
+               if (!this.arrayEqual(selectedRoles, user.roles)) {
                   this.adminService
-                     .updateUserRoles(user.username, newRoles)
+                     .updateUserRoles(user.username, selectedRoles)
                      .subscribe({
                         next: (roles) => (user.roles = roles),
                      });
