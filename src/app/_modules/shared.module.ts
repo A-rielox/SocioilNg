@@ -10,6 +10,8 @@ import {
 } from 'ngx-timeago';
 
 import { DialogModule } from 'primeng/dialog';
+import { DynamicDialogModule } from 'primeng/dynamicdialog';
+
 import { CheckboxModule } from 'primeng/checkbox';
 
 import { StyleClassModule } from 'primeng/styleclass';
@@ -34,6 +36,8 @@ import { MenubarModule } from 'primeng/menubar';
 import { MenuModule } from 'primeng/menu';
 import { PaginatorModule } from 'primeng/paginator';
 
+import { RadioButtonModule } from 'primeng/radiobutton';
+
 //
 //
 //
@@ -53,6 +57,7 @@ import { PaginatorComponent } from './paginator/paginator.component';
          },
       }),
       CheckboxModule,
+      DynamicDialogModule,
       DialogModule,
       StyleClassModule,
       ButtonModule,
@@ -73,11 +78,13 @@ import { PaginatorComponent } from './paginator/paginator.component';
       MenuModule,
       MenubarModule,
       PaginatorModule,
+      RadioButtonModule,
    ],
    exports: [
       NgxSpinnerModule,
       TimeagoModule,
       CheckboxModule,
+      DynamicDialogModule,
       DialogModule,
       StyleClassModule,
       ButtonModule,
@@ -98,6 +105,7 @@ import { PaginatorComponent } from './paginator/paginator.component';
       MenuModule,
       MenubarModule,
       PaginatorModule,
+      RadioButtonModule,
 
       //
 

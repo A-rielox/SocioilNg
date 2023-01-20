@@ -1,1 +1,22 @@
-<p>admin-panel works!</p>
+<h2>Panel Admin</h2>
+
+<div class="surface-section px-4 py-8 md:px-6 lg:px-8">
+   <div>
+      <!-- (onChange)="onTabChanged($event)"
+      [(activeIndex)]="activeTabIndex" -->
+      <p-tabView>
+         <p-tabPanel header="Administración de roles" *appHasRole="['Admin']">
+            <!-- agregar contenedor -->
+            <app-user-management></app-user-management>
+         </p-tabPanel>
+
+         <p-tabPanel
+            header="Administración de fotos"
+            *appHasRole="['Admin', 'Moderator']"
+         >
+            <!-- agregar contenedor -->
+            <app-photo-management></app-photo-management>
+         </p-tabPanel>
+      </p-tabView>
+   </div>
+</div>

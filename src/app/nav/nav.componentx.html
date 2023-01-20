@@ -85,6 +85,7 @@
 
                <li>
                   <a
+                     *appHasRole="['Admin','Moderator']"
                      [class]="aClass()"
                      routerLink="/admin"
                      routerLinkActive="active"

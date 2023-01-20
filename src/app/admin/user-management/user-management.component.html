@@ -1,0 +1,44 @@
+<!-- [tableStyle]="{ 'min-width': '60rem' }" -->
+<p-table [value]="users" [rowHover]="true">
+   <ng-template pTemplate="header">
+      <tr>
+         <th>
+            <span class="font-semibold text-sm text-color-secondary"
+               >Usuario</span
+            >
+         </th>
+
+         <th>
+            <span class="font-semibold text-sm text-color-secondary"
+               >Roles Activos</span
+            >
+         </th>
+
+         <th></th>
+      </tr>
+   </ng-template>
+
+   <ng-template pTemplate="body" let-user>
+      <tr>
+         <td>
+            <p class="mt-0 mb-2 font-normal text-base text-color-secondary">
+               {{ user.username | titlecase }}
+            </p>
+         </td>
+
+         <td>
+            <p class="mt-0 mb-2 font-normal text-base text-color-secondary">
+               {{ user.roles }}
+            </p>
+         </td>
+
+         <td>
+            <!-- (click)="$event.stopPropagation()"
+            (click)="deleteMessage(message.id)" -->
+            <button (click)="show()" pButton label="Editar roles"></button>
+         </td>
+      </tr>
+   </ng-template>
+</p-table>
+
+<!-- <app-roles-modal></app-roles-modal> -->
