@@ -1,1 +1,25 @@
-<p>recipes works!</p>
+<div *ngIf="oilsList" class="m-5 flex flex-column">
+   <div class="mb-3 w-4">
+      <p-multiSelect
+         [options]="oilsList"
+         [(ngModel)]="selectedOils"
+         defaultLabel="Selecciona los aceites"
+         optionLabel="name"
+         display="chip"
+         [selectionLimit]="5"
+         [showToggleAll]="false"
+         (onChange)="change()"
+      ></p-multiSelect>
+   </div>
+
+   <ul>
+      <li *ngFor="let singleOil of selectedToDisplay">{{ singleOil }}</li>
+   </ul>
+
+   <p-button
+      label="Guardar"
+      icon="pi pi-check"
+      styleClass="p-button"
+      (onClick)="onSave()"
+   ></p-button>
+</div>

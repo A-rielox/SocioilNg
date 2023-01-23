@@ -7,14 +7,6 @@ body {
    -moz-osx-font-smoothing: grayscale;
 }
 
-/* .p-dialog .p-dialog-header {
-   padding: 0.5rem;
-} */
-
-/* .hola > .p-selectbutton.p-buttonset > .p-button {
-   padding: 0.5rem !important;
-} */
-
 /* p'q no se me pegue la tacha */
 .p-dialog .p-dialog-header .p-dialog-title {
    margin-right: 2rem;

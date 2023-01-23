@@ -37,7 +37,7 @@ import { MenuModule } from 'primeng/menu';
 import { PaginatorModule } from 'primeng/paginator';
 
 import { RadioButtonModule } from 'primeng/radiobutton';
-
+import { MultiSelectModule } from 'primeng/multiselect';
 //
 //
 //
@@ -79,6 +79,7 @@ import { PaginatorComponent } from './paginator/paginator.component';
       MenubarModule,
       PaginatorModule,
       RadioButtonModule,
+      MultiSelectModule,
    ],
    exports: [
       NgxSpinnerModule,
@@ -106,9 +107,7 @@ import { PaginatorComponent } from './paginator/paginator.component';
       MenubarModule,
       PaginatorModule,
       RadioButtonModule,
-
-      //
-
+      MultiSelectModule,
       //
       PaginatorComponent,
    ],
