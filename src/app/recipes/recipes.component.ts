@@ -22,6 +22,7 @@ export class RecipesComponent implements OnInit {
 
    ///////////////////
    recipes?: Recipe[] = [];
+   oilsListToDisplay?: string[] = [];
 
    constructor(private recipesService: RecipesService) {}
 
@@ -47,6 +48,34 @@ export class RecipesComponent implements OnInit {
             this.recipes = recipes;
 
             console.log(this.recipes);
+            /*
+            [
+               {
+                  "id": 3,
+                  "content": "Test primera receta 1111",
+                  "oilsList": "burnes,ocote,cilantro",
+                  "createdById": 1,
+                  "createdByUsername": "lisa",
+                  "createdByPhotoUrl": "https://randomuser.me/api/portraits/women/54.jpg"
+               },
+               {
+                  "id": 4,
+                  "content": "Test receta PORTER 222222",
+                  "oilsList": "burnes,ocote,cilantro",
+                  "createdById": 7,
+                  "createdByUsername": "porter",
+                  "createdByPhotoUrl": "https://randomuser.me/api/portraits/men/87.jpg"
+               },
+               {
+                  "id": 5,
+                  "content": "Test receta Lisa 33333",
+                  "oilsList": "Menta,Limon",
+                  "createdById": 1,
+                  "createdByUsername": "lisa",
+                  "createdByPhotoUrl": "https://randomuser.me/api/portraits/women/54.jpg"
+               }
+            ]
+            */
          },
       });
    }
