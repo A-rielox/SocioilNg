@@ -5,13 +5,8 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class SeparatePipe implements PipeTransform {
    transform(value: string) {
-      // if (value.length > limit) {
-      //    return value.substring(0, limit) + '...';
-      // }
-      let newValue = value.split(',').join(' - ');
+      // let newValue = value.split(',').join(' - ');
 
-      console.log('----', newValue);
-
-      return newValue;
+      return value.split(',').join(' - ');
    }
 }

@@ -43,6 +43,7 @@ import { PhotoManagementComponent } from './admin/photo-management/photo-managem
 import { RolesModalComponent } from './modals/roles-modal/roles-modal.component';
 import { ShortenPipe } from './_pipes/shorten.pipe';
 import { SeparatePipe } from './_pipes/separate.pipe';
+import { AddRecipeComponent } from './recipes/add-recipe/add-recipe.component';
 
 @NgModule({
    declarations: [
@@ -77,6 +78,7 @@ import { SeparatePipe } from './_pipes/separate.pipe';
       RolesModalComponent,
       ShortenPipe,
       SeparatePipe,
+      AddRecipeComponent,
    ],
    imports: [
       BrowserModule,

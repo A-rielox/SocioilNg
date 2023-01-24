@@ -48,34 +48,6 @@ export class RecipesComponent implements OnInit {
             this.recipes = recipes;
 
             console.log(this.recipes);
-            /*
-            [
-               {
-                  "id": 3,
-                  "content": "Test primera receta 1111",
-                  "oilsList": "burnes,ocote,cilantro",
-                  "createdById": 1,
-                  "createdByUsername": "lisa",
-                  "createdByPhotoUrl": "https://randomuser.me/api/portraits/women/54.jpg"
-               },
-               {
-                  "id": 4,
-                  "content": "Test receta PORTER 222222",
-                  "oilsList": "burnes,ocote,cilantro",
-                  "createdById": 7,
-                  "createdByUsername": "porter",
-                  "createdByPhotoUrl": "https://randomuser.me/api/portraits/men/87.jpg"
-               },
-               {
-                  "id": 5,
-                  "content": "Test receta Lisa 33333",
-                  "oilsList": "Menta,Limon",
-                  "createdById": 1,
-                  "createdByUsername": "lisa",
-                  "createdByPhotoUrl": "https://randomuser.me/api/portraits/women/54.jpg"
-               }
-            ]
-            */
          },
       });
    }
@@ -92,5 +64,21 @@ export class RecipesComponent implements OnInit {
 
    defineList() {
       this.selectedToDisplay = this.selectedOils?.map((oils) => oils.name);
+   }
+
+   borderColor(category: string) {
+      switch (category) {
+         case 'Bebes':
+            return 'background: linear-gradient(15deg, #06d465, #06b6d4); border-left: 10px solid transparent;';
+
+         case 'Salud':
+            return 'background: linear-gradient(15deg, #f91616, #f97316); border-left: 10px solid transparent;';
+
+         case 'Belleza':
+            return 'background: linear-gradient(15deg, #cc63f1, #6366f1); border-left: 10px solid transparent;';
+
+         default:
+            return 'background: linear-gradient(15deg, #eae91c, #f042f7); border-left: 10px solid transparent;';
+      }
    }
 }
