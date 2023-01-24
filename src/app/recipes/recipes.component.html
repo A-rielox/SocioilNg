@@ -1,29 +1,3 @@
-<!-- <div *ngIf="oilsList" class="m-5 flex flex-column">
-   <div class="mb-3 w-4">
-      <p-multiSelect
-         [options]="oilsList"
-         [(ngModel)]="selectedOils"
-         defaultLabel="Selecciona los aceites"
-         optionLabel="name"
-         display="chip"
-         [selectionLimit]="5"
-         [showToggleAll]="false"
-         (onChange)="change()"
-      ></p-multiSelect>
-   </div>
-
-   <ul>
-      <li *ngFor="let singleOil of selectedToDisplay">{{ singleOil }}</li>
-   </ul>
-
-   <p-button
-      label="Guardar"
-      icon="pi pi-check"
-      styleClass="p-button"
-      (onClick)="onSave()"
-   ></p-button>
-</div> -->
-
 <div class="surface-section px-4 py-8 md:px-6 lg:px-8">
    <div class="font-bold text-5xl text-900 mb-3 relative">
       Recetas
@@ -33,6 +7,7 @@
          type="button"
          icon="pi pi-plus"
          class="p-button-rounded absolute top-0 right-0 small-btn"
+         (click)="show()"
       ></button>
 
       <button
@@ -41,6 +16,7 @@
          label="Añadir"
          icon="pi pi-plus"
          class="p-button w-2 absolute top-0 right-0 big-btn"
+         (click)="show()"
       ></button>
    </div>
 

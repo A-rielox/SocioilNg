@@ -7,7 +7,22 @@ body {
    -moz-osx-font-smoothing: grayscale;
 }
 
-/* p'q no se me pegue la tacha */
+/* p'q no se me pegue la tacha en modales */
 .p-dialog .p-dialog-header .p-dialog-title {
    margin-right: 2rem;
+}
+
+/*       modal añadir receta         */
+.addRecipeClass.p-dialog {
+   max-width: 100vw;
+}
+@media (min-width: 768px) {
+   .addRecipeClass.p-dialog {
+      max-width: 75vw;
+   }
+}
+@media (min-width: 960px) {
+   .addRecipeClass.p-dialog {
+      max-width: 900px;
+   }
 }

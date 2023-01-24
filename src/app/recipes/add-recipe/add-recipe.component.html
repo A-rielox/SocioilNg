@@ -1,1 +1,110 @@
-<p>add-recipe works!</p>
+<div *ngIf="oilsList && categoryList" class="m-5 flex flex-column">
+   <!-- <div class="mb-3 w-4">
+      <p-multiSelect
+         [options]="oilsList"
+         [(ngModel)]="selectedOils"
+         defaultLabel="Selecciona los aceites"
+         optionLabel="name"
+         display="chip"
+         [selectionLimit]="5"
+         [showToggleAll]="false"
+         (onChange)="change()"
+      ></p-multiSelect>
+   </div>
+
+   <ul>
+      <li *ngFor="let singleOil of selectedOilsToDisplay">{{ singleOil }}</li>
+   </ul> -->
+
+   <!--  -->
+   <!--  -->
+   <!--  -->
+   <div class="formgrid grid">
+      <div class="field col-12">
+         <label for="title">Título</label>
+         <input
+            id="title"
+            type="text"
+            class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
+         />
+      </div>
+
+      <div class="field col-12">
+         <label for="content">Descripción</label>
+         <textarea
+            id="content"
+            type="text"
+            rows="4"
+            class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
+         ></textarea>
+      </div>
+
+      <div class="field col-12 md:col-6">
+         <label for="firstname6">Lista de Aceites</label>
+         <p-multiSelect
+            [options]="oilsList"
+            [(ngModel)]="selectedOils"
+            defaultLabel="Selecciona los aceites"
+            optionLabel="name"
+            display="chip"
+            [selectionLimit]="5"
+            [showToggleAll]="false"
+            (onChange)="change()"
+         ></p-multiSelect>
+      </div>
+
+      <div class="field col-12 md:col-6">
+         <label for="category">Categoría</label>
+         <p-multiSelect
+            id="category"
+            [options]="categoryList"
+            [(ngModel)]="selectedCategory"
+            defaultLabel="Selecciona una Categoria"
+            optionLabel="categoría"
+            display="chip"
+            [selectionLimit]="5"
+            [showToggleAll]="false"
+         ></p-multiSelect>
+      </div>
+
+      <div class="field col-12 md:col-6">
+         <label for="city">City</label>
+         <input
+            id="city"
+            type="text"
+            class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
+         />
+      </div>
+
+      <div class="field col-12 md:col-3">
+         <label for="state">State</label>
+         <select
+            id="state"
+            class="w-full text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round outline-none focus:border-primary"
+            style="appearance: auto"
+         >
+            <option>Arizona</option>
+            <option>California</option>
+            <option>Florida</option>
+            <option>Ohio</option>
+            <option>Washington</option>
+         </select>
+      </div>
+
+      <div class="field col-12 md:col-3">
+         <label for="zip">Zip</label>
+         <input
+            id="zip"
+            type="text"
+            class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
+         />
+      </div>
+   </div>
+
+   <p-button
+      label="Guardar"
+      icon="pi pi-check"
+      styleClass="p-button"
+      (onClick)="onSave()"
+   ></p-button>
+</div>
