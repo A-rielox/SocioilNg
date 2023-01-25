@@ -26,11 +26,13 @@
       <div class="field col-12">
          <label for="content">Descripción</label>
          <textarea
+            pInputTextarea
             [(ngModel)]="recipeForm.content"
             name="content"
             id="content"
             type="text"
             rows="4"
+            [autoResize]="true"
             class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
             required
          ></textarea>
@@ -65,7 +67,6 @@
 
          <label for="category" class="mt-3">Categoría</label>
          <p-multiSelect
-            id="category"
             [options]="categoryList"
             [(ngModel)]="recipeForm.category"
             name="category"

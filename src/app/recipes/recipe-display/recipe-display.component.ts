@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { DynamicDialogRef } from 'primeng/dynamicdialog';
+import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { DynamicDialogConfig } from 'primeng/dynamicdialog';
 import { Recipe } from 'src/app/_models/recipe';
+import { AddRecipeComponent } from '../add-recipe/add-recipe.component';
 
 @Component({
    selector: 'app-recipe-display',
@@ -12,13 +13,24 @@ export class RecipeDisplayComponent implements OnInit {
    recipe?: Recipe;
 
    constructor(
+      public dialogService: DialogService,
       public ref: DynamicDialogRef,
       public config: DynamicDialogConfig
    ) {}
 
    ngOnInit(): void {
       this.recipe = this.config.data;
-      console.log('la recetosa', this.recipe);
+   }
+
+   show() {
+      // p' cerra el RecipeDisplayComponent antes de abrir el de editar
+      this.ref.close();
+
+      const ref = this.dialogService.open(AddRecipeComponent, {
+         data: this.recipe,
+         header: 'Añadir Receta',
+         styleClass: 'addRecipeClass',
+      });
    }
 
    borderColor(category: string) {
