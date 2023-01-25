@@ -3,19 +3,26 @@ import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { DynamicDialogConfig } from 'primeng/dynamicdialog';
 import { Recipe } from 'src/app/_models/recipe';
 import { AddRecipeComponent } from '../add-recipe/add-recipe.component';
+import { ConfirmationService } from 'primeng/api';
+import { RecipesService } from 'src/app/_services/recipes.service';
+import { NotificationsService } from 'src/app/notifications/notifications.service';
 
 @Component({
    selector: 'app-recipe-display',
    templateUrl: './recipe-display.component.html',
    styleUrls: ['./recipe-display.component.css'],
+   providers: [ConfirmationService],
 })
 export class RecipeDisplayComponent implements OnInit {
    recipe?: Recipe;
 
    constructor(
+      public recipesService: RecipesService,
       public dialogService: DialogService,
       public ref: DynamicDialogRef,
-      public config: DynamicDialogConfig
+      public config: DynamicDialogConfig,
+      private confirmationService: ConfirmationService,
+      private notification: NotificationsService
    ) {}
 
    ngOnInit(): void {
@@ -35,6 +42,40 @@ export class RecipeDisplayComponent implements OnInit {
             dismissableMask: true,
          });
       }, 200);
+   }
+
+   confirm(event: Event) {
+      if (!event.target) return;
+
+      this.confirmationService.confirm({
+         target: event.target,
+         message: 'Confirmas que quieres borrar ?',
+         acceptLabel: 'Si',
+         rejectLabel: 'No',
+         icon: 'pi pi-exclamation-triangle',
+         accept: () => {
+            if (!this.recipe) return;
+
+            this.recipesService.deleteRecipe(this.recipe.id).subscribe({
+               next: (_) => {
+                  this.notification.addNoti({
+                     severity: 'success',
+                     summary: 'Listo.',
+                     detail: 'Mensaje borrado con éxito.',
+                  });
+
+                  // red red mientras casheo
+                  // desde aqui solo p' mandar la señal y q recarge las recetas a tiempo
+                  this.ref.close('OK');
+               },
+            });
+
+            // this.ref.close('OK');
+         },
+         reject: () => {
+            // console.log('siempre no');
+         },
+      });
    }
 
    borderColor(category: string) {

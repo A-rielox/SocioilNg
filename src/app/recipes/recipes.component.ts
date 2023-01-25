@@ -16,7 +16,8 @@ export class RecipesComponent implements OnInit, OnDestroy {
    recipes?: Recipe[] = [];
    oilsListToDisplay?: string[] = [];
 
-   displayRecipeRef?: DynamicDialogRef;
+   refDisplayRecipe?: DynamicDialogRef;
+   refAddRecipe?: DynamicDialogRef;
 
    constructor(
       private recipesService: RecipesService,
@@ -41,10 +42,19 @@ export class RecipesComponent implements OnInit, OnDestroy {
    }
 
    displayRecipe(recipe: Recipe) {
-      this.displayRecipeRef = this.dialogService.open(RecipeDisplayComponent, {
+      this.refDisplayRecipe = this.dialogService.open(RecipeDisplayComponent, {
          data: recipe,
          styleClass: 'displayRecipeClass',
          dismissableMask: true,
+      });
+
+      // mientras casheo
+      this.refDisplayRecipe.onClose.subscribe({
+         next: (ok: 'string') => {
+            if (ok) {
+               this.loadRecipes();
+            }
+         },
       });
    }
 
@@ -56,17 +66,15 @@ export class RecipesComponent implements OnInit, OnDestroy {
       // };
       // console.log(initialState);
 
-      const ref = this.dialogService.open(AddRecipeComponent, {
+      this.refAddRecipe = this.dialogService.open(AddRecipeComponent, {
          header: 'Añadir Receta',
          styleClass: 'addRecipeClass',
          dismissableMask: true,
       });
 
-      ref.onClose.subscribe({
+      this.refAddRecipe.onClose.subscribe({
          next: (newRecipe: NewRecipe) => {
             if (newRecipe) {
-               // console.log(newRecipe); {title: '123123', category: 'Belleza', content: 'asdfasf', oilsList: 'Albahaca,Cassia,Copaiba'}
-
                this.recipesService.addRecipe(newRecipe).subscribe({
                   next: (recetaNueva) => {
                      //no la estoy ocupando hasta que cashee en front
@@ -101,13 +109,15 @@ export class RecipesComponent implements OnInit, OnDestroy {
    }
 
    ngOnDestroy(): void {
-      // red red cerrar el modal
-      this.displayRecipeRef?.close();
+      // cerrar el modales
+      if (this.refDisplayRecipe) this.refDisplayRecipe?.close();
+
+      if (this.refAddRecipe) this.refAddRecipe?.close();
    }
 
    borderColor(category: string) {
       switch (category) {
-         case 'Bebes':
+         case 'Bebés':
             return 'background: linear-gradient(15deg, #06d465, #06b6d4); border-left: 10px solid transparent;';
 
          case 'Salud':

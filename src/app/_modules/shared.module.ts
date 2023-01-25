@@ -38,6 +38,7 @@ import { PaginatorModule } from 'primeng/paginator';
 
 import { RadioButtonModule } from 'primeng/radiobutton';
 import { MultiSelectModule } from 'primeng/multiselect';
+import { ConfirmPopupModule } from 'primeng/confirmpopup';
 //
 //
 //
@@ -80,6 +81,7 @@ import { PaginatorComponent } from './paginator/paginator.component';
       PaginatorModule,
       RadioButtonModule,
       MultiSelectModule,
+      ConfirmPopupModule,
    ],
    exports: [
       NgxSpinnerModule,
@@ -108,6 +110,7 @@ import { PaginatorComponent } from './paginator/paginator.component';
       PaginatorModule,
       RadioButtonModule,
       MultiSelectModule,
+      ConfirmPopupModule,
       //
       PaginatorComponent,
    ],

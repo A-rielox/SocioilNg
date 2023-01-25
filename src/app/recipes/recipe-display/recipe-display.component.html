@@ -85,11 +85,13 @@
       class="border-top-1 surface-border pt-3 flex justify-content-end"
       *appIsOwnerOrAdmin="recipe.createdByUsername"
    >
+      <p-confirmPopup></p-confirmPopup>
       <button
          pButton
          icon="pi pi-trash"
          label="Borrar"
          class="p-button-outlined mr-2"
+         (click)="confirm($event)"
       ></button>
 
       <button

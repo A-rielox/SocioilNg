@@ -11,33 +11,6 @@
       (ngSubmit)="onSave()"
       autocomplete="off"
    >
-      <div class="field col-12">
-         <label for="title">Título</label>
-         <input
-            [(ngModel)]="recipeForm.title"
-            name="title"
-            id="title"
-            type="text"
-            class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
-            required
-         />
-      </div>
-
-      <div class="field col-12">
-         <label for="content">Descripción</label>
-         <textarea
-            pInputTextarea
-            [(ngModel)]="recipeForm.content"
-            name="content"
-            id="content"
-            type="text"
-            rows="4"
-            [autoResize]="true"
-            class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
-            required
-         ></textarea>
-      </div>
-
       <div class="field col-12 md:col-6">
          <label for="firstname6">Lista de Aceites</label>
          <p-multiSelect
@@ -53,15 +26,15 @@
             required
          ></p-multiSelect>
          <!--  <p-multiSelect
-            [options]="oilsList"
-            [(ngModel)]="selectedOils"
-            defaultLabel="Selecciona los aceites"
-            optionLabel="name"
-            display="chip"
-            [selectionLimit]="5"
-            [showToggleAll]="false"
-            (onChange)="change()"
-         ></p-multiSelect> -->
+         [options]="oilsList"
+         [(ngModel)]="selectedOils"
+         defaultLabel="Selecciona los aceites"
+         optionLabel="name"
+         display="chip"
+         [selectionLimit]="5"
+         [showToggleAll]="false"
+         (onChange)="change()"
+      ></p-multiSelect> -->
 
          <!--  -->
 
@@ -88,6 +61,33 @@
                {{ singleOil }}
             </li>
          </ul>
+      </div>
+
+      <div class="field col-12">
+         <label for="title">Título</label>
+         <input
+            [(ngModel)]="recipeForm.title"
+            name="title"
+            id="title"
+            type="text"
+            class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
+            required
+         />
+      </div>
+
+      <div class="field col-12">
+         <label for="content">Descripción</label>
+         <textarea
+            pInputTextarea
+            [(ngModel)]="recipeForm.content"
+            name="content"
+            id="content"
+            type="text"
+            rows="4"
+            [autoResize]="true"
+            class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
+            required
+         ></textarea>
       </div>
    </form>
 

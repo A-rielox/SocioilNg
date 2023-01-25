@@ -42,44 +42,44 @@ export class AddRecipeComponent implements OnInit {
 
          this.startingOils = this.config.data.oilsList.split(',');
          this.startingCat = [this.config.data.category];
+
+         if (this.startingOils) {
+            this.recipeForm.oilsList = this.startingOils.map((oil) => {
+               return { name: oil };
+            });
+
+            this.defineList();
+         }
+
+         if (this.startingCat) {
+            this.recipeForm.category = this.startingCat.map((cat) => {
+               return { name: cat };
+            });
+         }
+
+         this.recipeForm.title = this.config.data.title;
+         this.recipeForm.content = this.config.data.content;
       }
-
-      if (this.startingOils) {
-         this.recipeForm.oilsList = this.startingOils.map((oil) => {
-            return { name: oil };
-         });
-
-         this.defineList();
-      }
-
-      if (this.startingCat) {
-         this.recipeForm.category = this.startingCat.map((cat) => {
-            return { name: cat };
-         });
-      }
-
-      this.recipeForm.title = this.config.data.title;
-      this.recipeForm.content = this.config.data.content;
    }
 
    onSave() {
       console.log(this.recipeForm);
-      // const { oilsList, category, title, content } = this.recipeForm;
+      const { oilsList, category, title, content } = this.recipeForm;
 
-      // if (!oilsList || !category || !title || !content) return;
+      if (!oilsList || !category || !title || !content) return;
 
-      // let oils = oilsList.map((sel) => sel.name).join(',');
-      // let cat = category[0]?.name;
+      let oils = oilsList.map((sel) => sel.name).join(',');
+      let cat = category[0]?.name;
 
-      // const newRecipe: NewRecipe = {
-      //    title: title,
-      //    category: cat,
-      //    content: content,
-      //    oilsList: oils,
-      // };
+      const newRecipe: NewRecipe = {
+         title: title,
+         category: cat,
+         content: content,
+         oilsList: oils,
+      };
 
-      // // la mando el componente recipes.component.ts
-      // this.ref.close(newRecipe);
+      // la mando el componente recipes.component.ts
+      this.ref.close(newRecipe);
    }
 
    change() {
