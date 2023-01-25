@@ -20,9 +20,9 @@
       ></button>
    </div>
 
-   <div class="text-700 line-height-3 text-xl mb-6 flex">
+   <div class="text-700 line-height-3 text-base mb-6 flex align-items-center">
       Recuerda:
-      <div class="flex ml-2">
+      <div class="flex ml-2 align-items-center">
          Salud
          <div
             style="background: linear-gradient(15deg, #f91616, #f97316)"
@@ -31,7 +31,7 @@
          &nbsp;, &nbsp;
       </div>
 
-      <div class="flex ml-2">
+      <div class="flex ml-2 align-items-center">
          Belleza
          <div
             style="background: linear-gradient(15deg, #cc63f1, #6366f1)"
@@ -40,7 +40,7 @@
          &nbsp;, &nbsp;
       </div>
 
-      <div class="flex ml-2">
+      <div class="flex ml-2 align-items-center">
          Bebés
          <div
             style="background: linear-gradient(15deg, #06d465, #06b6d4)"
@@ -54,8 +54,9 @@
       <ng-container *ngFor="let recipe of recipes">
          <div class="col-12 md:col-6 lg:col-4">
             <div
-               class="shadow-2 border-round-xl"
+               class="shadow-2 border-round-xl cursor-pointer"
                [style]="borderColor(recipe.category)"
+               (click)="displayRecipe(recipe)"
             >
                <div class="p-4 border-round surface-card h-full">
                   <div class="flex mb-3">

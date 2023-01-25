@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { Recipe } from '../_models/recipe';
+import { NewRecipe, Recipe } from '../_models/recipe';
 
 @Injectable({
    providedIn: 'root',
@@ -13,5 +13,10 @@ export class RecipesService {
 
    getRecipes() {
       return this.http.get<Recipe[]>(this.baseUrl + 'recipes');
+   }
+
+   addRecipe(newRecipe: NewRecipe) {
+      return this.http.post<Recipe>(this.baseUrl + 'recipes', newRecipe);
+      // devuelve el recipeDto, cuando cashee en front lo voy a ocupar
    }
 }

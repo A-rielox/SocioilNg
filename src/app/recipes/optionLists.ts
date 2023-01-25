@@ -1,15 +1,15 @@
 export const categoryList = [
-   { name: 'general' },
-   { name: 'salud' },
-   { name: 'belleza' },
-   { name: 'bebés' },
-   { name: 'piel' },
-   { name: 'aseo' },
-   { name: 'malestares' },
-   { name: 'aplicación' },
-   { name: 'ánimo' },
-   { name: 'negocio' },
-   { name: 'niveles' },
+   { name: 'General' },
+   { name: 'Salud' },
+   { name: 'Belleza' },
+   { name: 'Bebés' },
+   { name: 'Piel' },
+   { name: 'Aseo' },
+   { name: 'Malestares' },
+   { name: 'Aplicación' },
+   { name: 'Ánimo' },
+   { name: 'Negocio' },
+   { name: 'Niveles' },
 ];
 
 export const oilsList = [

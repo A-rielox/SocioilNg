@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { oilsList, categoryList } from '../optionLists';
+import { DynamicDialogRef } from 'primeng/dynamicdialog';
+import { DynamicDialogConfig } from 'primeng/dynamicdialog';
+import { NewRecipe, OilsAndCat, RecipeForm } from 'src/app/_models/recipe';
 
-interface OilsAndCat {
-   name: string;
-   // code: string;
-}
 // breakpoint en style.css
 @Component({
    selector: 'app-add-recipe',
@@ -12,28 +11,32 @@ interface OilsAndCat {
    styleUrls: ['./add-recipe.component.css'],
 })
 export class AddRecipeComponent implements OnInit {
+   recipeForm: RecipeForm = {} as RecipeForm;
+
+   ////////////////
    oilsList?: OilsAndCat[];
-   selectedOils?: OilsAndCat[];
+   // startingOils?: string[] = ['Albahaca', 'Cedro'];
+   startingOils?: string[] = [];
 
    selectedOilsToDisplay?: string[];
-   startingOils?: string[] = ['Albahaca', 'Cedro'];
-
    /////////////
-
    categoryList?: OilsAndCat[];
    selectedCategory?: OilsAndCat[];
 
    selectedCategoryToDisplay?: string[];
    // startingCategory?: string[] = ['Albahaca', 'Cedro'];
 
-   constructor() {}
+   constructor(
+      public ref: DynamicDialogRef,
+      public config: DynamicDialogConfig
+   ) {}
 
    ngOnInit(): void {
       this.oilsList = oilsList;
       this.categoryList = categoryList;
 
       if (this.startingOils) {
-         this.selectedOils = this.startingOils?.map((oil) => {
+         this.recipeForm.oilsList = this.startingOils?.map((oil) => {
             return { name: oil };
          });
 
@@ -42,9 +45,22 @@ export class AddRecipeComponent implements OnInit {
    }
 
    onSave() {
-      let oils = this.selectedOils?.map((sel) => sel.name);
-      console.log(oils);
-      // ['Albahaca', 'Alcanforero', 'Alcaravea']
+      const { oilsList, category, title, content } = this.recipeForm;
+
+      if (!oilsList || !category || !title || !content) return;
+
+      let oils = oilsList.map((sel) => sel.name).join(',');
+      let cat = category[0]?.name;
+
+      const newRecipe: NewRecipe = {
+         title: title,
+         category: cat,
+         content: content,
+         oilsList: oils,
+      };
+
+      // la mando el componente recipes.component.ts
+      this.ref.close(newRecipe);
    }
 
    change() {
@@ -52,6 +68,8 @@ export class AddRecipeComponent implements OnInit {
    }
 
    defineList() {
-      this.selectedOilsToDisplay = this.selectedOils?.map((oils) => oils.name);
+      this.selectedOilsToDisplay = this.recipeForm.oilsList.map(
+         (oils) => oils.name
+      );
    }
 }

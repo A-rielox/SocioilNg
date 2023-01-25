@@ -44,6 +44,7 @@ import { RolesModalComponent } from './modals/roles-modal/roles-modal.component'
 import { ShortenPipe } from './_pipes/shorten.pipe';
 import { SeparatePipe } from './_pipes/separate.pipe';
 import { AddRecipeComponent } from './recipes/add-recipe/add-recipe.component';
+import { RecipeDisplayComponent } from './recipes/recipe-display/recipe-display.component';
 
 @NgModule({
    declarations: [
@@ -79,6 +80,7 @@ import { AddRecipeComponent } from './recipes/add-recipe/add-recipe.component';
       ShortenPipe,
       SeparatePipe,
       AddRecipeComponent,
+      RecipeDisplayComponent,
    ],
    imports: [
       BrowserModule,
