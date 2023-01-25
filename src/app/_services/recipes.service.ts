@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { NewRecipe, Recipe } from '../_models/recipe';
+import { EditedRecipe, NewRecipe, Recipe } from '../_models/recipe';
 
 @Injectable({
    providedIn: 'root',
@@ -22,5 +22,9 @@ export class RecipesService {
 
    deleteRecipe(id: number) {
       return this.http.delete(this.baseUrl + 'recipes/' + id);
+   }
+
+   editRecipe(editRecipe: EditedRecipe) {
+      return this.http.put(this.baseUrl + 'recipes', editRecipe);
    }
 }

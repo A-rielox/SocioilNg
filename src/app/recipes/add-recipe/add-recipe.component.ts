@@ -2,7 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { oilsList, categoryList } from '../optionLists';
 import { DynamicDialogRef } from 'primeng/dynamicdialog';
 import { DynamicDialogConfig } from 'primeng/dynamicdialog';
-import { NewRecipe, OilsAndCat, RecipeForm } from 'src/app/_models/recipe';
+import {
+   EditedRecipe,
+   NewRecipe,
+   OilsAndCat,
+   RecipeForm,
+} from 'src/app/_models/recipe';
 
 // breakpoint en style.css
 @Component({
@@ -11,6 +16,7 @@ import { NewRecipe, OilsAndCat, RecipeForm } from 'src/app/_models/recipe';
    styleUrls: ['./add-recipe.component.css'],
 })
 export class AddRecipeComponent implements OnInit {
+   componentMode: string = 'New';
    recipeForm: RecipeForm = {} as RecipeForm;
 
    ////////////////
@@ -24,7 +30,6 @@ export class AddRecipeComponent implements OnInit {
    selectedCategory?: OilsAndCat[];
 
    selectedCategoryToDisplay?: string[];
-   // startingCategory?: string[] = ['Albahaca', 'Cedro'];
 
    constructor(
       public ref: DynamicDialogRef,
@@ -35,10 +40,9 @@ export class AddRecipeComponent implements OnInit {
       this.oilsList = oilsList;
       this.categoryList = categoryList;
 
+      // entra solo si es edición
       if (this.config.data) {
-         //
-         //                               viene a editar
-         //
+         this.componentMode = 'Edit';
 
          this.startingOils = this.config.data.oilsList.split(',');
          this.startingCat = [this.config.data.category];
@@ -59,11 +63,14 @@ export class AddRecipeComponent implements OnInit {
 
          this.recipeForm.title = this.config.data.title;
          this.recipeForm.content = this.config.data.content;
+         this.recipeForm.id = this.config.data.id;
       }
    }
 
    onSave() {
-      console.log(this.recipeForm);
+      console.log(this.recipeForm, 'recipe form');
+      console.log('modo: ', this.componentMode);
+
       const { oilsList, category, title, content } = this.recipeForm;
 
       if (!oilsList || !category || !title || !content) return;
@@ -71,15 +78,28 @@ export class AddRecipeComponent implements OnInit {
       let oils = oilsList.map((sel) => sel.name).join(',');
       let cat = category[0]?.name;
 
-      const newRecipe: NewRecipe = {
-         title: title,
-         category: cat,
-         content: content,
-         oilsList: oils,
-      };
+      if (this.componentMode === 'New') {
+         const newRecipe: NewRecipe = {
+            title: title,
+            category: cat,
+            content: content,
+            oilsList: oils,
+         };
 
-      // la mando el componente recipes.component.ts
-      this.ref.close(newRecipe);
+         // la mando el componente recipes.component.ts
+         this.ref.close(newRecipe);
+      } else if (this.componentMode === 'Edit') {
+         const editedRecipe: EditedRecipe = {
+            id: this.recipeForm.id,
+            title: title,
+            category: cat,
+            content: content,
+            oilsList: oils,
+         };
+
+         // la mando el componente recipes.component.ts
+         this.ref.close(editedRecipe);
+      }
    }
 
    change() {

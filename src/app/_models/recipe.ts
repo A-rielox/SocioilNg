@@ -16,6 +16,7 @@ export interface OilsAndCat {
 }
 
 export interface RecipeForm {
+   id: number;
    title: string;
    content: string;
    oilsList: OilsAndCat[];
@@ -23,6 +24,14 @@ export interface RecipeForm {
 }
 
 export interface NewRecipe {
+   title: string;
+   category: string;
+   content: string;
+   oilsList: string;
+}
+
+export interface EditedRecipe {
+   id: number;
    title: string;
    category: string;
    content: string;

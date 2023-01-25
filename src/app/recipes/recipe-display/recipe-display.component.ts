@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
+import { DynamicDialogRef } from 'primeng/dynamicdialog';
 import { DynamicDialogConfig } from 'primeng/dynamicdialog';
 import { Recipe } from 'src/app/_models/recipe';
-import { AddRecipeComponent } from '../add-recipe/add-recipe.component';
 import { ConfirmationService } from 'primeng/api';
 import { RecipesService } from 'src/app/_services/recipes.service';
 import { NotificationsService } from 'src/app/notifications/notifications.service';
@@ -18,7 +17,6 @@ export class RecipeDisplayComponent implements OnInit {
 
    constructor(
       public recipesService: RecipesService,
-      public dialogService: DialogService,
       public ref: DynamicDialogRef,
       public config: DynamicDialogConfig,
       private confirmationService: ConfirmationService,
@@ -29,21 +27,12 @@ export class RecipeDisplayComponent implements OnInit {
       this.recipe = this.config.data;
    }
 
-   show() {
+   onEdit() {
       // p' cerra el RecipeDisplayComponent antes de abrir el de editar
-      this.ref.close();
-
-      // lo necesito acá dentro para que termine la animación de salida y entre bien el segundo y no salga la barra de scroll 🤦‍♂️💩
-      setTimeout(() => {
-         const ref = this.dialogService.open(AddRecipeComponent, {
-            data: this.recipe,
-            header: 'Añadir Receta',
-            styleClass: 'addRecipeClass',
-            dismissableMask: true,
-         });
-      }, 200);
+      this.ref.close({ por: 'Editar-receta', idRecipe: this.recipe?.id });
    }
 
+   // pop-up de confirmar borrado
    confirm(event: Event) {
       if (!event.target) return;
 
@@ -56,25 +45,27 @@ export class RecipeDisplayComponent implements OnInit {
          accept: () => {
             if (!this.recipe) return;
 
+            // borro desde acá solo xq el otro componente está muy grande 👍
             this.recipesService.deleteRecipe(this.recipe.id).subscribe({
                next: (_) => {
                   this.notification.addNoti({
                      severity: 'success',
                      summary: 'Listo.',
-                     detail: 'Mensaje borrado con éxito.',
+                     detail: 'Receta borrada con éxito.',
                   });
 
                   // red red mientras casheo
                   // desde aqui solo p' mandar la señal y q recarge las recetas a tiempo
-                  this.ref.close('OK');
+                  this.ref.close({
+                     por: 'Receta-borrada',
+                     idRecipe: -1,
+                  });
                },
             });
 
             // this.ref.close('OK');
          },
-         reject: () => {
-            // console.log('siempre no');
-         },
+         reject: () => {},
       });
    }
 
