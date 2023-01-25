@@ -45,6 +45,7 @@ import { ShortenPipe } from './_pipes/shorten.pipe';
 import { SeparatePipe } from './_pipes/separate.pipe';
 import { AddRecipeComponent } from './recipes/add-recipe/add-recipe.component';
 import { RecipeDisplayComponent } from './recipes/recipe-display/recipe-display.component';
+import { IsOwnerOrAdminDirective } from './_directives/is-owner-or-admin.directive';
 
 @NgModule({
    declarations: [
@@ -81,6 +82,7 @@ import { RecipeDisplayComponent } from './recipes/recipe-display/recipe-display.
       SeparatePipe,
       AddRecipeComponent,
       RecipeDisplayComponent,
+      IsOwnerOrAdminDirective,
    ],
    imports: [
       BrowserModule,

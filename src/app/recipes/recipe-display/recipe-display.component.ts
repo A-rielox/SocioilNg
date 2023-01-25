@@ -26,11 +26,15 @@ export class RecipeDisplayComponent implements OnInit {
       // p' cerra el RecipeDisplayComponent antes de abrir el de editar
       this.ref.close();
 
-      const ref = this.dialogService.open(AddRecipeComponent, {
-         data: this.recipe,
-         header: 'Añadir Receta',
-         styleClass: 'addRecipeClass',
-      });
+      // lo necesito acá dentro para que termine la animación de salida y entre bien el segundo y no salga la barra de scroll 🤦‍♂️💩
+      setTimeout(() => {
+         const ref = this.dialogService.open(AddRecipeComponent, {
+            data: this.recipe,
+            header: 'Añadir Receta',
+            styleClass: 'addRecipeClass',
+            dismissableMask: true,
+         });
+      }, 200);
    }
 
    borderColor(category: string) {

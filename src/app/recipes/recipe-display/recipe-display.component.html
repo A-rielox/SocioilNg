@@ -81,7 +81,10 @@
       </div>
    </div>
 
-   <div class="border-top-1 surface-border pt-3 flex justify-content-end">
+   <div
+      class="border-top-1 surface-border pt-3 flex justify-content-end"
+      *appIsOwnerOrAdmin="recipe.createdByUsername"
+   >
       <button
          pButton
          icon="pi pi-trash"

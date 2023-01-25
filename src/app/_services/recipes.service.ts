@@ -19,4 +19,8 @@ export class RecipesService {
       return this.http.post<Recipe>(this.baseUrl + 'recipes', newRecipe);
       // devuelve el recipeDto, cuando cashee en front lo voy a ocupar
    }
+
+   deleteRecipe(id: number) {
+      return this.http.delete(this.baseUrl + 'recipes/' + id);
+   }
 }
