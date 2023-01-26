@@ -19,16 +19,11 @@ import { categoryList, oilsList } from 'src/app/recipes/optionLists';
 })
 export class AddRecipeComponent implements OnInit {
    componentMode: string = 'New';
-
    registerForm: FormGroup = new FormGroup({});
-
    recipeToEdit?: Recipe;
 
-   //
    allOils?: OilsAndCat[];
    allCats?: OilsAndCat[];
-
-   //
    selectedOilsToDisplay?: string[];
 
    constructor(
@@ -104,8 +99,6 @@ export class AddRecipeComponent implements OnInit {
             oilsList: oils,
          };
 
-         console.log('----------nueva', newRecipe);
-
          this.recipesService.addRecipe(newRecipe).subscribe({
             next: (recetaNueva) => {
                //no estoy ocupando la respuesta hasta que cashee en front
@@ -124,11 +117,13 @@ export class AddRecipeComponent implements OnInit {
 
          console.log('----------editada', editedRecipe);
 
-         // this.recipesService.editRecipe(editedRecipe).subscribe({
-         //    next: (_) => {
-         //       this.callNotificationAndLoadRecipes('Receta editada.');
-         //    },
-         // });
+         this.recipesService.editRecipe(editedRecipe).subscribe({
+            next: (_) => {
+               this.callNotificationAndLoadRecipes('Receta editada.');
+               this.registerForm.reset();
+               this.router.navigateByUrl('/recetas');
+            },
+         });
       }
    }
 
