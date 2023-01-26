@@ -1,11 +1,13 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import {
    EditedRecipe,
    NewRecipe,
    OilsAndCat,
-   RecipeForm,
+   Recipe,
 } from 'src/app/_models/recipe';
+
 import { RecipesService } from 'src/app/_services/recipes.service';
 import { NotificationsService } from 'src/app/notifications/notifications.service';
 import { categoryList, oilsList } from 'src/app/recipes/optionLists';
@@ -17,41 +19,81 @@ import { categoryList, oilsList } from 'src/app/recipes/optionLists';
 })
 export class AddRecipeComponent implements OnInit {
    componentMode: string = 'New';
-   recipeForm: RecipeForm = {} as RecipeForm;
 
-   ////////////////
-   // oilsList?: OilsAndCat[];
-   // startingOils?: string[] = [];
-   startingCat?: string[] = [];
+   registerForm: FormGroup = new FormGroup({});
 
+   recipeToEdit?: Recipe;
+
+   //
+   allOils?: OilsAndCat[];
+   allCats?: OilsAndCat[];
+
+   //
    selectedOilsToDisplay?: string[];
-   /////////////
-   categoryList?: OilsAndCat[];
-   selectedCategory?: OilsAndCat[];
-
-   selectedCategoryToDisplay?: string[];
-
-   //---------------------
-   @ViewChild('form') form: NgForm = {} as NgForm;
-   oilsList?: OilsAndCat[];
-   oils?: string[] = [];
 
    constructor(
+      private fb: FormBuilder,
       private recipesService: RecipesService,
-      private notification: NotificationsService
-   ) {}
-
-   ngOnInit(): void {
-      this.oilsList = oilsList;
-      this.categoryList = categoryList;
+      private notification: NotificationsService,
+      private router: Router
+   ) {
+      const navigation = this.router.getCurrentNavigation();
+      this.recipeToEdit = navigation?.extras.state?.['recipe'];
    }
 
-   onSave() {
-      const { oilsList, category, title, content } = this.recipeForm;
+   ngOnInit(): void {
+      this.initializeForm();
+      this.allOils = oilsList;
+      this.allCats = categoryList;
+
+      //          edicion
+      if (this.recipeToEdit) {
+         this.componentMode = 'Edit';
+
+         const { id, title, category, content, oilsList } = this.recipeToEdit;
+
+         const selectedOils = oilsList.split(',').map((oil) => {
+            return { name: oil };
+         });
+
+         this.registerForm.setValue({
+            id,
+            title,
+            category: [{ name: category }],
+            content,
+            oilsList: selectedOils,
+         });
+
+         this.defineList();
+      }
+   }
+
+   initializeForm() {
+      this.registerForm = this.fb.group({
+         id: -1,
+         title: '',
+         content: '',
+         oilsList: [],
+         category: [],
+      });
+      // this.registerForm = this.fb.group({
+      //    id: [-1, Validators.required],
+      //    title: ['', Validators.required],
+      //    content: ['', Validators.required],
+      //    oilsList: [[], Validators.required],
+      //    category: [[], Validators.required],
+      // });
+   }
+
+   register() {
+      console.log(this.registerForm.value);
+
+      const { oilsList, category, title, content, id } =
+         this.registerForm.value;
 
       if (!oilsList || !category || !title || !content) return;
 
-      let oils = oilsList.map((sel) => sel.name).join(',');
+      let oils = oilsList.map((sel: { name: string }) => sel.name).join(',');
       let cat = category[0]?.name;
 
       if (this.componentMode === 'New') {
@@ -62,45 +104,32 @@ export class AddRecipeComponent implements OnInit {
             oilsList: oils,
          };
 
-         console.log(newRecipe, 'newwwwwwwwwwwwwww');
+         console.log('----------nueva', newRecipe);
 
-         // la mando el componente recipes.component.ts
-         // this.ref.close(newRecipe); ----------------
-
-         this.sendNewRecipe(newRecipe);
+         this.recipesService.addRecipe(newRecipe).subscribe({
+            next: (recetaNueva) => {
+               //no estoy ocupando la respuesta hasta que cashee en front
+               this.callNotificationAndLoadRecipes('Receta añadida.');
+               this.registerForm.reset();
+            },
+         });
       } else if (this.componentMode === 'Edit') {
          const editedRecipe: EditedRecipe = {
-            id: this.recipeForm.id,
+            id: id,
             title: title,
             category: cat,
             content: content,
             oilsList: oils,
          };
 
-         console.log(editedRecipe, 'edittttttttt');
+         console.log('----------editada', editedRecipe);
 
-         // la mando el componente recipes.component.ts
-         // this.ref.close(editedRecipe); -----------------
-
-         this.sendEditRecipe(editedRecipe);
+         // this.recipesService.editRecipe(editedRecipe).subscribe({
+         //    next: (_) => {
+         //       this.callNotificationAndLoadRecipes('Receta editada.');
+         //    },
+         // });
       }
-   }
-
-   sendNewRecipe(newRecipe: NewRecipe) {
-      this.recipesService.addRecipe(newRecipe).subscribe({
-         next: (recetaNueva) => {
-            //no estoy ocupando la respuesta hasta que cashee en front
-            this.callNotificationAndLoadRecipes('Receta añadida.');
-         },
-      });
-   }
-
-   sendEditRecipe(editedRecipe: EditedRecipe) {
-      this.recipesService.editRecipe(editedRecipe).subscribe({
-         next: (_) => {
-            this.callNotificationAndLoadRecipes('Receta editada.');
-         },
-      });
    }
 
    callNotificationAndLoadRecipes(detail: string) {
@@ -116,10 +145,8 @@ export class AddRecipeComponent implements OnInit {
    }
 
    defineList() {
-      console.log(this.form.value);
-
-      this.selectedOilsToDisplay = this.form.value.oils.map(
-         (oils: { name: string }) => oils.name
+      this.selectedOilsToDisplay = this.registerForm.value.oilsList.map(
+         (oil: { name: string }) => oil.name
       );
    }
 }

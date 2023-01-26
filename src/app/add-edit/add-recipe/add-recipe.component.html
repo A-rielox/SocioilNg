@@ -1,58 +1,28 @@
-<div *ngIf="oilsList && categoryList" class="m-5 mt-0 flex flex-column">
+<div class="m-5 mt-0 flex flex-column" *ngIf="allOils && allCats">
    <form
       class="formgrid grid"
-      #form="ngForm"
-      (ngSubmit)="onSave()"
+      [formGroup]="registerForm"
+      (ngSubmit)="register()"
       autocomplete="off"
    >
       <div class="field col-12 md:col-8">
          <label for="firstname6">Lista de Aceites</label>
+         <!-- [(ngModel)]="registerForm.oilsList" -->
          <p-multiSelect
-            [options]="oilsList"
-            [(ngModel)]="form"
-            name="oils"
+            formControlName="oilsList"
+            [options]="allOils"
             defaultLabel="Selecciona los aceites"
             optionLabel="name"
             display="chip"
             [selectionLimit]="5"
             [showToggleAll]="false"
             (onChange)="change()"
-            required
          ></p-multiSelect>
-         <!-- 
-            <p-multiSelect
-            [options]="oilsList"
-            [(ngModel)]="recipeForm.oilsList"
-            name="oilsList"
-            defaultLabel="Selecciona los aceites"
-            optionLabel="name"
-            display="chip"
-            [selectionLimit]="5"
-            [showToggleAll]="false"
-            (onChange)="change()"
-            required
-         ></p-multiSelect>
-          -->
-
-         <!--  -->
 
          <label for="category" class="mt-3">Categoría</label>
-         <!-- <p-multiSelect
-            [options]="categoryList"
-            [(ngModel)]="recipeForm.category"
-            name="category"
-            defaultLabel="Selecciona una Categoria"
-            optionLabel="name"
-            display="chip"
-            [selectionLimit]="1"
-            [showToggleAll]="false"
-            [filter]="false"
-            required
-         ></p-multiSelect> -->
          <p-multiSelect
-            [options]="categoryList"
-            [(ngModel)]="form"
-            name="category"
+            formControlName="category"
+            [options]="allCats"
             defaultLabel="Selecciona una Categoria"
             optionLabel="name"
             display="chip"
@@ -67,8 +37,8 @@
          <label class="ml-2">Tu selección de aceites:</label>
 
          <ul class="ml-2 mt-0">
-            <li *ngFor="let singleOil of selectedOilsToDisplay">
-               {{ singleOil }}
+            <li *ngFor="let oil of selectedOilsToDisplay">
+               {{ oil }}
             </li>
          </ul>
       </div>
@@ -76,8 +46,7 @@
       <div class="field col-12">
          <label for="title">Título</label>
          <input
-            [(ngModel)]="recipeForm.title"
-            name="title"
+            formControlName="title"
             id="title"
             type="text"
             class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
@@ -88,27 +57,22 @@
       <div class="field col-12">
          <label for="content">Descripción</label>
          <textarea
+            formControlName="content"
             pInputTextarea
-            [(ngModel)]="recipeForm.content"
-            name="content"
             id="content"
             type="text"
             rows="4"
             [autoResize]="true"
             class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
-            required
          ></textarea>
       </div>
    </form>
 
-   <!-- {{ loginForm.valid | json }} -->
-
-   <!-- [disabled]="!loginForm.valid" -->
    <p-button
       label="Guardar"
       icon="pi pi-check"
       styleClass="p-button"
-      (onClick)="onSave()"
+      (onClick)="register()"
    ></p-button>
 </div>
 

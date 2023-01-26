@@ -5,6 +5,7 @@ import { Recipe } from 'src/app/_models/recipe';
 import { ConfirmationService } from 'primeng/api';
 import { RecipesService } from 'src/app/_services/recipes.service';
 import { NotificationsService } from 'src/app/notifications/notifications.service';
+import { NavigationExtras, Router } from '@angular/router';
 
 @Component({
    selector: 'app-recipe-display',
@@ -20,7 +21,9 @@ export class RecipeDisplayComponent implements OnInit {
       public ref: DynamicDialogRef,
       public config: DynamicDialogConfig,
       private confirmationService: ConfirmationService,
-      private notification: NotificationsService
+      private notification: NotificationsService,
+      ////
+      private router: Router
    ) {}
 
    ngOnInit(): void {
@@ -29,7 +32,14 @@ export class RecipeDisplayComponent implements OnInit {
 
    onEdit() {
       // p' cerra el RecipeDisplayComponent antes de abrir el de editar
-      this.ref.close({ por: 'Editar-receta', idRecipe: this.recipe?.id });
+      // this.ref.close({ por: 'Editar-receta', idRecipe: this.recipe?.id });
+      ////////////////
+      this.ref.close();
+      const navigationExtras: NavigationExtras = {
+         state: { recipe: this.recipe },
+      };
+
+      this.router.navigateByUrl('/add-edit/recipe', navigationExtras);
    }
 
    // pop-up de confirmar borrado

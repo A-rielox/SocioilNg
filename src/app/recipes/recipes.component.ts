@@ -21,7 +21,7 @@ export class RecipesComponent implements OnInit, OnDestroy {
    recipes?: Recipe[] = [];
 
    refDisplayRecipe?: DynamicDialogRef;
-   refAddRecipe?: DynamicDialogRef;
+   // refAddRecipe?: DynamicDialogRef;
    refEditRecipe?: DynamicDialogRef;
 
    constructor(
@@ -50,20 +50,20 @@ export class RecipesComponent implements OnInit, OnDestroy {
       });
 
       // al cerrar el modal de displayReceta por borrado o editar
-      this.refDisplayRecipe.onClose.subscribe({
-         next: (modalRecipeDisplayCerrado: CloseModal) => {
-            // por si se cierra con esc o picando fuera del modal
-            if (!modalRecipeDisplayCerrado) return;
+      // this.refDisplayRecipe.onClose.subscribe({
+      //    next: (modalRecipeDisplayCerrado: CloseModal) => {
+      //       // por si se cierra con esc o picando fuera del modal
+      //       if (!modalRecipeDisplayCerrado) return;
 
-            if (modalRecipeDisplayCerrado.por === 'Receta-borrada') {
-               // mientras casheo
-               this.loadRecipes();
-               //
-            } else if (modalRecipeDisplayCerrado.por === 'Editar-receta') {
-               this.showEditRecipe(modalRecipeDisplayCerrado.idRecipe);
-            }
-         },
-      });
+      //       if (modalRecipeDisplayCerrado.por === 'Receta-borrada') {
+      //          // mientras casheo
+      //          this.loadRecipes();
+      //          //
+      //       } else if (modalRecipeDisplayCerrado.por === 'Editar-receta') {
+      //          this.showEditRecipe(modalRecipeDisplayCerrado.idRecipe);
+      //       }
+      //    },
+      // });
    }
 
    showEditRecipe(recipeId: number) {
@@ -101,36 +101,36 @@ export class RecipesComponent implements OnInit, OnDestroy {
    //
    //
 
-   showAddRecipe() {
-      this.refAddRecipe = this.dialogService.open(AddRecipeComponent, {
-         header: 'Añadir Receta',
-         styleClass: 'addRecipeClass',
-         dismissableMask: true,
-      });
+   // showAddRecipe() {
+   //    this.refAddRecipe = this.dialogService.open(AddRecipeComponent, {
+   //       header: 'Añadir Receta',
+   //       styleClass: 'addRecipeClass',
+   //       dismissableMask: true,
+   //    });
 
-      // 🌟 p' añadir la mando de vuelta p' acá, el editar lo voy a manejar desde allá llamando recipesService
-      this.refAddRecipe.onClose.subscribe({
-         next: (newRecipe: NewRecipe) => {
-            if (newRecipe) {
-               this.recipesService.addRecipe(newRecipe).subscribe({
-                  next: (recetaNueva) => {
-                     //no estoy ocupando la respuesta hasta que cashee en front
-                     this.callNotificationAndLoadRecipes('Receta añadida.');
-                  },
-               });
+   //    // 🌟 p' añadir la mando de vuelta p' acá, el editar lo voy a manejar desde allá llamando recipesService
+   //    this.refAddRecipe.onClose.subscribe({
+   //       next: (newRecipe: NewRecipe) => {
+   //          if (newRecipe) {
+   //             this.recipesService.addRecipe(newRecipe).subscribe({
+   //                next: (recetaNueva) => {
+   //                   //no estoy ocupando la respuesta hasta que cashee en front
+   //                   this.callNotificationAndLoadRecipes('Receta añadida.');
+   //                },
+   //             });
 
-               // ocupo .updateUserRoles solo si los arrays de users son distintos
-               // if (!this.arrayEqual(selectedRoles, user.roles)) {
-               //    this.adminService
-               //       .updateUserRoles(user.username, selectedRoles)
-               //       .subscribe({
-               //          next: (roles) => (user.roles = roles),
-               //       });
-               // }
-            }
-         },
-      });
-   }
+   //             // ocupo .updateUserRoles solo si los arrays de users son distintos
+   //             // if (!this.arrayEqual(selectedRoles, user.roles)) {
+   //             //    this.adminService
+   //             //       .updateUserRoles(user.username, selectedRoles)
+   //             //       .subscribe({
+   //             //          next: (roles) => (user.roles = roles),
+   //             //       });
+   //             // }
+   //          }
+   //       },
+   //    });
+   // }
 
    callNotificationAndLoadRecipes(detail: string) {
       this.notification.addNoti({
@@ -152,7 +152,7 @@ export class RecipesComponent implements OnInit, OnDestroy {
       // cerrar modales
       if (this.refDisplayRecipe) this.refDisplayRecipe?.close();
 
-      if (this.refAddRecipe) this.refAddRecipe?.close();
+      // if (this.refAddRecipe) this.refAddRecipe?.close();
    }
 
    borderColor(category: string) {
