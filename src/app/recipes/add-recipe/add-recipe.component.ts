@@ -68,9 +68,6 @@ export class AddRecipeComponent implements OnInit {
    }
 
    onSave() {
-      console.log(this.recipeForm, 'recipe form');
-      console.log('modo: ', this.componentMode);
-
       const { oilsList, category, title, content } = this.recipeForm;
 
       if (!oilsList || !category || !title || !content) return;

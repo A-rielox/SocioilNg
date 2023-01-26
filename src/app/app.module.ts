@@ -46,6 +46,7 @@ import { SeparatePipe } from './_pipes/separate.pipe';
 import { AddRecipeComponent } from './recipes/add-recipe/add-recipe.component';
 import { RecipeDisplayComponent } from './recipes/recipe-display/recipe-display.component';
 import { IsOwnerOrAdminDirective } from './_directives/is-owner-or-admin.directive';
+import { AddEditModule } from './add-edit/add-edit.module';
 
 @NgModule({
    declarations: [
@@ -94,6 +95,8 @@ import { IsOwnerOrAdminDirective } from './_directives/is-owner-or-admin.directi
       SharedModule,
       NotificationsModule,
       ReactiveFormsModule,
+
+      AddEditModule,
    ],
    providers: [
       { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },

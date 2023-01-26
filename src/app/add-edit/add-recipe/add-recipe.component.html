@@ -1,0 +1,203 @@
+<div *ngIf="oilsList && categoryList" class="m-5 mt-0 flex flex-column">
+   <form
+      class="formgrid grid"
+      #form="ngForm"
+      (ngSubmit)="onSave()"
+      autocomplete="off"
+   >
+      <div class="field col-12 md:col-8">
+         <label for="firstname6">Lista de Aceites</label>
+         <p-multiSelect
+            [options]="oilsList"
+            [(ngModel)]="form"
+            name="oils"
+            defaultLabel="Selecciona los aceites"
+            optionLabel="name"
+            display="chip"
+            [selectionLimit]="5"
+            [showToggleAll]="false"
+            (onChange)="change()"
+            required
+         ></p-multiSelect>
+         <!-- 
+            <p-multiSelect
+            [options]="oilsList"
+            [(ngModel)]="recipeForm.oilsList"
+            name="oilsList"
+            defaultLabel="Selecciona los aceites"
+            optionLabel="name"
+            display="chip"
+            [selectionLimit]="5"
+            [showToggleAll]="false"
+            (onChange)="change()"
+            required
+         ></p-multiSelect>
+          -->
+
+         <!--  -->
+
+         <label for="category" class="mt-3">Categoría</label>
+         <!-- <p-multiSelect
+            [options]="categoryList"
+            [(ngModel)]="recipeForm.category"
+            name="category"
+            defaultLabel="Selecciona una Categoria"
+            optionLabel="name"
+            display="chip"
+            [selectionLimit]="1"
+            [showToggleAll]="false"
+            [filter]="false"
+            required
+         ></p-multiSelect> -->
+         <p-multiSelect
+            [options]="categoryList"
+            [(ngModel)]="form"
+            name="category"
+            defaultLabel="Selecciona una Categoria"
+            optionLabel="name"
+            display="chip"
+            [selectionLimit]="1"
+            [showToggleAll]="false"
+            [filter]="false"
+            required
+         ></p-multiSelect>
+      </div>
+
+      <div class="field col-12 md:col-4">
+         <label class="ml-2">Tu selección de aceites:</label>
+
+         <ul class="ml-2 mt-0">
+            <li *ngFor="let singleOil of selectedOilsToDisplay">
+               {{ singleOil }}
+            </li>
+         </ul>
+      </div>
+
+      <div class="field col-12">
+         <label for="title">Título</label>
+         <input
+            [(ngModel)]="recipeForm.title"
+            name="title"
+            id="title"
+            type="text"
+            class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
+            required
+         />
+      </div>
+
+      <div class="field col-12">
+         <label for="content">Descripción</label>
+         <textarea
+            pInputTextarea
+            [(ngModel)]="recipeForm.content"
+            name="content"
+            id="content"
+            type="text"
+            rows="4"
+            [autoResize]="true"
+            class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
+            required
+         ></textarea>
+      </div>
+   </form>
+
+   <!-- {{ loginForm.valid | json }} -->
+
+   <!-- [disabled]="!loginForm.valid" -->
+   <p-button
+      label="Guardar"
+      icon="pi pi-check"
+      styleClass="p-button"
+      (onClick)="onSave()"
+   ></p-button>
+</div>
+
+<!-- 
+<div *ngIf="oilsList && categoryList" class="m-5 mt-0 flex flex-column">
+
+
+   <form
+      class="formgrid grid"
+      #loginForm="ngForm"
+      (ngSubmit)="onSave()"
+      autocomplete="off"
+   >
+      <div class="field col-12 md:col-8">
+         <label for="firstname6">Lista de Aceites</label>
+         <p-multiSelect
+            [options]="oilsList"
+            [(ngModel)]="recipeForm.oilsList"
+            name="oilsList"
+            defaultLabel="Selecciona los aceites"
+            optionLabel="name"
+            display="chip"
+            [selectionLimit]="5"
+            [showToggleAll]="false"
+            (onChange)="change()"
+            required
+         ></p-multiSelect>
+
+
+         <label for="category" class="mt-3">Categoría</label>
+         <p-multiSelect
+            [options]="categoryList"
+            [(ngModel)]="recipeForm.category"
+            name="category"
+            defaultLabel="Selecciona una Categoria"
+            optionLabel="name"
+            display="chip"
+            [selectionLimit]="1"
+            [showToggleAll]="false"
+            [filter]="false"
+            required
+         ></p-multiSelect>
+      </div>
+
+      <div class="field col-12 md:col-4">
+         <label class="ml-2">Tu selección de aceites:</label>
+
+         <ul class="ml-2 mt-0">
+            <li *ngFor="let singleOil of selectedOilsToDisplay">
+               {{ singleOil }}
+            </li>
+         </ul>
+      </div>
+
+      <div class="field col-12">
+         <label for="title">Título</label>
+         <input
+            [(ngModel)]="recipeForm.title"
+            name="title"
+            id="title"
+            type="text"
+            class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
+            required
+         />
+      </div>
+
+      <div class="field col-12">
+         <label for="content">Descripción</label>
+         <textarea
+            pInputTextarea
+            [(ngModel)]="recipeForm.content"
+            name="content"
+            id="content"
+            type="text"
+            rows="4"
+            [autoResize]="true"
+            class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
+            required
+         ></textarea>
+      </div>
+   </form>
+
+   <p-button
+      label="Guardar"
+      icon="pi pi-check"
+      styleClass="p-button"
+      (onClick)="onSave()"
+   ></p-button>
+</div>
+
+
+ -->

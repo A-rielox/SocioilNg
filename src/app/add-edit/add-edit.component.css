@@ -1,0 +1,24 @@
+a {
+   text-decoration: none;
+   color: var(--surface-600);
+}
+
+.active {
+   font-weight: 900 !important;
+   color: var(--surface-100);
+   background-color: var(--primary-color);
+
+   /* border-color: var(--primary-color) !important;
+   border-bottom-width: 2px !important;
+   border-bottom-style: solid !important; */
+}
+
+a:hover {
+   color: var(--surface-900);
+   background-color: var(--surface-100);
+}
+
+.contenedor {
+   max-width: 50rem;
+   margin: 0 auto;
+}

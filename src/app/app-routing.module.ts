@@ -16,6 +16,9 @@ import { MessagesComponent } from './messages/messages.component';
 import { MemberDetailedResolver } from './_resolvers/member-detailed.resolver';
 import { AdminPanelComponent } from './admin/admin-panel/admin-panel.component';
 import { AdminGuard } from './_guards/admin.guard';
+import { AddEditComponent } from './add-edit/add-edit.component';
+import { AddRecipeComponent } from './add-edit/add-recipe/add-recipe.component';
+import { AddPostComponent } from './add-edit/add-post/add-post.component';
 
 const routes: Routes = [
    { path: '', component: HomeComponent },
@@ -36,6 +39,14 @@ const routes: Routes = [
          { path: 'noticias', component: NewsComponent },
          { path: 'likes', component: LikesComponent },
          { path: 'mensajes', component: MessagesComponent },
+         {
+            path: 'add-edit',
+            component: AddEditComponent,
+            children: [
+               { path: 'recipe', component: AddRecipeComponent },
+               { path: 'post', component: AddPostComponent },
+            ],
+         },
          {
             path: 'admin',
             component: AdminPanelComponent,

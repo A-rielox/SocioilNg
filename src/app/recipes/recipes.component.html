@@ -2,21 +2,23 @@
    <div class="font-bold text-5xl text-900 mb-3 relative">
       Recetas
 
+      <!-- (click)="showAddRecipe()" -->
       <button
          pButton
          type="button"
          icon="pi pi-plus"
          class="p-button-rounded absolute top-0 right-0 small-btn"
-         (click)="showAddRecipe()"
+         routerLink="/add-edit"
       ></button>
 
+      <!-- (click)="showAddRecipe()" -->
       <button
          pButton
          type="button"
          label="Añadir"
          icon="pi pi-plus"
          class="p-button w-2 absolute top-0 right-0 big-btn"
-         (click)="showAddRecipe()"
+         routerLink="/add-edit/recipe"
       ></button>
    </div>
 

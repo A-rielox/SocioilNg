@@ -97,6 +97,10 @@ export class RecipesComponent implements OnInit, OnDestroy {
       }, 200);
    }
 
+   //
+   //
+   //
+
    showAddRecipe() {
       this.refAddRecipe = this.dialogService.open(AddRecipeComponent, {
          header: 'Añadir Receta',
