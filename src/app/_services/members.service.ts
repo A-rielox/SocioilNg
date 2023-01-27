@@ -24,6 +24,8 @@ export class MembersService {
       private http: HttpClient,
       private accountService: AccountService
    ) {
+      // yellow era para pasarlo al ctor del userParams y poner el genero,
+      // yellow ahora solo sirve p' inicializar params, lo puedo hacer en una linea aparte MEJOR
       this.accountService.currentUser$.pipe(take(1)).subscribe({
          next: (user) => {
             if (user) {

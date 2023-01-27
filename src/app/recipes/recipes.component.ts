@@ -3,6 +3,8 @@ import { RecipesService } from '../_services/recipes.service';
 import { Recipe } from '../_models/recipe';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { RecipeDisplayComponent } from './recipe-display/recipe-display.component';
+import { Pagination } from '../_models/pagination';
+import { RecipeParams } from '../_models/recipeParams';
 
 @Component({
    selector: 'app-recipes',
@@ -12,24 +14,38 @@ import { RecipeDisplayComponent } from './recipe-display/recipe-display.componen
 })
 export class RecipesComponent implements OnInit, OnDestroy {
    recipes?: Recipe[] = [];
+   pagination: Pagination | undefined; // p'paginator en .html
+   recipeParams: RecipeParams | undefined; // aqui estan los filtros
 
    refDisplayRecipe?: DynamicDialogRef;
 
    constructor(
       private recipesService: RecipesService,
       public dialogService: DialogService
-   ) {}
+   ) {
+      this.recipeParams = this.recipesService.getRecipeParams();
+   }
 
    ngOnInit(): void {
       this.loadRecipes();
    }
 
    loadRecipes() {
-      this.recipesService.getRecipes().subscribe({
-         next: (recipes) => {
-            this.recipes = recipes;
-         },
-      });
+      if (this.recipeParams) {
+         // 1ro los pongo xsi los he cambiado
+         this.recipesService.setRecipeParams(this.recipeParams);
+
+         this.recipesService.getRecipes(this.recipeParams).subscribe({
+            next: (res) => {
+               console.log('----------- recetas paginadas  ', res);
+
+               if (res.result && res.pagination) {
+                  this.recipes = res.result;
+                  this.pagination = res.pagination;
+               }
+            },
+         });
+      }
    }
 
    displayRecipe(recipe: Recipe) {

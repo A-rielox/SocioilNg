@@ -17,7 +17,7 @@ interface Sorting {
 export class MemberListComponent implements OnInit {
    // members$: Observable<Member[]> | undefined;
    members: Member[] = [];
-   pagination: Pagination | undefined;
+   pagination: Pagination | undefined; // p'paginator en .html
    userParams: UserParams | undefined; // aqui estan los filtros
 
    //sorting options
@@ -38,6 +38,7 @@ export class MemberListComponent implements OnInit {
 
    loadMembers() {
       if (this.userParams) {
+         // 1ro los pongo xsi los he cambiado
          this.memberService.setUserParams(this.userParams);
 
          this.memberService.getMembers(this.userParams).subscribe({
