@@ -4,6 +4,9 @@ import { environment } from 'src/environments/environment';
 import { EditedRecipe, NewRecipe, Recipe } from '../_models/recipe';
 import { RecipeParams } from '../_models/recipeParams';
 import { getPaginatedResult, getPaginationHeaders } from './paginationHelper';
+import { AccountService } from './account.service';
+import { take } from 'rxjs/operators';
+import { User } from '../_models/user';
 
 @Injectable({
    providedIn: 'root',
@@ -11,10 +14,22 @@ import { getPaginatedResult, getPaginationHeaders } from './paginationHelper';
 export class RecipesService {
    baseUrl = environment.apiUrl;
 
+   // user: User | undefined; // 📌 solo p' sacar el username
    recipeParams: RecipeParams | undefined; // aqui estan los filtros
 
-   constructor(private http: HttpClient) {
+   constructor(
+      private http: HttpClient // private accountService: AccountService
+   ) {
       this.recipeParams = new RecipeParams();
+
+      // // 📌 solo p' sacar el username
+      // this.accountService.currentUser$.pipe(take(1)).subscribe({
+      //    next: (user) => {
+      //       if (user) {
+      //          this.user = user;
+      //       }
+      //    },
+      // });
    }
 
    // getRecipes() {

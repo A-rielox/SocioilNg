@@ -2,7 +2,7 @@
 
 export class RecipeParams {
    pageNumber = 1;
-   pageSize = 5;
+   pageSize = 10;
 
    ownername: string = '';
    membername: string = '';

@@ -5,6 +5,20 @@ import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { RecipeDisplayComponent } from './recipe-display/recipe-display.component';
 import { Pagination } from '../_models/pagination';
 import { RecipeParams } from '../_models/recipeParams';
+import { User } from '../_models/user';
+import { AccountService } from '../_services/account.service';
+import { take } from 'rxjs/operators';
+
+interface Filters {
+   // ownername: string;
+   membername: string;
+   title: string;
+}
+
+interface RecipesToDisplay {
+   name: string;
+   label: string;
+}
 
 @Component({
    selector: 'app-recipes',
@@ -19,15 +33,38 @@ export class RecipesComponent implements OnInit, OnDestroy {
 
    refDisplayRecipe?: DynamicDialogRef;
 
+   ///////
+   user: User | undefined; // 📌 solo p' sacar el username
+   recipesToDisplay: RecipesToDisplay[] = [];
+
+   // filters: Filters[] = [{ name: '' label: ''}];
+
    constructor(
       private recipesService: RecipesService,
-      public dialogService: DialogService
+      public dialogService: DialogService,
+      private accountService: AccountService
    ) {
       this.recipeParams = this.recipesService.getRecipeParams();
+
+      // 📌 solo p' sacar el username
+      this.accountService.currentUser$.pipe(take(1)).subscribe({
+         next: (user) => {
+            if (user) {
+               this.user = user;
+            }
+         },
+      });
    }
 
    ngOnInit(): void {
       this.loadRecipes();
+
+      if (this.user) {
+         this.recipesToDisplay = [
+            { name: '', label: 'Todas' },
+            { name: this.user.userName, label: 'Mias' },
+         ];
+      }
    }
 
    loadRecipes() {
@@ -56,9 +93,29 @@ export class RecipesComponent implements OnInit, OnDestroy {
       });
    }
 
-   private arrayEqual(arr1: any[], arr2: any[]) {
-      // transformo todo el array en un string
-      return JSON.stringify(arr1.sort()) === JSON.stringify(arr2.sort());
+   // private arrayEqual(arr1: any[], arr2: any[]) {
+   //    // transformo todo el array en un string
+   //    return JSON.stringify(arr1.sort()) === JSON.stringify(arr2.sort());
+   // }
+
+   pageChanged(e: number) {
+      if (!this.recipeParams) return;
+
+      this.recipeParams.pageNumber = e;
+
+      // ya lo hago en loadRecipes()
+      // this.recipesService.setRecipeParams(this.recipeParams);
+
+      this.loadRecipes();
+   }
+
+   fetchMyRecipes() {
+      if (!this.recipeParams) return;
+
+      this.recipeParams.membername = '';
+      this.recipeParams.title = '';
+
+      this.loadRecipes();
    }
 
    ngOnDestroy(): void {

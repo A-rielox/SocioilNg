@@ -49,6 +49,75 @@
       </div>
    </div>
 
+   <div>
+      <div
+         class="field flex flex-column lg:flex-row lg:align-items-center lg:justify-content-between"
+         *ngIf="recipeParams"
+      >
+         <form
+            #form="ngForm"
+            autocomplete="off"
+            (ngSubmit)="loadRecipes()"
+            class="flex flex-column md:flex-row md:align-items-center mb-3 md:mb-0"
+         >
+            <div class="grid">
+               <div class="col-12 md:col-6">
+                  <label for="autor" class="block text-900 font-medium mb-2"
+                     >Por Autor</label
+                  >
+                  <input
+                     id="autor"
+                     type="text"
+                     placeholder="Buscar por autor"
+                     pInputText
+                     class="w-full mb-3 p-3"
+                     [(ngModel)]="recipeParams.membername"
+                     name="membername"
+                  />
+               </div>
+
+               <div class="col-12 md:col-6">
+                  <label for="title" class="block text-900 font-medium mb-2"
+                     >Por Titulo</label
+                  >
+                  <input
+                     id="title"
+                     type="text"
+                     placeholder="Buscar en el título"
+                     pInputText
+                     class="w-full mb-3 p-3"
+                     [(ngModel)]="recipeParams.title"
+                     name="title"
+                  />
+               </div>
+            </div>
+
+            <button
+               pButton
+               type="submit"
+               label="Filtrar"
+               icon="pi pi-filter"
+               class="ml-2"
+            ></button>
+         </form>
+
+         <div class="flex align-items-center">
+            <label for="sort" class="font-normal text-900 mb-0 mr-2 text-sm"
+               >Ver:</label
+            >
+            <!-- (onOptionClick)="loadRecipes()" -->
+            <p-selectButton
+               [options]="recipesToDisplay"
+               [(ngModel)]="recipeParams.ownername"
+               name="sort"
+               optionLabel="label"
+               optionValue="name"
+               (onOptionClick)="fetchMyRecipes()"
+            ></p-selectButton>
+         </div>
+      </div>
+   </div>
+
    <div class="grid">
       <!-- class="col-12 md:col-6 lg:col-3" -->
       <ng-container *ngFor="let recipe of recipes">
@@ -91,5 +160,13 @@
             </div>
          </div>
       </ng-container>
+   </div>
+
+   <div class="flex justify-content-center" *ngIf="pagination && recipeParams">
+      <app-paginator
+         [numberOfPages]="pagination.totalPages"
+         [currentPage]="pagination.currentPage"
+         (changePage)="pageChanged($event)"
+      ></app-paginator>
    </div>
 </div>
