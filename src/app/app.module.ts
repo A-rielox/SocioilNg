@@ -43,7 +43,7 @@ import { PhotoManagementComponent } from './admin/photo-management/photo-managem
 import { RolesModalComponent } from './modals/roles-modal/roles-modal.component';
 import { ShortenPipe } from './_pipes/shorten.pipe';
 import { SeparatePipe } from './_pipes/separate.pipe';
-import { AddRecipeComponent } from './recipes/add-recipe/add-recipe.component';
+// import { AddRecipeComponent } from './recipes/add-recipe/add-recipe.component';
 import { RecipeDisplayComponent } from './recipes/recipe-display/recipe-display.component';
 import { IsOwnerOrAdminDirective } from './_directives/is-owner-or-admin.directive';
 import { AddEditModule } from './add-edit/add-edit.module';
@@ -75,14 +75,15 @@ import { AddEditModule } from './add-edit/add-edit.module';
       MessagesComponent,
       MemberMessagesComponent,
       AdminPanelComponent,
-      HasRoleDirective,
       UserManagementComponent,
       PhotoManagementComponent,
       RolesModalComponent,
+      RecipeDisplayComponent,
+      // AddRecipeComponent,
       ShortenPipe,
       SeparatePipe,
-      AddRecipeComponent,
-      RecipeDisplayComponent,
+      //
+      HasRoleDirective,
       IsOwnerOrAdminDirective,
    ],
    imports: [

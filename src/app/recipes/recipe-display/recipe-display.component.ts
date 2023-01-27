@@ -31,9 +31,7 @@ export class RecipeDisplayComponent implements OnInit {
    }
 
    onEdit() {
-      // p' cerra el RecipeDisplayComponent antes de abrir el de editar
-      // this.ref.close({ por: 'Editar-receta', idRecipe: this.recipe?.id });
-      ////////////////
+      // this.ref.close(); p' cerra este modal
       this.ref.close();
       const navigationExtras: NavigationExtras = {
          state: { recipe: this.recipe },

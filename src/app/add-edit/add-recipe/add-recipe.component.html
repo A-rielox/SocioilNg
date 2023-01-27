@@ -7,7 +7,6 @@
    >
       <div class="field col-12 md:col-8">
          <label for="firstname6">Lista de Aceites</label>
-         <!-- [(ngModel)]="registerForm.oilsList" -->
          <p-multiSelect
             formControlName="oilsList"
             [options]="allOils"
@@ -18,6 +17,22 @@
             [showToggleAll]="false"
             (onChange)="change()"
          ></p-multiSelect>
+
+         <ng-container
+            *ngIf="
+               registerForm.controls['oilsList'].touched &&
+               registerForm.controls['oilsList'].errors &&
+               registerForm.controls['oilsList'].dirty
+            "
+         >
+            <small
+               *ngIf="registerForm.controls['oilsList'].errors?.['required']"
+               id="oilsList-help"
+               class="p-error block"
+            >
+               Este campo es requerido</small
+            >
+         </ng-container>
 
          <label for="category" class="mt-3">Categoría</label>
          <p-multiSelect
@@ -31,6 +46,21 @@
             [filter]="false"
             required
          ></p-multiSelect>
+         <ng-container
+            *ngIf="
+               registerForm.controls['category'].touched &&
+               registerForm.controls['category'].errors &&
+               registerForm.controls['category'].dirty
+            "
+         >
+            <small
+               *ngIf="registerForm.controls['category'].errors?.['required']"
+               id="category-help"
+               class="p-error block"
+            >
+               Este campo es requerido</small
+            >
+         </ng-container>
       </div>
 
       <div class="field col-12 md:col-4">
@@ -46,12 +76,28 @@
       <div class="field col-12">
          <label for="title">Título</label>
          <input
-            formControlName="title"
+            pInputText
             id="title"
             type="text"
-            class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
-            required
+            class="w-full p-inputtext-sm"
+            formControlName="title"
          />
+         <ng-container
+            *ngIf="
+               registerForm.controls['title'].touched &&
+               registerForm.controls['title'].errors &&
+               registerForm.controls['title'].dirty
+            "
+         >
+            <small
+               *ngIf="registerForm.controls['title'].status === 'INVALID'"
+               id="title-help"
+               class="p-error block"
+            >
+               Este campo es requerido, con un mínimo de 5 y máx de 30
+               caracteres.</small
+            >
+         </ng-container>
       </div>
 
       <div class="field col-12">
@@ -63,8 +109,24 @@
             type="text"
             rows="4"
             [autoResize]="true"
-            class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
+            class="w-full p-inputtext-sm"
          ></textarea>
+         <ng-container
+            *ngIf="
+               registerForm.controls['content'].touched &&
+               registerForm.controls['content'].errors &&
+               registerForm.controls['content'].dirty
+            "
+         >
+            <small
+               *ngIf="registerForm.controls['content'].status === 'INVALID'"
+               id="content-help"
+               class="p-error block"
+            >
+               Este campo es requerido, con un mínimo de 30 y máx de 1000
+               caracteres.</small
+            >
+         </ng-container>
       </div>
    </form>
 

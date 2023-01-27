@@ -61,28 +61,35 @@ export class AddRecipeComponent implements OnInit {
 
          this.defineList();
       }
+
+      console.log(this.registerForm);
    }
 
    initializeForm() {
       this.registerForm = this.fb.group({
-         id: -1,
-         title: '',
-         content: '',
-         oilsList: [],
-         category: [],
+         id: [-1, Validators.required],
+         title: [
+            '',
+            [
+               Validators.required,
+               Validators.minLength(5),
+               Validators.maxLength(30),
+            ],
+         ],
+         content: [
+            '',
+            [
+               Validators.required,
+               Validators.minLength(30),
+               Validators.maxLength(1000),
+            ],
+         ],
+         oilsList: [[], Validators.required],
+         category: [[], Validators.required],
       });
-      // this.registerForm = this.fb.group({
-      //    id: [-1, Validators.required],
-      //    title: ['', Validators.required],
-      //    content: ['', Validators.required],
-      //    oilsList: [[], Validators.required],
-      //    category: [[], Validators.required],
-      // });
    }
 
    register() {
-      console.log(this.registerForm.value);
-
       const { oilsList, category, title, content, id } =
          this.registerForm.value;
 
@@ -114,8 +121,6 @@ export class AddRecipeComponent implements OnInit {
             content: content,
             oilsList: oils,
          };
-
-         console.log('----------editada', editedRecipe);
 
          this.recipesService.editRecipe(editedRecipe).subscribe({
             next: (_) => {
