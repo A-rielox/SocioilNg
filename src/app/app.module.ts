@@ -47,6 +47,7 @@ import { SeparatePipe } from './_pipes/separate.pipe';
 import { RecipeDisplayComponent } from './recipes/recipe-display/recipe-display.component';
 import { IsOwnerOrAdminDirective } from './_directives/is-owner-or-admin.directive';
 import { AddEditModule } from './add-edit/add-edit.module';
+import { PostDisplayComponent } from './posts/post-display/post-display.component';
 
 @NgModule({
    declarations: [
@@ -85,6 +86,7 @@ import { AddEditModule } from './add-edit/add-edit.module';
       //
       HasRoleDirective,
       IsOwnerOrAdminDirective,
+      PostDisplayComponent,
    ],
    imports: [
       BrowserModule,

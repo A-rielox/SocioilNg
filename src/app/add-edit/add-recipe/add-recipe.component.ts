@@ -61,8 +61,6 @@ export class AddRecipeComponent implements OnInit {
 
          this.defineList();
       }
-
-      console.log(this.registerForm);
    }
 
    initializeForm() {

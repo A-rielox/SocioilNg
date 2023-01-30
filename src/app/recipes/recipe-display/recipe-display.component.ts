@@ -66,7 +66,7 @@ export class RecipeDisplayComponent implements OnInit {
                   // desde aqui solo p' mandar la señal y q recarge las recetas a tiempo
                   this.ref.close({
                      por: 'Receta-borrada',
-                     idRecipe: -1,
+                     id: -1,
                   });
                },
             });
@@ -77,19 +77,19 @@ export class RecipeDisplayComponent implements OnInit {
       });
    }
 
-   borderColor(category: string) {
-      switch (category) {
-         case 'Bebes':
-            return 'background: linear-gradient(15deg, #06d465, #06b6d4); border-left: 10px solid transparent;';
+   // borderColor(category: string) {
+   //    switch (category) {
+   //       case 'Bebes':
+   //          return 'background: linear-gradient(15deg, #06d465, #06b6d4); border-left: 10px solid transparent;';
 
-         case 'Salud':
-            return 'background: linear-gradient(15deg, #f91616, #f97316); border-left: 10px solid transparent;';
+   //       case 'Salud':
+   //          return 'background: linear-gradient(15deg, #f91616, #f97316); border-left: 10px solid transparent;';
 
-         case 'Belleza':
-            return 'background: linear-gradient(15deg, #cc63f1, #6366f1); border-left: 10px solid transparent;';
+   //       case 'Belleza':
+   //          return 'background: linear-gradient(15deg, #cc63f1, #6366f1); border-left: 10px solid transparent;';
 
-         default:
-            return 'background: linear-gradient(15deg, #eae91c, #6d1e70); border-left: 10px solid transparent;';
-      }
-   }
+   //       default:
+   //          return 'background: linear-gradient(15deg, #eae91c, #6d1e70); border-left: 10px solid transparent;';
+   //    }
+   // }
 }

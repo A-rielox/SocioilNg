@@ -4,9 +4,6 @@ import { environment } from 'src/environments/environment';
 import { EditedRecipe, NewRecipe, Recipe } from '../_models/recipe';
 import { RecipeParams } from '../_models/recipeParams';
 import { getPaginatedResult, getPaginationHeaders } from './paginationHelper';
-import { AccountService } from './account.service';
-import { take } from 'rxjs/operators';
-import { User } from '../_models/user';
 
 @Injectable({
    providedIn: 'root',

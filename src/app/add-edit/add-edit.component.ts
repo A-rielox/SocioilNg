@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { Recipe } from '../_models/recipe';
 
 @Component({
    selector: 'app-add-edit',
@@ -6,7 +8,19 @@ import { Component, OnInit } from '@angular/core';
    styleUrls: ['./add-edit.component.css'],
 })
 export class AddEditComponent implements OnInit {
-   constructor() {}
+   recipeToEdit?: Recipe;
+   navTitle?: string;
 
-   ngOnInit(): void {}
+   constructor(private router: Router) {
+      const navigation = this.router.getCurrentNavigation();
+      this.recipeToEdit = navigation?.extras.state?.['recipe'];
+   }
+
+   ngOnInit(): void {
+      if (this.recipeToEdit) {
+         this.navTitle = 'Editar Receta';
+      } else {
+         this.navTitle = 'Añadir';
+      }
+   }
 }

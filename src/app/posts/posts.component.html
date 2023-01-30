@@ -1,1 +1,167 @@
-<p>posts works!</p>
+<div class="surface-section px-4 py-8 md:px-6 lg:px-8">
+   <div class="font-bold text-5xl text-900 mb-3 relative">
+      Posts
+
+      <button
+         pButton
+         type="button"
+         icon="pi pi-plus"
+         class="p-button-rounded absolute top-0 right-0 small-btn"
+         routerLink="/add-edit"
+      ></button>
+
+      <button
+         pButton
+         type="button"
+         label="Añadir"
+         icon="pi pi-plus"
+         class="p-button w-2 absolute top-0 right-0 big-btn"
+         routerLink="/add-edit/recipe"
+      ></button>
+   </div>
+
+   <div class="text-700 line-height-3 text-base mb-6 flex align-items-center">
+      Recuerda:
+      <div class="flex ml-2 align-items-center">
+         Salud
+         <div
+            style="background: linear-gradient(15deg, #f91616, #f97316)"
+            class="w-2rem h-2rem flex-shrink-0 border-circle ml-2"
+         ></div>
+         &nbsp;, &nbsp;
+      </div>
+
+      <div class="flex ml-2 align-items-center">
+         Belleza
+         <div
+            style="background: linear-gradient(15deg, #cc63f1, #6366f1)"
+            class="w-2rem h-2rem flex-shrink-0 border-circle ml-2"
+         ></div>
+         &nbsp;, &nbsp;
+      </div>
+
+      <div class="flex ml-2 align-items-center">
+         Bebés
+         <div
+            style="background: linear-gradient(15deg, #06d465, #06b6d4)"
+            class="w-2rem h-2rem flex-shrink-0 border-circle ml-2"
+         ></div>
+      </div>
+   </div>
+
+   <div>
+      <!-- *ngIf="recipeParams" -->
+      <div
+         class="field flex flex-column lg:flex-row lg:align-items-center lg:justify-content-between"
+      >
+         <!-- (ngSubmit)="loadRecipes()" -->
+         <form
+            #form="ngForm"
+            autocomplete="off"
+            class="flex flex-column md:flex-row md:align-items-center mb-3 md:mb-0"
+         >
+            <div class="grid">
+               <div class="col-12 md:col-6">
+                  <label for="autor" class="block text-900 font-medium mb-2"
+                     >Por Autor</label
+                  >
+                  <!-- [(ngModel)]="recipeParams.membername" -->
+                  <input
+                     id="autor"
+                     type="text"
+                     placeholder="Buscar por autor"
+                     pInputText
+                     class="w-full mb-3 p-3"
+                     name="membername"
+                  />
+               </div>
+
+               <div class="col-12 md:col-6">
+                  <label for="title" class="block text-900 font-medium mb-2"
+                     >Por Titulo</label
+                  >
+                  <!-- [(ngModel)]="recipeParams.title" -->
+                  <input
+                     id="title"
+                     type="text"
+                     placeholder="Buscar en el título"
+                     pInputText
+                     class="w-full mb-3 p-3"
+                     name="title"
+                  />
+               </div>
+            </div>
+
+            <button
+               pButton
+               type="submit"
+               label="Filtrar"
+               icon="pi pi-filter"
+               class="ml-2"
+            ></button>
+         </form>
+
+         <div class="flex align-items-center">
+            <label for="sort" class="font-normal text-900 mb-0 mr-2 text-sm"
+               >Ver:</label
+            >
+            <!-- [(ngModel)]="recipeParams.ownername" -->
+            <!-- (onOptionClick)="fetchMyRecipes()" -->
+            <p-selectButton
+               [options]="postsToDisplay"
+               name="sort"
+               optionLabel="label"
+               optionValue="name"
+            ></p-selectButton>
+         </div>
+      </div>
+   </div>
+
+   <div class="grid">
+      <!-- class="col-12 md:col-6 lg:col-3" -->
+      <ng-container *ngFor="let post of posts">
+         <div class="col-12 md:col-6 lg:col-4">
+            <div
+               class="shadow-2 border-round-xl cursor-pointer"
+               [style]="borderColor(post.category)"
+               (click)="displayPost(post)"
+            >
+               <div class="p-4 border-round surface-card h-full">
+                  <div class="flex mb-3">
+                     <p-avatar
+                        image="{{ post.createdByPhotoUrl }}"
+                        shape="circle"
+                     ></p-avatar>
+
+                     <div class="ml-2">
+                        <div class="font-medium text-900 mb-1">
+                           {{ post.createdByUsername | titlecase }}
+                        </div>
+
+                        <div class="text-xs flex align-items-center text-400">
+                           <span>{{ post.created | date }}</span>
+                        </div>
+                     </div>
+                  </div>
+
+                  <div class="text-xl text-900 font-medium mb-3 line-height-3">
+                     {{ post.title }}
+                  </div>
+
+                  <div class="line-height-3 text-700">
+                     {{ post.content | shorten : 150 }}
+                  </div>
+               </div>
+            </div>
+         </div>
+      </ng-container>
+   </div>
+
+   <!-- <div class="flex justify-content-center" *ngIf="pagination && recipeParams">
+      <app-paginator
+         [numberOfPages]="pagination.totalPages"
+         [currentPage]="pagination.currentPage"
+         (changePage)="pageChanged($event)"
+      ></app-paginator>
+   </div> -->
+</div>

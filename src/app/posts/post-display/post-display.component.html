@@ -1,0 +1,54 @@
+<ng-container *ngIf="post">
+   <div class="p-4 pt-0">
+      <span class="block font-medium text-orange-600 mb-3">{{
+         post.category
+      }}</span>
+
+      <div class="text-xl text-900 font-medium mb-3 line-height-3">
+         {{ post.title }}
+      </div>
+
+      <div class="line-height-3 mb-3 text-700">
+         {{ post.content }}
+      </div>
+
+      <!--        usuario         -->
+      <div class="flex justify-content-end">
+         <p-avatar
+            image="{{ post.createdByPhotoUrl }}"
+            shape="circle"
+         ></p-avatar>
+
+         <div class="ml-2">
+            <div class="font-medium text-900 mb-1">
+               {{ post.createdByUsername | titlecase }}
+            </div>
+
+            <div class="text-xs flex align-items-center text-400">
+               <span>{{ post.created | date }}</span>
+            </div>
+         </div>
+      </div>
+   </div>
+
+   <div
+      class="border-top-1 surface-border pt-3 flex justify-content-end"
+      *appIsOwnerOrAdmin="post.createdByUsername"
+   >
+      <p-confirmPopup></p-confirmPopup>
+      <button
+         pButton
+         icon="pi pi-trash"
+         label="Borrar"
+         class="p-button-outlined mr-2"
+         (click)="confirm($event)"
+      ></button>
+
+      <button
+         pButton
+         icon="pi pi-file-edit"
+         label="Editar"
+         (click)="onEdit()"
+      ></button>
+   </div>
+</ng-container>

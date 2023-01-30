@@ -20,6 +20,11 @@ interface RecipesToDisplay {
    label: string;
 }
 
+interface CloseModal {
+   por: string;
+   id: number; // receta o post
+}
+
 @Component({
    selector: 'app-recipes',
    templateUrl: './recipes.component.html',
@@ -35,7 +40,7 @@ export class RecipesComponent implements OnInit, OnDestroy {
 
    ///////
    user: User | undefined; // 📌 solo p' sacar el username
-   recipesToDisplay: RecipesToDisplay[] = [];
+   recipesToDisplay: RecipesToDisplay[] = []; // p' le filtro de "mias" o "todas"
 
    // filters: Filters[] = [{ name: '' label: ''}];
 
@@ -46,7 +51,7 @@ export class RecipesComponent implements OnInit, OnDestroy {
    ) {
       this.recipeParams = this.recipesService.getRecipeParams();
 
-      // 📌 solo p' sacar el username
+      // 📌 solo p' sacar el username y pasarlo al filtro de mias
       this.accountService.currentUser$.pipe(take(1)).subscribe({
          next: (user) => {
             if (user) {
@@ -74,8 +79,6 @@ export class RecipesComponent implements OnInit, OnDestroy {
 
          this.recipesService.getRecipes(this.recipeParams).subscribe({
             next: (res) => {
-               console.log('----------- recetas paginadas  ', res);
-
                if (res.result && res.pagination) {
                   this.recipes = res.result;
                   this.pagination = res.pagination;
@@ -90,6 +93,19 @@ export class RecipesComponent implements OnInit, OnDestroy {
          data: recipe,
          styleClass: 'displayRecipeClass',
          dismissableMask: true,
+      });
+
+      // al cerrar el modal de displayReceta por borrado o editar
+      this.refDisplayRecipe.onClose.subscribe({
+         next: (modalRecipeDisplayCerrado: CloseModal) => {
+            // por si se cierra con esc o picando fuera del modal
+            if (!modalRecipeDisplayCerrado) return;
+
+            if (modalRecipeDisplayCerrado.por === 'Receta-borrada') {
+               // mientras casheo
+               this.loadRecipes();
+            }
+         },
       });
    }
 
@@ -151,7 +167,7 @@ import { RecipeDisplayComponent } from './recipe-display/recipe-display.componen
 
 // interface CloseModal {
 //    por: string;
-//    idRecipe: number;
+//    id: number; // receta o post
 // }
 
 @Component({
@@ -203,7 +219,7 @@ export class RecipesComponent implements OnInit, OnDestroy {
       //          this.loadRecipes();
       //          //
       //       } else if (modalRecipeDisplayCerrado.por === 'Editar-receta') {
-      //          this.showEditRecipe(modalRecipeDisplayCerrado.idRecipe);
+      //          this.showEditRecipe(modalRecipeDisplayCerrado.id);
       //       }
       //    },
       // });
