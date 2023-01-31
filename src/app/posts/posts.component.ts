@@ -101,19 +101,23 @@ export class PostsComponent implements OnInit {
       if (this.refDisplayPost) this.refDisplayPost?.close();
    }
 
-   borderColor(category: string) {
+   border2Color(category: string) {
       switch (category) {
-         case 'Bebés':
-            return 'background: linear-gradient(15deg, #06d465, #06b6d4); border-left: 10px solid transparent;';
+         case 'Piel':
+            return 'border-color: #06d465';
+         // return 'background: linear-gradient(15deg, #06d465, #06b6d4); border-top-width: 3px;';
 
          case 'Salud':
-            return 'background: linear-gradient(15deg, #f91616, #f97316); border-left: 10px solid transparent;';
+            return 'border-color: #f97316';
+         // return 'background: linear-gradient(15deg, #f91616, #f97316); border-top-width: 3px;';
 
          case 'Belleza':
-            return 'background: linear-gradient(15deg, #cc63f1, #6366f1); border-left: 10px solid transparent;';
+            return 'border-color: #6366f1';
+         // return 'background: linear-gradient(15deg, #cc63f1, #6366f1); border-top-width: 3px;';
 
          default:
-            return 'background: linear-gradient(15deg, #eae91c, #6d1e70); border-left: 10px solid transparent;';
+            return 'border-color: #eae91c';
+         // return 'background: linear-gradient(15deg, #eae91c, #6d1e70); border-top-width: 3px;';
       }
    }
 }

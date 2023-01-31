@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { NavigationExtras, Router } from '@angular/router';
 import { ConfirmationService } from 'primeng/api';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { Post } from 'src/app/_models/post';
@@ -32,12 +32,12 @@ export class PostDisplayComponent implements OnInit {
    onEdit() {
       console.log('edit edit edit');
       // p' cerra este modal this.ref.close();
-      // this.ref.close();
-      // const navigationExtras: NavigationExtras = {
-      //    state: { recipe: this.recipe },
-      // };
+      this.ref.close();
+      const navigationExtras: NavigationExtras = {
+         state: { post: this.post },
+      };
 
-      // this.router.navigateByUrl('/add-edit/recipe', navigationExtras);
+      this.router.navigateByUrl('/add-edit/post', navigationExtras);
    }
 
    // pop-up de confirmar borrado

@@ -73,6 +73,8 @@ export class MemberDetailComponent implements OnInit {
             this.member = member;
 
             this.images = this.getImages();
+
+            this.loadMessages();
          },
       });
    }
@@ -97,8 +99,6 @@ export class MemberDetailComponent implements OnInit {
    selectTab() {
       // en indice 2 tengo Mensajes
       this.activeTabIndex = 2;
-
-      this.loadMessages();
    }
 
    loadMessages() {
@@ -109,14 +109,16 @@ export class MemberDetailComponent implements OnInit {
       }
    }
 
-   onTabChanged(e: any) {
-      // console.log(e.originalEvent.srcElement.firstElementChild.innerText);
-      const activeTab = e.originalEvent.srcElement.firstElementChild.innerText;
+   // onTabChanged(e: any) {
+   // yellow   ERA P' Q NO CARGUE MENSAJES HASTA QUE SE ENTRE EN LA PESTAÑA
+   // yellow p' mejor los cargo junto con el componente
 
-      if (activeTab === 'Mensajes') {
-         this.loadMessages();
-      }
-   }
+   // console.log(e.originalEvent.srcElement.firstElementChild.innerText);
+   // const activeTab = e.originalEvent.srcElement.firstElementChild.innerText;
+   // if (activeTab === 'Mensajes') {
+   //    this.loadMessages();
+   // }
+   // }
 }
 
 // { path: 'miembros/:username', component: MemberDetailComponent },

@@ -8,9 +8,11 @@
          {{ post.title }}
       </div>
 
-      <div class="line-height-3 mb-3 text-700">
+      <!-- <div class="line-height-3 mb-3 text-700">
          {{ post.content }}
-      </div>
+      </div> -->
+
+      <div [innerHTML]="post.content"></div>
 
       <!--        usuario         -->
       <div class="flex justify-content-end">

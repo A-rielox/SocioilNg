@@ -123,34 +123,42 @@
       <ng-container *ngFor="let recipe of recipes">
          <div class="col-12 md:col-6 lg:col-4">
             <div
-               class="shadow-2 border-round-xl cursor-pointer"
+               class="shadow-2 border-round-xl cursor-pointer h-full"
                [style]="borderColor(recipe.category)"
                (click)="displayRecipe(recipe)"
             >
-               <div class="p-4 border-round surface-card h-full">
-                  <div class="flex mb-3">
-                     <p-avatar
-                        image="{{ recipe.createdByPhotoUrl }}"
-                        shape="circle"
-                     ></p-avatar>
+               <div
+                  class="p-4 border-round surface-card h-full flex flex-column justify-content-between"
+               >
+                  <div>
+                     <div class="flex mb-3">
+                        <p-avatar
+                           image="{{ recipe.createdByPhotoUrl }}"
+                           shape="circle"
+                        ></p-avatar>
 
-                     <div class="ml-2">
-                        <div class="font-medium text-900 mb-1">
-                           {{ recipe.createdByUsername | titlecase }}
-                        </div>
+                        <div class="ml-2">
+                           <div class="font-medium text-900 mb-1">
+                              {{ recipe.createdByUsername | titlecase }}
+                           </div>
 
-                        <div class="text-xs flex align-items-center text-400">
-                           <span>{{ recipe.created | date }}</span>
+                           <div
+                              class="text-xs flex align-items-center text-400"
+                           >
+                              <span>{{ recipe.created | date }}</span>
+                           </div>
                         </div>
                      </div>
-                  </div>
 
-                  <div class="text-xl text-900 font-medium mb-3 line-height-3">
-                     {{ recipe.title }}
-                  </div>
+                     <div
+                        class="text-xl text-900 font-medium mb-3 line-height-3"
+                     >
+                        {{ recipe.title }}
+                     </div>
 
-                  <div class="line-height-3 text-700">
-                     {{ recipe.content | shorten : 150 }}
+                     <div class="line-height-3 text-700">
+                        {{ recipe.content | shorten : 150 }}
+                     </div>
                   </div>
 
                   <div class="text-xs text-center text-400 mt-2">

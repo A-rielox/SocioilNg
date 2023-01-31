@@ -92,10 +92,8 @@
       <!--                 TABS -->
       <!--                 TABS -->
       <div class="col-12 lg:col-8 lg:pl-6">
-         <p-tabView
-            (onChange)="onTabChanged($event)"
-            [(activeIndex)]="activeTabIndex"
-         >
+         <!-- (onChange)="onTabChanged($event)" -->
+         <p-tabView [(activeIndex)]="activeTabIndex">
             <p-tabPanel header="Acerca de {{ member.knownAs }}">
                <ul class="list-none p-0 m-0">
                   <li class="pb-5 border-bottom-1 surface-border">

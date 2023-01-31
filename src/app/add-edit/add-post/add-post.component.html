@@ -1,1 +1,112 @@
-<p>add-post works!</p>
+<!-- <p-editor [(ngModel)]="text" [style]="{ height: '320px' }"> </p-editor> -->
+
+<!-- <div [innerHTML]="text"></div> -->
+
+<div class="m-5 mt-0 flex flex-column" *ngIf="allCats">
+   <form
+      class="formgrid grid"
+      [formGroup]="PostsForm"
+      (ngSubmit)="sendPost()"
+      autocomplete="off"
+   >
+      <div class="flex flex-column mt-3 field col-12 md:col-6">
+         <label for="category" class="mb-2">Categoría</label>
+         <p-multiSelect
+            formControlName="category"
+            [options]="allCats"
+            defaultLabel="Selecciona una Categoria"
+            optionLabel="name"
+            display="chip"
+            [selectionLimit]="1"
+            [showToggleAll]="false"
+            [filter]="false"
+            required
+         ></p-multiSelect>
+
+         <!-- errores -->
+         <ng-container
+            *ngIf="
+               PostsForm.controls['category'].touched &&
+               PostsForm.controls['category'].errors &&
+               PostsForm.controls['category'].dirty
+            "
+         >
+            <small
+               *ngIf="PostsForm.controls['category'].errors?.['required']"
+               id="category-help"
+               class="p-error block"
+            >
+               Este campo es requerido</small
+            >
+         </ng-container>
+      </div>
+
+      <div class="field col-12">
+         <label for="title">Título</label>
+         <input
+            pInputText
+            id="title"
+            type="text"
+            class="w-full p-inputtext-sm"
+            formControlName="title"
+         />
+         <!-- errores -->
+         <ng-container
+            *ngIf="
+               PostsForm.controls['title'].touched &&
+               PostsForm.controls['title'].errors &&
+               PostsForm.controls['title'].dirty
+            "
+         >
+            <small
+               *ngIf="PostsForm.controls['title'].status === 'INVALID'"
+               id="title-help"
+               class="p-error block"
+            >
+               Este campo es requerido, con un mínimo de 5 y máx de 30
+               caracteres.</small
+            >
+         </ng-container>
+      </div>
+
+      <div class="field col-12">
+         <label for="content">Descripción</label>
+         <!-- <textarea
+            formControlName="content"
+            pInputTextarea
+            id="content"
+            type="text"
+            rows="4"
+            [autoResize]="true"
+            class="w-full p-inputtext-sm"
+         ></textarea> -->
+
+         <p-editor formControlName="content" [style]="{ height: '320px' }">
+         </p-editor>
+
+         <ng-container
+            *ngIf="
+               PostsForm.controls['content'].touched &&
+               PostsForm.controls['content'].errors &&
+               PostsForm.controls['content'].dirty
+            "
+         >
+            <small
+               *ngIf="PostsForm.controls['content'].status === 'INVALID'"
+               id="content-help"
+               class="p-error block"
+            >
+               Este campo es requerido, con un mínimo de 30 y máx de 1000
+               caracteres.</small
+            >
+         </ng-container>
+      </div>
+   </form>
+
+   <p-button
+      label="Guardar"
+      icon="pi pi-check"
+      styleClass="p-button"
+      (onClick)="sendPost()"
+   ></p-button>
+</div>

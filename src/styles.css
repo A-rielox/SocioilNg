@@ -7,11 +7,13 @@ body {
    -moz-osx-font-smoothing: grayscale;
 }
 
+/* ************************************** */
 /* p'q no se me pegue la tacha en modales */
 .p-dialog .p-dialog-header .p-dialog-title {
    margin-right: 2rem;
 }
 
+/* ********************************* */
 /*       modal añadir receta         */
 .addRecipeClass.p-dialog {
    max-width: 100vw;
@@ -27,7 +29,7 @@ body {
    }
 }
 
-/* ****************************** */
+/* ********************************** */
 /*       modal display receta         */
 .displayRecipeClass.p-dialog {
    max-width: 100vw;
@@ -48,7 +50,7 @@ body {
    }
 } */
 
-/* ****************************** */
+/* ******************************** */
 /*       modal display post         */
 .displayPostClass.p-dialog {
    max-width: 100vw;
@@ -62,4 +64,31 @@ body {
    .displayPostClass.p-dialog {
       max-width: 700px;
    }
+}
+
+/* ***************************************** */
+/*       ocultar botones barra quill         */
+.p-editor-toolbar .ql-formats button.ql-link {
+   display: none;
+}
+.p-editor-toolbar .ql-formats button.ql-image {
+   display: none;
+}
+.p-editor-toolbar .ql-formats button.ql-code-block {
+   display: none;
+}
+.p-editor-toolbar .ql-formats button.ql-clean {
+   display: none;
+}
+/* los botones de color de letra y su background */
+.p-editor-toolbar .ql-formats span.ql-color-picker {
+   display: none;
+}
+
+.p-editor-toolbar .ql-formats span.ql-icon-picker {
+   display: none;
+}
+
+.p-editor-toolbar .ql-font.ql-picker {
+   display: none;
 }

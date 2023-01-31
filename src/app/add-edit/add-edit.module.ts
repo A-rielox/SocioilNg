@@ -8,6 +8,8 @@ import { SharedModule } from '../_modules/shared.module';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
+import { EditorModule } from 'primeng/editor';
+
 @NgModule({
    declarations: [
       AddRecipeComponent,
@@ -15,7 +17,13 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
       AddEditComponent,
       // TextInputComponent,
    ],
-   imports: [CommonModule, SharedModule, FormsModule, ReactiveFormsModule],
+   imports: [
+      CommonModule,
+      SharedModule,
+      FormsModule,
+      ReactiveFormsModule,
+      EditorModule,
+   ],
    exports: [AddRecipeComponent, AddPostComponent, AddEditComponent],
 })
 export class AddEditModule {}
