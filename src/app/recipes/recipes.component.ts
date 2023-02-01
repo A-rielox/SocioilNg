@@ -9,12 +9,6 @@ import { User } from '../_models/user';
 import { AccountService } from '../_services/account.service';
 import { take } from 'rxjs/operators';
 
-interface Filters {
-   // ownername: string;
-   membername: string;
-   title: string;
-}
-
 interface RecipesToDisplay {
    name: string;
    label: string;
@@ -41,8 +35,6 @@ export class RecipesComponent implements OnInit, OnDestroy {
    ///////
    user: User | undefined; // 📌 solo p' sacar el username
    recipesToDisplay: RecipesToDisplay[] = []; // p' le filtro de "mias" o "todas"
-
-   // filters: Filters[] = [{ name: '' label: ''}];
 
    constructor(
       private recipesService: RecipesService,

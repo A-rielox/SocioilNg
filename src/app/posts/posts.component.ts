@@ -7,12 +7,7 @@ import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { AccountService } from '../_services/account.service';
 import { take } from 'rxjs/operators';
 import { PostDisplayComponent } from './post-display/post-display.component';
-
-interface Filters {
-   // ownername: string;
-   membername: string;
-   title: string;
-}
+import { PostParams } from '../_models/postParams';
 
 interface PostsToDisplay {
    name: string;
@@ -33,7 +28,7 @@ interface CloseModal {
 export class PostsComponent implements OnInit {
    posts?: Post[] = [];
    pagination: Pagination | undefined; // p'paginator en .html
-   // postParams: PostParams | undefined; // aqui estan los filtros
+   postParams: PostParams | undefined; // aqui estan los filtros
 
    refDisplayPost?: DynamicDialogRef;
 
@@ -46,6 +41,8 @@ export class PostsComponent implements OnInit {
       public dialogService: DialogService,
       private accountService: AccountService
    ) {
+      this.postParams = postsService.getPostParams();
+
       // 📌 solo p' sacar el username y pasarlo al filtro de mias
       this.accountService.currentUser$.pipe(take(1)).subscribe({
          next: (user) => {
@@ -68,9 +65,14 @@ export class PostsComponent implements OnInit {
    }
 
    loadPosts() {
-      this.postsService.getPosts().subscribe({
-         next: (posts) => {
-            this.posts = posts;
+      if (!this.postParams) return;
+
+      this.postsService.getPosts(this.postParams).subscribe({
+         next: (res) => {
+            if (res.result && res.pagination) {
+               this.posts = res.result;
+               this.pagination = res.pagination;
+            }
          },
       });
    }
@@ -94,6 +96,31 @@ export class PostsComponent implements OnInit {
             }
          },
       });
+   }
+
+   // private arrayEqual(arr1: any[], arr2: any[]) {
+   //    // transformo todo el array en un string
+   //    return JSON.stringify(arr1.sort()) === JSON.stringify(arr2.sort());
+   // }
+
+   pageChanged(e: number) {
+      if (!this.postParams) return;
+
+      this.postParams.pageNumber = e;
+
+      // ya lo hago en loadRecipes()
+      // this.recipesService.setPostParams(this.postParams);
+
+      this.loadPosts();
+   }
+
+   fetchMyPosts() {
+      if (!this.postParams) return;
+
+      this.postParams.membername = '';
+      this.postParams.title = '';
+
+      this.loadPosts();
    }
 
    ngOnDestroy(): void {

@@ -20,6 +20,7 @@
       ></button>
    </div>
 
+   <!--        el "Recuerda"        -->
    <div class="text-700 line-height-3 text-base mb-6 flex align-items-center">
       Recuerda:
       <div class="flex ml-2 align-items-center">
@@ -49,14 +50,15 @@
       </div>
    </div>
 
+   <!--              FORM               -->
    <div>
-      <!-- *ngIf="recipeParams" -->
       <div
+         *ngIf="postParams"
          class="field flex flex-column lg:flex-row lg:align-items-center lg:justify-content-between"
       >
-         <!-- (ngSubmit)="loadRecipes()" -->
          <form
             #form="ngForm"
+            (ngSubmit)="loadPosts()"
             autocomplete="off"
             class="flex flex-column md:flex-row md:align-items-center mb-3 md:mb-0"
          >
@@ -65,13 +67,13 @@
                   <label for="autor" class="block text-900 font-medium mb-2"
                      >Por Autor</label
                   >
-                  <!-- [(ngModel)]="recipeParams.membername" -->
                   <input
                      id="autor"
                      type="text"
                      placeholder="Buscar por autor"
                      pInputText
                      class="w-full mb-3 p-3"
+                     [(ngModel)]="postParams.membername"
                      name="membername"
                   />
                </div>
@@ -80,13 +82,13 @@
                   <label for="title" class="block text-900 font-medium mb-2"
                      >Por Titulo</label
                   >
-                  <!-- [(ngModel)]="recipeParams.title" -->
                   <input
                      id="title"
                      type="text"
                      placeholder="Buscar en el título"
                      pInputText
                      class="w-full mb-3 p-3"
+                     [(ngModel)]="postParams.title"
                      name="title"
                   />
                </div>
@@ -105,21 +107,19 @@
             <label for="sort" class="font-normal text-900 mb-0 mr-2 text-sm"
                >Ver:</label
             >
-            <!-- [(ngModel)]="recipeParams.ownername" -->
-            <!-- (onOptionClick)="fetchMyRecipes()" -->
             <p-selectButton
                [options]="postsToDisplay"
                name="sort"
                optionLabel="label"
                optionValue="name"
+               [(ngModel)]="postParams.ownername"
+               (onOptionClick)="fetchMyPosts()"
             ></p-selectButton>
          </div>
       </div>
    </div>
-   <!--  -->
-   <!--  -->
-   <!--  -->
 
+   <!--              POSTS               -->
    <div class="grid">
       <ng-container *ngFor="let post of posts">
          <div class="col-12 lg:col-6">
@@ -167,6 +167,15 @@
       </ng-container>
    </div>
 
+   <div class="flex justify-content-center" *ngIf="pagination && postParams">
+      <app-paginator
+         [numberOfPages]="pagination.totalPages"
+         [currentPage]="pagination.currentPage"
+         (changePage)="pageChanged($event)"
+      ></app-paginator>
+   </div>
+
+   <!--        COMO LO QUIERO PONER         -->
    <div class="col-12 lg:col-4 p-3">
       <div class="shadow-2 border-round h-full surface-card">
          <img
@@ -199,12 +208,4 @@
          </div>
       </div>
    </div>
-
-   <!-- <div class="flex justify-content-center" *ngIf="pagination && recipeParams">
-      <app-paginator
-         [numberOfPages]="pagination.totalPages"
-         [currentPage]="pagination.currentPage"
-         (changePage)="pageChanged($event)"
-      ></app-paginator>
-   </div> -->
 </div>
