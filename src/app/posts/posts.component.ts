@@ -64,6 +64,14 @@ export class PostsComponent implements OnInit {
       }
    }
 
+   filterPosts() {
+      if (!this.postParams) return;
+
+      this.postParams.pageNumber = 1;
+
+      this.loadPosts();
+   }
+
    loadPosts() {
       if (!this.postParams) return;
 

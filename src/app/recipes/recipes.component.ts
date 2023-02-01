@@ -64,6 +64,14 @@ export class RecipesComponent implements OnInit, OnDestroy {
       }
    }
 
+   filterRecipes() {
+      if (!this.recipeParams) return;
+
+      this.recipeParams.pageNumber = 1;
+
+      this.loadRecipes();
+   }
+
    loadRecipes() {
       if (this.recipeParams) {
          // 1ro los pongo xsi los he cambiado
